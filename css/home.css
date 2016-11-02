@@ -1,0 +1,119 @@
+/*
+ * CSS for smithdc page.
+ *
+ */
+
+
+/* fonts and type */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+html {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 25px;
+  line-height: 1.6em;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+p {
+  clear: both;
+  margin-left: 1em;
+  margin-right: 3em;
+}
+.very-small {
+  font-size: 50%;
+}
+.small {
+  font-size: 75%;
+}
+.large {
+  font-size: 125%;
+}
+.very-large {
+  font-size: 150%;
+}
+
+/* Classes for changing location of things */
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.center-content {
+  text-align: center;
+}
+
+.block-center {
+  margin: 1em auto;
+  display: block;
+}
+/* Form elements like input fields and buttons */
+input[type="text"] {
+  font-family: 'Open Sans', 'Arial', sans-sefif;
+  font-size: 14px;
+}
+
+/*Elements for listing*/
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover:not(.active) {
+    background-color: #A4D3FF;
+}
+
+.active {
+    background-color: #8AC6FF;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+
+.GUESSlist {
+  display:block;
+  float: left;
+  width: 300px; 
+  height: 150px;
+  margin-left: 50px;
+  background-color: white;
+  position: fixed;
+}
+
+.GUESSlist li {
+  border-right: 0px;
+  background-color: white;
+}
+
+.GUESSlist ul {
+  background-color: white;
+  float: left;
+  margin-left: 50px;
+}

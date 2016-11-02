@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hyperboloid</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="jspsych-5.0.3/jspsych.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
+    <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  </head>
+  <body>
+    <div id="jspsych-target"></div>
+  </body>
+  <script>
+
+  // defining groups of questions that will go together.
+  var page_1_questions = ["Which deal would you take?"];
+  var trialcount = 0;
+  var Prospects = [800, 40000];
+  var Delays = ["immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"];
+  var Odds = ["10%", "25%", "40%", "80%", "100%"];
+  //var randProsp = Math.floor(Math.random() *(2-0))+0;
+  var randProsp = 1;
+var ProspectA = Prospects[0]/2;
+  var Adjustment = ProspectA;
+  var seen = [];
+  var countseen = 1;
+  var seeninstructions = false;
+  var participant = jsPsych.randomization.randomID(8);
+  
+  var check_consent = function(elem) {
+  if ($('#consent_checkbox').is(':checked')) {
+    return true;
+  }
+  else {
+    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this study.'");
+    return false;
+  }
+  };
+
+  var consent = {
+    type:'html',
+    url: "Consent.html",
+    cont_btn: "start",
+    check_fn: check_consent
+  };
+  
+  
+  var instruct = {
+    type: 'instructions',
+    pages: [
+      'Thank you for agreeing to assist the Software Usability Research Laboratory (SURL). Click next to read the instructions.',
+      'For this task you will be asked to make a series of choices between two hypothetical amounts of money shown on the screen.',
+      'Be careful, the differences between the two amounts are subtle. Some amounts will be delayed and/or risky.',
+      'Please progress through the experiment as if you were making these decisions in the real world.'
+    ],
+    show_clickable_nav: true
+  };
+  
+  
+  var factors = {
+    Odd: Odds,
+    Delay: Delays,
+  };
+  
+  
+  //used to identify the options string for comparison later
+  var temp_array = [];
+  /*global jsPsych*/
+  var full_design = jsPsych.randomization.factorial(factors,5);
+
+  var multi_choice_block = {
+      type: 'survey-multi-choice',
+      questions: page_1_questions,
+      required: [true],
+      options: function() {
+       updateProgressBar2();
+        if (trialcount > 0){
+          for (var i = 0;i < seen.length; i++){
+            if (seen[i][0]==full_design[trialcount].Delay +" "+ full_design[trialcount].Odd){
+              ProspectA=seen[i][1];
+              countseen=seen[i][2]+1;
+            }
+          }
+        }
+        temp_array = ["$" + ProspectA + " right now", full_design[trialcount].Odd+" chance of receiving $"+Prospects[randProsp]+" "+ full_design[trialcount].Delay];
+        return [temp_array];
+      }
+  };
+  
+  //adjust to make experiemnt shorter for testing
+  var iter = full_design.length; // this is max length
+
+  var loop_node = {
+    timeline: [multi_choice_block],
+    loop_function: function(){
+      if(iter >= 1){
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  
+  //used to identify what the participant answered
+  function adjuster(ans, sure) {
+    if(ans==sure){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  function drawProgressBar2() {
+    $('body').prepend($('<div id="jspsych-progressbar-container"><span>Completion Progress</span><div id="jspsych-progressbar-outer"><div id="jspsych-progressbar-inner"></div></div></div>'));
+  }
+
+  function updateProgressBar2() {
+    var progress = (trialcount/full_design.length)*100;
+
+    $('#jspsych-progressbar-inner').css('width', progress + "%");
+  }
+
+  function save_data(filename, filedata){
+    $.ajax({
+      type:'post',
+      cache: false,
+      url: 'datawrite.php', // this is the path to the above PHP script
+      data: {filename: filename, filedata: filedata}
+   });
+
+  }
+  
+  
+  var timeline = [];
+  timeline.push(consent);
+  timeline.push(instruct);
+  timeline.push(loop_node);
+
+  jsPsych.init({
+    /*global  $*/
+    display_element: $('#jspsych-target'),
+    timeline: timeline,
+    progress: drawProgressBar2(),
+
+    on_trial_finish: function() {
+      if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
+        seeninstructions = true;
+      } else {
+
+      var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcount].responses;
+      var answer = JSON.parse(data);
+
+
+      iter = iter -1;
+      //used to adjust the subjective value
+      if (adjuster(answer['Q0'],temp_array[0])){
+        ProspectA = ProspectA - Adjustment*Math.pow(.5,countseen);
+      } else {
+        ProspectA = ProspectA + (Adjustment*Math.pow(.5,countseen));
+      }
+
+
+      seen.push([full_design[trialcount].Delay +" "+ full_design[trialcount].Odd, ProspectA, countseen]);
+      jsPsych.data.addDataToLastTrial({deal:full_design[trialcount].Delay +" "+ full_design[trialcount].Odd, delay:full_design[trialcount].Delay, odd:full_design[trialcount].Odd, subvalue:ProspectA, timesseen:countseen});
+      trialcount++;
+      countseen = 1;
+      ProspectA = Prospects[randProsp]/2;
+
+      }
+    },
+
+    on_finish: function() {
+      window.alert("You have completed the experiment. Feel free to close your browser tab");
+      save_data(participant+"data.JSON",jsPsych.data.dataAsJSON());
+      updateProgressBar2();
+
+    }
+  });
+
+
+  </script>
+</html>
