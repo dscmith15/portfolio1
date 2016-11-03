@@ -7,6 +7,7 @@
     <script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-survey-multi-choice.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-survey-likert.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-survey-text.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
@@ -59,6 +60,12 @@
     ],
     show_clickable_nav: true
   };
+    
+  var game_name = {
+    type: 'survey-text',
+    preamble: ['<h2>Please think of a video game that you currently play or recently played and type the game title in the text field below.</h2> <p>Please type the entire name of the game (e.g., Grand Theft Auto V) and DO NOT abbreviate the official game title.</p>'],
+    questions: ['The game you choose can be a game that you like or dislike. However, avoid choosing any games that you have little experience playing (e.g., a game you just started to play) OR that you have stopped playing more than 3 months ago.']
+  }
   
   
   var factors = {
@@ -231,6 +238,7 @@
   var timeline = [];
   timeline.push(consent);
   timeline.push(instruct);
+  timeline.push(game_name);
   timeline.push(likert_block_1);
   timeline.push(likert_block_2);
   timeline.push(likert_block_3);
