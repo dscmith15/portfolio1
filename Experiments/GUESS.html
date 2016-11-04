@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
   <head>
     <title>GUESS</title>
@@ -17,19 +16,7 @@
     <div id="jspsych-target"></div>
   </body>
   <script>
-
   // defining groups of questions that will go together.
-  var page_1_questions = ["Which deal would you take?"];
-  var trialcount = 0;
-  var Prospects = [800, 40000];
-  var Delays = ["immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"];
-  var Odds = ["10%", "25%", "40%", "80%", "100%"];
-  var randProsp = Math.floor(Math.random() *(2-0))+0;
-  var ProspectA = Prospects[randProsp]/2;
-  var Adjustment = ProspectA;
-  var seen = [];
-  var countseen = 1;
-  var seeninstructions = false;
   var participant = jsPsych.randomization.randomID(8);
   
   var check_consent = function(elem) {
@@ -41,7 +28,6 @@
     return false;
   }
   };
-
   var consent = {
     type:'html',
     url: "Consent_Guess.html",
@@ -65,165 +51,151 @@
     type: 'survey-text',
     preamble: ['<h3>Please think of a video game that you currently play or recently played and type the game title in the text field below.</h3> <p>Please type the entire name of the game (e.g., Grand Theft Auto V) and DO NOT abbreviate the official game title.</p>'],
     questions: ['The game you choose can be a game that you like or dislike. However, avoid choosing any games that you have little experience playing (e.g., a game you just started to play) OR that you have stopped playing more than 3 months ago.']
-  }
-  
-  
-  var factors = {
-    Odd: Odds,
-    Delay: Delays,
   };
   
   
-  /*global jsPsych*/
-  var full_design = jsPsych.randomization.factorial(factors,5);
 
+  
+  
+  /*global jsPsych*/
   // defining groups of questions that will go together.
-  var the_guess = ["I think it is easy to learn how to play the game.", 
-  "I find the controls of the game to be straightforward.",
-  "I always know how to achieve my goals/objectives in the game.",
-  "I find the game's interface to be easy to navigate.",
-  "I do not need to go through a lengthy tutorial or read a manual to play the game.",
-  "I find the game's menus to be user friendly.",
-  "I feel the game trains me well in all of the controls.",
-  "I always know my next goal when I finish an event in the game.",
-  "I feel the game provides me the necessary information to accomplish a goal within the game.",
-  "I think the information provided in the game (e.g., onscreen messages, help) is clear.",
-  "I feel very confident while playing the game.",
-  "I think the characters in the game are well developed.",
-  "I am captivated by the game's story from the beginning.",
-  "I enjoy the fantasy or story provided by the game.",
-  "I can identify with the characters in the game.",
-  "I am emotionally moved by the events in the game.",
-  "I am very interested in seeing how the events in the game will progress.",
-  "I can clearly understand the game's story.",
-  "I feel detached from the outside world while playing the game.",
-  "I do not care to check events that are happening in the real world during the game.",
-  "I cannot tell that I am getting tired while playing the game.",
-  "Sometimes I lose track of time while playing the game.",
-  "I temporarily forget about my everyday worries while playing the game.",
-  "I tend to spend more time playing the game than I have planned.",
-  "I can block out most other distractions when playing the game.",
-  "Whenever I stopped playing the game I cannot wait to start playing it again.",
-  "I think the game is fun.",
-  "I enjoy playing the game.",
-  "I feel bored while playing the game.",
-  "I am likely to recommend this game to others.",
-  "If given the chance, I want to play this game again.",
-  "I feel the game allows me to be imaginative.",
-  "I feel creative while playing the game.",
-  "I feel the game gives me enough freedom to act how I want.",
-  "I feel the game allows me to express myself.",
-  "I feel I can explore things in the game.",
-  "I feel my curiosity is stimulated as the result of playing the game.",
-  "I think the game is unique or original.",
-  "I enjoy the sound effects in the game.",
-  "I enjoy the music in the game.",
-  "I feel the game's audio (e.g., sound effects, music) enhances my gaming experience.",
-  "I think the game's audio fits the mood or style of the game.",
-  "I am in suspense about whether I will succeed in the game.",
-  "I feel successful when I overcome the obstacles in the game.",
-  "I want to do as well as possible during the game.",
-  "I am very focused on my own performance while playing the game.",
-  "I feel the game constantly motivates me to proceed further to the next stage or level.",
-  "I find my skills gradually improve through the course of overcoming the challenges in the game.",
-  "I find the game supports social interaction (e.g., chat) between players.",
-  "I like to play this game with other players.",
-  "I am able to play the game with other players if I choose.",
-  "I enjoy the social interaction within the game.",
-  "I enjoy the game's graphics.",
-  "I think the graphics of the game fit the mood or style of the game.",
-  "I think the game is visually appealing."
+  /*Let's test a new object style instead*/
+  var the_guess = [
+  ["U01","I think it is easy to learn how to play the game."], 
+  ["U02","I find the controls of the game to be straightforward."],
+  ["U03","I always know how to achieve my goals/objectives in the game."],
+  ["U04","I find the game's interface to be easy to navigate."],
+  ["U05","I do not need to go through a lengthy tutorial or read a manual to play the game."],
+  ["U06","I find the game's menus to be user friendly."],
+  ["U07","I feel the game trains me well in all of the controls."],
+  ["U08","I always know my next goal when I finish an event in the game."],
+  ["U09","I feel the game provides me the necessary information to accomplish a goal within the game."],
+  ["U10","I think the information provided in the game (e.g., onscreen messages, help) is clear."],
+  ["U11","I feel very confident while playing the game."],
+  ["N01","I think the characters in the game are well developed."],
+  ["N02","I am captivated by the game's story from the beginning."],
+  ["N03","I enjoy the fantasy or story provided by the game."],
+  ["N04","I can identify with the characters in the game."],
+  ["N05","I am emotionally moved by the events in the game."],
+  ["N06","I am very interested in seeing how the events in the game will progress."],
+  ["N07","I can clearly understand the game's story."],
+  ["P01","I feel detached from the outside world while playing the game."],
+  ["P02","I do not care to check events that are happening in the real world during the game."],
+  ["P03","I cannot tell that I am getting tired while playing the game."],
+  ["P04","Sometimes I lose track of time while playing the game."],
+  ["P05","I temporarily forget about my everyday worries while playing the game."],
+  ["P06","I tend to spend more time playing the game than I have planned."],
+  ["P07","I can block out most other distractions when playing the game."],
+  ["P08","Whenever I stopped playing the game I cannot wait to start playing it again."],
+  ["E01","I think the game is fun."],
+  ["E02","I enjoy playing the game."],
+  ["E03R","I feel bored while playing the game."],
+  ["E04","I am likely to recommend this game to others."],
+  ["E05","If given the chance, I want to play this game again."],
+  ["C01","I feel the game allows me to be imaginative."],
+  ["C02","I feel creative while playing the game."],
+  ["C03","I feel the game gives me enough freedom to act how I want."],
+  ["C04","I feel the game allows me to express myself."],
+  ["C05","I feel I can explore things in the game."],
+  ["C06","I feel my curiosity is stimulated as the result of playing the game."],
+  ["C07","I think the game is unique or original."],
+  ["A01","I enjoy the sound effects in the game."],
+  ["A02","I enjoy the music in the game."],
+  ["A03","I feel the game's audio (e.g., sound effects, music) enhances my gaming experience."],
+  ["A04","I think the game's audio fits the mood or style of the game."],
+  ["G01","I am in suspense about whether I will succeed in the game."],
+  ["G02","I feel successful when I overcome the obstacles in the game."],
+  ["G03","I want to do as well as possible during the game."],
+  ["G04","I am very focused on my own performance while playing the game."],
+  ["G05","I feel the game constantly motivates me to proceed further to the next stage or level."],
+  ["G06","I find my skills gradually improve through the course of overcoming the challenges in the game."],
+  ["S01","I find the game supports social interaction (e.g., chat) between players."],
+  ["S02","I like to play this game with other players."],
+  ["S03","I am able to play the game with other players if I choose."],
+  ["S04","I enjoy the social interaction within the game."],
+  ["V01","I enjoy the game's graphics."],
+  ["V02","I think the graphics of the game fit the mood or style of the game."],
+  ["V03","I think the game is visually appealing."]
   ];
   
   var randorder = jsPsych.randomization.shuffle(the_guess);
   
+  var indexer = [5,10,15,20,25,30,35,40,45,50,55];
   
-
+  var itter = 0;
+  
   // definiting two different response scales that can be used.
   var page_options = ["Strongly Disagree", "Somewhat Disagree", "Disagree", "Neutral", "Somewhat Agree", "Agree", "Strongly Agree", "N/A"];
-  var questions_1 = randorder.slice(0,5);
-  var questions_2 = randorder.slice(5,10);
-  var questions_3 = randorder.slice(10,15);
-  var questions_4 = randorder.slice(15,20);
-  var questions_5 = randorder.slice(20,25);
-  var questions_6 = randorder.slice(25,30);
-  var questions_7 = randorder.slice(30,35);
-  var questions_8 = randorder.slice(35,40);
-  var questions_9 = randorder.slice(40,45);
-  var questions_10 = randorder.slice(45,50);
-  var questions_11 = randorder.slice(50,55);
 
   var likert_block_1 = {
       type: 'survey-likert',
-      questions: questions_1,
+      questions: [randorder[0][1],randorder[1][1],randorder[2][1],randorder[3][1],randorder[4][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_2 = {
       type: 'survey-likert',
-      questions: questions_2,
+      questions: [randorder[5][1],randorder[6][1],randorder[7][1],randorder[8][1],randorder[9][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_3 = {
       type: 'survey-likert',
-      questions: questions_3,
+      questions: [randorder[10][1],randorder[11][1],randorder[12][1],randorder[13][1],randorder[14][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_4 = {
       type: 'survey-likert',
-      questions: questions_4,
+      questions: [randorder[15][1],randorder[16][1],randorder[17][1],randorder[18][1],randorder[19][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_5 = {
       type: 'survey-likert',
-      questions: questions_5,
+      questions: [randorder[20][1],randorder[21][1],randorder[22][1],randorder[23][1],randorder[24][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_6 = {
       type: 'survey-likert',
-      questions: questions_6,
+      questions: [randorder[25][1],randorder[26][1],randorder[27][1],randorder[28][1],randorder[29][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_7 = {
       type: 'survey-likert',
-      questions: questions_7,
+      questions: [randorder[30][1],randorder[31][1],randorder[32][1],randorder[33][1],randorder[34][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_8 = {
       type: 'survey-likert',
-      questions: questions_8,
+      questions: [randorder[35][1],randorder[36][1],randorder[37][1],randorder[38][1],randorder[39][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_9 = {
       type: 'survey-likert',
-      questions: questions_9,
+      questions: [randorder[40][1],randorder[41][1],randorder[42][1],randorder[43][1],randorder[44][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_10 = {
       type: 'survey-likert',
-      questions: questions_10,
+      questions: [randorder[45][1],randorder[46][1],randorder[47][1],randorder[48][1],randorder[49][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
   var likert_block_11 = {
       type: 'survey-likert',
-      questions: questions_1,
+      questions: [randorder[50][1],randorder[51][1],randorder[52][1],randorder[53][1],randorder[54][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
   
-  //adjust to make experiemnt shorter for testing
   
   
   
-
   function save_data(filename, filedata){
     $.ajax({
       type:'post',
@@ -231,7 +203,6 @@
       url: 'datawrite.php', // this is the path to the above PHP script
       data: {filename: filename, filedata: filedata}
    });
-
   }
   
   
@@ -250,28 +221,25 @@
   timeline.push(likert_block_9);
   timeline.push(likert_block_10);
   timeline.push(likert_block_11);
-
   jsPsych.init({
     /*global  $*/
     display_element: $('#jspsych-target'),
     timeline: timeline,
     show_progress_bar: true,
-
     on_trial_finish: function() {
-      if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
-        seeninstructions = true;
-      } else {
-
+      
+      var current_node_id = jsPsych.currentTimelineNodeID();
+      console.log(current_node_id);
+      
+      if (current_node_id != '0.0-0.0' && current_node_id != '0.0-1.0' && current_node_id != '0.0-2.0'){
+        jsPsych.data.addDataToLastTrial(randorder.slice(indexer[itter]-5,indexer[itter]));
+        itter = itter +1;
       }
+      
     },
-
     on_finish: function() {
-      save_data(participant+"data.csv",jsPsych.data.dataAsCSV());
-      updateProgressBar2();
-
+      save_data(participant+"GUESSdata.JSON",jsPsych.data.dataAsJSON());
     }
   });
-
-
   </script>
 </html>
