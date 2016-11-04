@@ -192,10 +192,7 @@
       questions: [randorder[50][1],randorder[51][1],randorder[52][1],randorder[53][1],randorder[54][1]],
       labels: [page_options,page_options,page_options,page_options,page_options]
   };
-  
-  
-  
-  
+ 
   function save_data(filename, filedata){
     $.ajax({
       type:'post',
@@ -232,7 +229,9 @@
       console.log(current_node_id);
       
       if (current_node_id != '0.0-0.0' && current_node_id != '0.0-1.0' && current_node_id != '0.0-2.0'){
-        jsPsych.data.addDataToLastTrial(randorder.slice(indexer[itter]-5,indexer[itter]));
+        //used to display the current question ids in the data file
+        var tempslice = randorder.slice(indexer[itter]-5,indexer[itter]);
+        jsPsych.data.addDataToLastTrial({quest:[tempslice[0][0],tempslice[1][0],tempslice[2][0],tempslice[3][0],tempslice[4][0]]});
         itter = itter +1;
       }
       
