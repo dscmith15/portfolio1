@@ -116,6 +116,7 @@ li:last-child {
   background-color: white;
   float: left;
   margin-left: 50px;
+  padding: 5px 48px;
 }
 
 .ExperimentBlock {
