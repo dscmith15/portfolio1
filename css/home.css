@@ -130,8 +130,3 @@ li:last-child {
 .container {
   padding: 2px 16px;
 }
-
-.cardheading {
-  padding: 0px 16px;
-  border-bottom: 5px black;
-}
