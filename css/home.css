@@ -133,5 +133,5 @@ li:last-child {
 
 .cardheading {
   padding: 2px 16px;
-  background-color: #8AC6FF;
+  border-bottom: 5px;
 }
