@@ -128,10 +128,10 @@ li:last-child {
 }
 
 .container {
-  padding: 0px 16px;
+  padding: 2px 16px;
 }
 
 .cardheading {
-  padding: 2px 16px;
-  border-bottom: 5px;
+  padding: 0px 16px;
+  border-bottom: 5px black;
 }
