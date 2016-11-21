@@ -19,29 +19,36 @@
   <script>
     $(document).ready(function() {
       $.ajax({
-        type: "GET",
-        url: "/result/results.csv",
-        dataType: "text",
-        success: function(data) {processData(data);}
+          type: "POST",
+          url: "/echo/html/",
+          dataType: "text",
+          data: {
+              html: csv
+          },
+          success: function(data) {
+              processData(data);
+          }
       });
-    });
-    
-    function processData(allText) {
-      var record_num = 5;  // or however many elements there are in each row
+  });
+
+  function processData(allText) {
       var allTextLines = allText.split(/\r\n|\n/);
-      var entries = allTextLines[0].split(',');
+      var headers = allTextLines[0].split(',');
       var lines = [];
 
-      var headings = entries.splice(0,record_num);
-      while (entries.length>0) {
-          var tarr = [];
-          for (var j=0; j<record_num; j++) {
-              tarr.push(headings[j]+":"+entries.shift());
+      for (var i=1; i<allTextLines.length; i++) {
+          var data = allTextLines[i].split(',');
+          if (data.length == headers.length) {
+
+              var tarr = [];
+              for (var j=0; j<headers.length; j++) {
+                  tarr.push(headers[j]+":"+data[j]);
+              }
+              lines.push(tarr);
           }
-          lines.push(tarr);
       }
-      console.log(lines);
-    }
+  console.log(lines);
+  }
     
     $(function () {
         Highcharts.chart('container', {
