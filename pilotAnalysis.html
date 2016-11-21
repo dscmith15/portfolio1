@@ -19,7 +19,7 @@
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   </body>
   <script>
-   
+    $.get("/result/results.csv")
     var data = $.csv.toArrays("/result/results.csv");
     
     console.log(data);
