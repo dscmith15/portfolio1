@@ -19,8 +19,10 @@
   </body>
   <script>
    
-    var data = $.csv.toArrays("/result/results.csv");
+    var data = $.csv.toArrays("/var/www/html/result/results.csv");
+    
     console.log(data);
+    
     $(function () {
         Highcharts.chart('container', {
             chart: {
