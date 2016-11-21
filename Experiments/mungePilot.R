@@ -48,3 +48,6 @@ fiveyearf <- with(fiveyearf, fiveyearf[order(`pfinal$ptemp.odd`),])
 fiveyearf <- fiveyearf$`pfinal$ptemp.subvalue`
 
 results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
+
+setwd("/var/www/html/result/")
+write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = ",")
