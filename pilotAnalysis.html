@@ -35,8 +35,8 @@
     $(function () {
       $.get('/result/histdat.csv', function (response) {
         input2 = response;
-        
-        datahist = $.csv.toArray(input2);
+        repair = input2.substring(0, input.length - 1);
+        datahist = $.csv.toArray(repair);
         Highcharts.chart('histogram1', {
             chart: {
                 type: 'column'
