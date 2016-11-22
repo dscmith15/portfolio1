@@ -36,7 +36,7 @@
     $(function () {
       $.get('/result/histdat.csv', function (response) {
         input2 = response;
-        repair2 = input2.substring(0, input.length - 1);
+        repair2 = input2.substring(0, input2.length - 1);
         datahist = $.csv.toArray(repair2);
 
         function histogram(data, step) {
