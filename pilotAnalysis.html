@@ -24,8 +24,7 @@
     $.get('/result/results.csv', function (response) {
       input = response;
     }); 
-    var data = $.csv.toObjects(input);
-    console.log(data);
+    var data = $.csv.toArrays(input);
     
     $(function () {
         Highcharts.chart('container', {
@@ -33,17 +32,17 @@
                 type: 'line'
             },
             title: {
-                text: 'Monthly Average Temperature'
+                text: 'Hyperbolic discounting'
             },
             subtitle: {
-                text: 'Source: WorldClimate.com'
+                text: 'Data from Pilot'
             },
             xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                categories: ['100%', '80%', '40%', '25%', '10%']
             },
             yAxis: {
                 title: {
-                    text: 'Temperature (°C)'
+                    text: 'Subjective Value ($)'
                 }
             },
             plotOptions: {
@@ -55,11 +54,20 @@
                 }
             },
             series: [{
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                name: 'Immediately',
+                data: data[0]
             }, {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                name: '1 month',
+                data: data[1]
+            }, {
+                name: '6 months',
+                data: data[2]
+            }, {
+                name: '2 years',
+                data: data[3]
+            }, {
+                name: '5 years',
+                data: data[4]
             }]
         });
     });
