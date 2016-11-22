@@ -20,11 +20,8 @@
   </body>
   <script>
     
-    var input= $(document).ready(function() {
-          $.ajax({
-              url : "/result/results.csv",
-              dataType: "csv",
-          });
+    var input = $( "#result" ).load( "/result/results.csv", function() {
+      alert( "Load was performed." );
     });
     
     console.log(input);
