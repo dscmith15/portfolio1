@@ -20,14 +20,11 @@
   </body>
   <script>
     
-    $(document).ready(function() {
-      $.ajax({
-          type: "GET",
-          url: "/result/results.csv",
-          dataType: "text",
-          success: function(data) {$.csv.toObjects(data);}
-       });
-    });
+    var input;
+    $.get('/result/results.csv', function (response) {
+      input = response;
+    }); 
+    var data = $.csv.toObjects(data);
     console.log(data);
     
     $(function () {
