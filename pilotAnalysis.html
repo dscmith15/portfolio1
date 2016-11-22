@@ -39,9 +39,7 @@
         sixmon = data1[2].map(Number);
         twoyear = data1[3].map(Number);
         fiveyear = data1[4].map(Number);
-      });
-      
-      Highcharts.chart('container', {
+        Highcharts.chart('container', {
             chart: {
                 type: 'line'
             },
@@ -74,7 +72,7 @@
         
             series: [{
                 name: 'Immediately',
-                data: [37608, 21401, 7392, 5539, 1875]
+                data: immed
             }, {
                 name: '1 month',
                 data: onemon
@@ -89,6 +87,9 @@
                 data: fiveyear
             }]
         });
+      });
+      
+      
     });
   </script>
 </html>
