@@ -20,31 +20,8 @@
   </body>
   <script>
     
-    var input;
-    var repair;
-    var data1;
-    var immed;
-    var onemon;
-    var sixmon;
-    var twoyear;
-    var fiveyear;
-    
-    $.get('/result/results.csv', function (response) {
-      input = response;
-      repair = input.substring(0, input.length - 1);
-      data1 = $.csv.toArrays(repair);
-      immed = data1[0].map(Number);
-      onemon = data1[1].map(Number);
-      sixmon = data1[2].map(Number);
-      twoyear = data1[3].map(Number);
-      fiveyear = data1[4].map(Number);
-    }); 
-    
-    
-    
-    
-    $(function (immed, onemon, sixmon, twoyear, fiveyear) {
-        Highcharts.chart('container', {
+    $.get('/result/results.csv', function (csv) {
+        $('#container').highcharts({
             chart: {
                 type: 'line'
             },
@@ -69,22 +46,6 @@
                     },
                     enableMouseTracking: false
                 }
-            },
-            series: [{
-                name: 'Immediately',
-                data: [immed]
-            }, {
-                name: '1 month',
-                data: [onemon]
-            }, {
-                name: '6 months',
-                data: [sixmon]
-            }, {
-                name: '2 years',
-                data: [twoyear]
-            }, {
-                name: '5 years',
-                data: [fiveyear]
             }]
         });
     });
