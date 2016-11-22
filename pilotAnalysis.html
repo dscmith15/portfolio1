@@ -20,12 +20,15 @@
   </body>
   <script>
     
-    var input = $( "#result" ).load( "/result/results.csv", function() {
-      alert( "Load was performed." );
+    $(document).ready(function() {
+      $.ajax({
+          type: "GET",
+          url: "/result/results.csv",
+          dataType: "text",
+          success: function(data) {$.csv.toObjects(data);}
+       });
     });
-    
-    console.log(input);
-    
+    console.log(data);
     
     $(function () {
         Highcharts.chart('container', {
