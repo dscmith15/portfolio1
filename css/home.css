@@ -130,3 +130,7 @@ li:last-child {
 .container {
   padding: 2px 16px;
 }
+
+@media all and (max-width: 400px) {
+    .left, .right {float: none; margin-bottom: 5px; height: 200px;}
+}
