@@ -28,12 +28,7 @@
     var sixmon;
     var twoyear;
     var fiveyear;
-    
-     
-    
-    
-    
-    
+
     $(function () {
       $.get('/result/results.csv', function (response) {
         input = response;
@@ -59,6 +54,7 @@
             xAxis: {
                 categories: ['100%', '80%', '40%', '25%', '10%']
             },
+        
             yAxis: {
                 title: {
                     text: 'Subjective Value ($)'
@@ -66,6 +62,7 @@
                 max: 40000,
                 min: 0
             },
+        
             plotOptions: {
                 line: {
                     dataLabels: {
@@ -74,9 +71,10 @@
                     enableMouseTracking: false
                 }
             },
+        
             series: [{
                 name: 'Immediately',
-                data: immed
+                data: [37608, 21401, 7392, 5539, 1875]
             }, {
                 name: '1 month',
                 data: onemon
