@@ -21,6 +21,7 @@
     <div id="container" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto"></div>
     <div id="histogram1" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto"></div>
     </div>
+    <div id="medcontain" style="float: left; width: 49%; min-width: 500px; max-width: 650px; height: 450px; margin: 0 auto"></div>
     
   </body>
   <script>
@@ -127,7 +128,7 @@
                 type: 'line'
             },
             title: {
-                text: 'Hyperbolic Discounting'
+                text: 'Hyperbolic Discounting for Means'
             },
             subtitle: {
                 text: 'Data from Pilot (n = 29)'
@@ -175,6 +176,72 @@
         });
       });
     });
+    
+    $(function () {
+      $.get('/result/resultsmed.csv', function (response) {
+        input = response;
+        repair = input.substring(0, input.length - 1);
+        data1 = $.csv.toArrays(repair);
+        immed = data1[0].map(Number);
+        onemon = data1[1].map(Number);
+        sixmon = data1[2].map(Number);
+        twoyear = data1[3].map(Number);
+        fiveyear = data1[4].map(Number);
+        Highcharts.chart('medcontain', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Hyperbolic Discounting for Medians'
+            },
+            subtitle: {
+                text: 'Data from Pilot (n = 29)'
+            },
+            xAxis: {
+              title: {
+                text: 'Risk'
+              },
+              categories: ['100%', '80%', '40%', '25%', '10%']
+            },
+        
+            yAxis: {
+                title: {
+                    text: 'Subjective Value ($)'
+                },
+                max: 40000,
+                min: 0
+            },
+        
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    enableMouseTracking: true
+                }
+            },
+        
+            series: [{
+                name: 'Immediately',
+                data: immed
+            }, {
+                name: '1 month',
+                data: onemon
+            }, {
+                name: '6 months',
+                data: sixmon
+            }, {
+                name: '2 years',
+                data: twoyear
+            }, {
+                name: '5 years',
+                data: fiveyear
+            }]
+        });
+      });
+    });
+    
+    
       
   </script>
 </html>
