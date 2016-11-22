@@ -25,7 +25,7 @@
       input = response;
     }); 
     var data; 
-    data = $.csv.toArrays(input);
+    data = $.csv.toArrays(input.substring(0, input.length - 1));
     
     $(function () {
         Highcharts.chart('container', {
