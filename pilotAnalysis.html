@@ -20,13 +20,14 @@
   </body>
   <script>
     
-    
-    var input = $.get("/result/results.csv", function(){
-      console.log("file loded");
+    var input= $(document).ready(function() {
+          $.ajax({
+              url : "/result/results.csv",
+              dataType: "csv",
+          });
     });
-    var data = input["responseText"];
     
-    console.log(data);
+    console.log(input);
     
     
     $(function () {
