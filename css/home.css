@@ -140,6 +140,7 @@ li:last-child {
     border: none;
     color: white;
     text-align: center;
+    padding: 5px 12px;
     text-decoration: none;
     display: inline-block;
     font-family: 'Open Sans', 'Arial', sans-serif;
