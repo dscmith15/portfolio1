@@ -29,22 +29,24 @@
     var twoyear;
     var fiveyear;
     
-    $.get('/result/results.csv', function (response) {
-      input = response;
-      repair = input.substring(0, input.length - 1);
-      data1 = $.csv.toArrays(repair);
-      immed = data1[0].map(Number);
-      onemon = data1[1].map(Number);
-      sixmon = data1[2].map(Number);
-      twoyear = data1[3].map(Number);
-      fiveyear = data1[4].map(Number);
-    }); 
+     
     
     
     
     
-    $(function (immed, onemon, sixmon, twoyear, fiveyear) {
-        Highcharts.chart('container', {
+    $(function () {
+      $.get('/result/results.csv', function (response) {
+        input = response;
+        repair = input.substring(0, input.length - 1);
+        data1 = $.csv.toArrays(repair);
+        immed = data1[0].map(Number);
+        onemon = data1[1].map(Number);
+        sixmon = data1[2].map(Number);
+        twoyear = data1[3].map(Number);
+        fiveyear = data1[4].map(Number);
+      });
+      
+      Highcharts.chart('container', {
             chart: {
                 type: 'line'
             },
