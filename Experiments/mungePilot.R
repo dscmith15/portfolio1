@@ -22,6 +22,9 @@ for (i in 1:length(pFiles)) {
   }
 }
 
+resultinf <- summary(nls(pfinal$ptemp.subvalue~(40000/((1-pfinal$ptemp.odd)*(1-pfinal$ptemp.delay)))
+
+
 # to get the means for the report
 resultTab <- aggregate(pfinal$ptemp.subvalue~pfinal$ptemp.delay*pfinal$ptemp.odd, FUN = "mean")
 
@@ -54,6 +57,7 @@ results <- round(results)
 
 setwd("/var/www/html/result/")
 write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = ",")
+cat("Non linear least squares hyperbolic ANOVA", resultinf, file="summary.txt", sep="n", append=TRUE)
 
 # to get the data for the histogram
 histdat <- as.list(t(round(pfinal$ptemp.subvalue)))
