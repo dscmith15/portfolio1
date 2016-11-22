@@ -27,7 +27,6 @@
       input = response;
       repair = input.substring(0, input.length - 1);
       data1 = $.csv.toArrays(repair);
-      console.log(data1);
     }); 
     
     
@@ -62,7 +61,7 @@
             },
             series: [{
                 name: 'Immediately',
-                data: data1[0]
+                data: [data1[0]]
             }, {
                 name: '1 month',
                 data: data1[1]
