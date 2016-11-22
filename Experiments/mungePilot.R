@@ -57,3 +57,33 @@ write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = 
 histdat <- as.list(t(round(pfinal$ptemp.subvalue)))
 write.table(histdat, "histdat.csv", col.names = FALSE, row.names = FALSE, sep = ",")
 
+resultTab <- aggregate(pfinal$ptemp.subvalue~pfinal$ptemp.delay*pfinal$ptemp.odd, FUN = "median")
+
+resultTab$`pfinal$ptemp.delay` <-ordered(resultTab$`pfinal$ptemp.delay`, levels = c("immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"))
+resultTab$`pfinal$ptemp.odd` <-ordered(resultTab$`pfinal$ptemp.odd`, levels= c('100%','80%','40%','25%','10%'))
+
+immediatef <- resultTab[resultTab$`pfinal$ptemp.delay`=='immediately',]
+immediatef <- with(immediatef, immediatef[order(`pfinal$ptemp.odd`),])
+immediatef <- immediatef$`pfinal$ptemp.subvalue`
+
+onemonthf <- resultTab[resultTab$`pfinal$ptemp.delay`=='in 1 month',]
+onemonthf <- with(onemonthf, onemonthf[order(`pfinal$ptemp.odd`),])
+onemonthf <- onemonthf$`pfinal$ptemp.subvalue`
+
+sixmonthf <- resultTab[resultTab$`pfinal$ptemp.delay`=='in 6 months',]
+sixmonthf <- with(sixmonthf, sixmonthf[order(`pfinal$ptemp.odd`),])
+sixmonthf <- sixmonthf$`pfinal$ptemp.subvalue`
+
+twoyearf <- resultTab[resultTab$`pfinal$ptemp.delay`=='in 2 years',]
+twoyearf <- with(twoyearf, twoyearf[order(`pfinal$ptemp.odd`),])
+twoyearf <- twoyearf$`pfinal$ptemp.subvalue`
+
+fiveyearf <- resultTab[resultTab$`pfinal$ptemp.delay`=='in 5 years',]
+fiveyearf <- with(fiveyearf, fiveyearf[order(`pfinal$ptemp.odd`),])
+fiveyearf <- fiveyearf$`pfinal$ptemp.subvalue`
+
+results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
+
+results <- round(results)
+write.table(results, "resultsmed.csv", col.names = FALSE, row.names = FALSE, sep = ",")
+
