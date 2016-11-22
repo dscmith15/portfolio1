@@ -21,11 +21,16 @@
   <script>
     
     var input;
+    var repair;
+    var data; 
     $.get('/result/results.csv', function (response) {
       input = response;
+      repair = input.substring(0, input.length - 1);
+      data = $.csv.toArrays(repair);
     }); 
-    var data; 
-    data = $.csv.toArrays(input.substring(0, input.length - 1));
+    
+    
+    
     
     $(function () {
         Highcharts.chart('container', {
