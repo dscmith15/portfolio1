@@ -24,7 +24,7 @@
     $.get('/result/results.csv', function (response) {
       input = response;
     }); 
-    var data = $.csv.toObjects(data);
+    var data = $.csv.toObjects(input);
     console.log(data);
     
     $(function () {
