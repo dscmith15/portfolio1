@@ -22,17 +22,28 @@
     
     var input;
     var repair;
-    var data1; 
+    var data1;
+    var immed;
+    var onemon;
+    var sixmon;
+    var twoyear;
+    var fiveyear;
+    
     $.get('/result/results.csv', function (response) {
       input = response;
       repair = input.substring(0, input.length - 1);
       data1 = $.csv.toArrays(repair);
+      immed = data1[0].map(Number);
+      onemon = data1[1].map(Number);
+      sixmon = data1[2].map(Number);
+      twoyear = data1[3].map(Number);
+      fiveyear = data1[4].map(Number);
     }); 
     
     
     
     
-    $(function (data1) {
+    $(function (immed, onemon, sixmon, twoyear, fiveyear) {
         Highcharts.chart('container', {
             chart: {
                 type: 'line'
@@ -61,19 +72,19 @@
             },
             series: [{
                 name: 'Immediately',
-                data: data1[0].map(Number)
+                data: immed
             }, {
                 name: '1 month',
-                data: data1[1].map(Number)
+                data: onemon
             }, {
                 name: '6 months',
-                data: data1[2].map(Number)
+                data: sixmon
             }, {
                 name: '2 years',
-                data: data1[3].map(Number)
+                data: twoyear
             }, {
                 name: '5 years',
-                data: data1[4].map(Number)
+                data: fiveyear
             }]
         });
     });
