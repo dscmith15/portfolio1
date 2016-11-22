@@ -49,11 +49,11 @@ fiveyearf <- fiveyearf$`pfinal$ptemp.subvalue`
 
 results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
 
-results <- as.list(t(round(results)))
+results <- round(results)
 
 setwd("/var/www/html/result/")
 write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = ",")
 
-histdat <- round(pfinal$ptemp.subvalue)
+histdat <- as.list(t(round(pfinal$ptemp.subvalue)))
 write.table(histdat, "histdat.csv", col.names = FALSE, row.names = FALSE, sep = ",")
 
