@@ -22,11 +22,12 @@
     
     var input;
     var repair;
-    var data; 
+    var data1; 
     $.get('/result/results.csv', function (response) {
       input = response;
       repair = input.substring(0, input.length - 1);
-      data = $.csv.toArrays(repair);
+      data1 = $.csv.toArrays(repair);
+      console.log(data1);
     }); 
     
     
@@ -61,19 +62,19 @@
             },
             series: [{
                 name: 'Immediately',
-                data: data[0]
+                data: data1[0]
             }, {
                 name: '1 month',
-                data: data[1]
+                data: data1[1]
             }, {
                 name: '6 months',
-                data: data[2]
+                data: data1[2]
             }, {
                 name: '2 years',
-                data: data[3]
+                data: data1[3]
             }, {
                 name: '5 years',
-                data: data[4]
+                data: data1[4]
             }]
         });
     });
