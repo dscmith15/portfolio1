@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="http://evanplaice.github.io/jquery-csv/src/jquery.csv.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <link href="css/home.css" rel="stylesheet" type="text/css"></link>
   
   </head>
@@ -22,7 +22,7 @@
     
     
     var input = $.get("/result/results.csv", function(){
-      console.log("please tell me this worked");
+      console.log("file loaded");
     });
     var data = $.csv.toArrays(input);
     
