@@ -24,7 +24,7 @@
     var input = $.get("/result/results.csv", function(){
       console.log(input);
     });
-    var data = $.csv.toArrays(input);
+    var data = $.csv.toArrays(input["responseText"]);
     
     console.log(data);
     
