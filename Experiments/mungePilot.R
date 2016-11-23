@@ -22,7 +22,7 @@ for (i in 1:length(pFiles)) {
   }
 }
 
-resultinf <- summary(nls(pfinal$ptemp.subvalue~(40000/((1-pfinal$ptemp.odd)*(1-pfinal$ptemp.delay)))
+resultinf <- summary(nls(pfinal$ptemp.subvalue~(40000/((1-pfinal$ptemp.odd)*(1-pfinal$ptemp.delay)))))
 
 
 # to get the means for the report
