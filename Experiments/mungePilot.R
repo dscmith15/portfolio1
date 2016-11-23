@@ -22,7 +22,7 @@ for (i in 1:length(pFiles)) {
   }
 }
 
-resultinf <- summary(lm(ptemp.subvalue~ptemp.odd*ptemp.delay+Error(ptemp.pnum / (ptemp.odd * ptemp.delay)), data = pfinal))
+resultinf <- summary(aov(ptemp.subvalue~ptemp.odd*ptemp.delay+Error(ptemp.pnum / (ptemp.odd * ptemp.delay)), data = pfinal))
 
 
 # to get the means for the report
