@@ -22,7 +22,7 @@ for (i in 1:length(pFiles)) {
   }
 }
 
-resultinf <- summary(aov(ptemp.subvalue~ptemp.odd*ptemp.delay+Error(pnum / (ptemp.odd * ptemp.delay)), data = pfinal))
+#resultinf <- summary(aov(ptemp.subvalue~ptemp.odd*ptemp.delay+Error(pnum / (ptemp.odd * ptemp.delay)), data = pfinal))
 
 
 # to get the means for the report
@@ -57,7 +57,7 @@ results <- round(results)
 
 setwd("/var/www/html/result/")
 write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = ",")
-cat("Non linear least squares hyperbolic ANOVA", resultinf, file="summary.txt", sep="n", append=TRUE)
+#cat("Non linear least squares hyperbolic ANOVA", resultinf, file="summary.txt", sep="n", append=TRUE)
 
 # to get the data for the histogram
 histdat <- as.list(t(round(pfinal$ptemp.subvalue)))
