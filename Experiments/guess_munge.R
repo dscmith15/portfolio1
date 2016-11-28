@@ -74,6 +74,9 @@ Social_Data[Social_Data==8]<-NA
 Grat_Data[Grat_Data==8]<-NA
 Aes_Data[Aes_Data==8]<-NA
 
+#fixes reverse coding of the one item
+Enjoyment_Data[,"R_F4_Enj03"]=lapply("R_F4_Enj03",function(x) 8-Enjoyment_Data[,"R_F4_Enj03"])
+
 #We then take that data and summarize by row mean as Mikki explains in her diss
 Usability_Means = rowMeans(Usability_Data, na.rm = TRUE, dims = 1)
 Narrative_Means = rowMeans(Narrative_Data, na.rm = TRUE, dims = 1)
@@ -96,3 +99,5 @@ Guess_Frame <- data.frame(GUESS,Usability_Means,Narrative_Means,Play_Means,Enjoy
 bootframe <-booto(10000, 100, Guess_Frame$GUESS)
 
 print("All done!")
+  
+setwd("/var/www/html/results")
