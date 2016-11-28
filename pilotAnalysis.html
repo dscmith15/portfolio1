@@ -27,9 +27,7 @@
   <script>
     
     var input;
-    var input2;
     var repair;
-    var repair2;
     var data1;
     var immed;
     var onemon;
@@ -40,9 +38,9 @@
 
     $(function () {
       $.get('/result/histdat.csv', function (response) {
-        input2 = response;
-        repair2 = input2.substring(0, input2.length - 1);
-        datahist = $.csv.toArray(repair2);
+        input = response;
+        repair = input.substring(0, input.length - 1);
+        datahist = $.csv.toArray(repair);
 
         function histogram(data, step) {
             var histo = {},
