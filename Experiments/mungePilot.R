@@ -22,7 +22,7 @@ for (i in 1:length(pFiles)) {
   }
 }
 
-pfinal <- pfinal[ ! pfinal$pnum %in% c(4,6,12,26),]
+pfinal <- pfinal[ ! pfinal$pnum %in% c(4,6,8,12,26),]
 
 #resultinf <- summary(aov(ptemp.subvalue~ptemp.odd*ptemp.delay+Error(pnum / (ptemp.odd * ptemp.delay)), data = pfinal))
 
