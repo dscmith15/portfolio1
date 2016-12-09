@@ -60,7 +60,7 @@ results <- round(results)
 setwd("/var/www/html/result/")
 write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = ",")
 
-nlmodel <- nls(pfinal$ptemp.subvalue~(40000/((1+pfinal$ptemp.odd)*(1+pfinal$ptemp.delay))), start=list(pfinal$ptemp.odd = 1.4, pfinal$ptemp.delay = 2.1))
+nlmodel <- nls(ptemp.subvalue~(40000/((1+ptemp.odd)*(1+ptemp.delay))), data = pfinal, start=list(ptemp.odd = 1.4, ptemp.delay = 2.1))
 print(nlmodel)
 
 
