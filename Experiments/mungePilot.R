@@ -1,6 +1,7 @@
 # This file will take the data from the pilot experiment and output the results into simple arrays.
 
 library(jsonlite)
+library("plyr")
 
 setwd("/var/www/html/Experiments/data")
 
@@ -60,7 +61,13 @@ results <- round(results)
 setwd("/var/www/html/result/")
 write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = ",")
 
-nlmodel <- nls(ptemp.subvalue~(40000/((1+ptemp.odd)*(1+ptemp.delay))), data = pfinal, start=list(ptemp.odd = 1.4, ptemp.delay = 2.1))
+pfinal["odd"] <- revalue(pfinal$ptemp.odd, c("100%"=1,"80%"=4,"40%"=1.5,"25%"=3,"10%"=9))
+pfinal["delay"] <- revalue(pfinal$ptemp.delay, c("immediately"=1,"in 1 month"=4,"in 6 months"=1.5,"in 2 years"=3,"in 5 years"=9))
+
+print(pfinal$odd)
+print(pfinal$delay)
+
+nlmodel <- nls(ptemp.subvalue~(40000/((1+odd)*(1+delay))), data = pfinal, start=list(odd = 1.4, delay = 2.1))
 print(nlmodel)
 
 
