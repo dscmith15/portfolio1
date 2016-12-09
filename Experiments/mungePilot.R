@@ -67,7 +67,7 @@ pfinal["delay"] <- revalue(pfinal$ptemp.delay, c("immediately"=1,"in 1 month"=4,
 print(pfinal$odd)
 print(pfinal$delay)
 
-nlmodel <- nls(ptemp.subvalue~(40000/((1+odd)*(1+delay))), data = pfinal, start=list(odd = 1.4, delay = 2.1))
+nlmodel <- nls(ptemp.subvalue~(40000/((1+odd)*((1+delay)^.5))), data = pfinal, start=list(odd = 1.4, delay = 2.1))
 print(nlmodel)
 
 
