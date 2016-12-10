@@ -72,7 +72,7 @@ print(nlmodelodd)
 
 nlmodeldelay <- nlsLM(ptemp.subvalue~(40000/((1+delay)^.5)), data = pfinal, start=list(delay = 1.4))
 
-print(nlmodelodd)
+print(nlmodeldelay)
 
 
 #setwd("/var/www/html/")
