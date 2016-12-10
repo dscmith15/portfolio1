@@ -4,6 +4,7 @@ library(jsonlite)
 library("plyr")
 library(R2HTML)
 library(minpack.lm)
+library(GeneralizedHyperbolic)
 
 setwd("/var/www/html/Experiments/data")
 
@@ -68,11 +69,15 @@ pfinal["delay"] <- revalue(pfinal$ptemp.delay, c("immediately"=1,"in 1 month"=4,
 #nlmodel <- nlsLM(ptemp.subvalue~(40000/((1+odd)*((1+delay)^.5))), data = pfinal, start=list(odd = 1.4, delay = 1.4))
 nlmodelodd <- nlsLM(ptemp.subvalue~(40000/(1+odd)), data = pfinal, start=list(odd = 1.8))
 
-print(nlmodelodd)
+#print(nlmodelodd)
 
 nlmodeldelay <- nlsLM(ptemp.subvalue~(40000/((1+delay)^.5)), data = pfinal, start=list(delay = 7.1))
 
-print(nlmodeldelay)
+#print(nlmodeldelay)
+
+hyplm <- hyperblm(ptemp.subvalue~delay*odd, data=pfinal)
+
+print(hyplm)
 
 
 #setwd("/var/www/html/")
