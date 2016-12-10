@@ -2,6 +2,7 @@
 
 library(jsonlite)
 library("plyr")
+library(R2HTML)
 
 setwd("/var/www/html/Experiments/data")
 
