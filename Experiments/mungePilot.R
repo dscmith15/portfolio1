@@ -25,7 +25,6 @@ for (i in 1:length(pFiles)) {
 
 pfinal <- pfinal[ ! pfinal$pnum %in% c(4,6,8,12,26),]
 
-#resultinf <- summary(aov(ptemp.subvalue~ptemp.odd*ptemp.delay+Error(pnum / (ptemp.odd * ptemp.delay)), data = pfinal))
 
 
 # to get the means for the report
@@ -64,10 +63,14 @@ write.table(results, "results.csv", col.names = FALSE, row.names = FALSE, sep = 
 pfinal["odd"] <- revalue(pfinal$ptemp.odd, c("100%"=1,"80%"=4,"40%"=1.5,"25%"=3,"10%"=9))
 pfinal["delay"] <- revalue(pfinal$ptemp.delay, c("immediately"=1,"in 1 month"=4,"in 6 months"=1.5,"in 2 years"=3,"in 5 years"=9))
 
-nlmodel <- nls(ptemp.subvalue~(40000/((1+odd)*((1+delay)^.5))), data = pfinal, start=list(odd = 1.4, delay = 5))
-print(nlmodel)
+#nlmodel <- nls(ptemp.subvalue~(40000/((1+odd)*((1+delay)^.5))), data = pfinal, start=list(odd = 1.4, delay = 5))
+#print(nlmodel)
 
+setwd("/var/www/html/")
+HTML(pfinal, file = "pilotdata.html", Border = 1, innerBorder = 0,classfirstline = "firstline",
+  classfirstcolumn = "firstcolumn", classcellinside = "cellinside", append = TRUE)
 
+setwd("/var/www/html/result/")
 # to get the data for the histogram
 histdat <- as.list(t(round(pfinal$ptemp.subvalue)))
 write.table(histdat, "histdat.csv", col.names = FALSE, row.names = FALSE, sep = ",")
