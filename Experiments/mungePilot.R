@@ -77,7 +77,7 @@ nlmodeldelay <- nlsLM(ptemp.subvalue~(40000/((1+delay)^.5)), data = pfinal, star
 
 hyplm <- hyperblm(ptemp.subvalue~delay*odd, data=pfinal)
 
-print(hyplm)
+print(summary(hyplm))
 
 
 #setwd("/var/www/html/")
