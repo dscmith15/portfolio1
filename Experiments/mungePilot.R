@@ -66,11 +66,11 @@ pfinal["odd"] <- revalue(pfinal$ptemp.odd, c("100%"=1,"80%"=4,"40%"=1.5,"25%"=3,
 pfinal["delay"] <- revalue(pfinal$ptemp.delay, c("immediately"=1,"in 1 month"=4,"in 6 months"=1.5,"in 2 years"=3,"in 5 years"=9))
 
 #nlmodel <- nlsLM(ptemp.subvalue~(40000/((1+odd)*((1+delay)^.5))), data = pfinal, start=list(odd = 1.4, delay = 1.4))
-nlmodelodd <- nlsLM(ptemp.subvalue~(40000/(1+odd)), data = pfinal, start=list(odd = 1.4))
+nlmodelodd <- nlsLM(ptemp.subvalue~(40000/(1+odd)), data = pfinal, start=list(odd = 1.8))
 
 print(nlmodelodd)
 
-nlmodeldelay <- nlsLM(ptemp.subvalue~(40000/((1+delay)^.5)), data = pfinal, start=list(delay = 1.4))
+nlmodeldelay <- nlsLM(ptemp.subvalue~(40000/((1+delay)^.5)), data = pfinal, start=list(delay = 7.1))
 
 print(nlmodeldelay)
 
