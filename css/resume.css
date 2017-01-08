@@ -107,7 +107,6 @@ li:last-child {
   margin-bottom: 10px;
   margin-left: 10px;
   margin-top: 2px;
-  max-width: 50%;
   float: left;
   transition: 0.5s;
 }
