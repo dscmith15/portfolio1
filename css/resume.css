@@ -106,6 +106,7 @@ li:last-child {
   background-color: #f6f6f6;
   margin-bottom: 50px;
   margin-top: 50px;
+  position: relative;
   display: inline-block;
 }
 
