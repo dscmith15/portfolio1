@@ -104,8 +104,8 @@ li:last-child {
   padding: 2px 16px;
   box-shadow: 0px 10px 10px #888888;
   background-color: #f6f6f6;
-  margin-bottom: 50px;
-  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-top: 2px;
   display: inline-block;
   transition: 0.5s;
 }
