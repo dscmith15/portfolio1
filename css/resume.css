@@ -24,7 +24,7 @@ p {
   font-size: 75%;
 }
 br {
-  line-height: 1px;
+  line-height: 0px;
 }
 .very-small {
   font-size: 50%;
