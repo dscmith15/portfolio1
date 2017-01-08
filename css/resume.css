@@ -107,7 +107,7 @@ li:last-child {
   margin-bottom: 50px;
   margin-top: 50px;
   position: relative;
-  display: inline-block;
+  display: inline;
   transition: 0.5s;
 }
 
