@@ -23,6 +23,9 @@ p {
   margin-right: 3em;
   font-size: 75%;
 }
+br {
+  line-height: 5em;
+}
 .very-small {
   font-size: 50%;
 }
