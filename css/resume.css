@@ -21,6 +21,7 @@ p {
   clear: both;
   margin-left: 1em;
   margin-right: 3em;
+  font-size: 75%;
 }
 .very-small {
   font-size: 50%;
