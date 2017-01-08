@@ -97,39 +97,10 @@ li:last-child {
     border-right: none;
 }
 
-
-.GUESSlist {
-  display:block;
-  float: left;
-  width: 300px; 
-  height: 150px;
-  margin-left: 50px;
-  background-color: white;
-  position: fixed;
-}
-
-.GUESSlist li {
-  border-right: 0px;
-  background-color: white;
-}
-
-.GUESSlist ul {
-  background-color: white;
-  float: left;
-  margin-left: 50px;
-}
-
-.ExperimentBlock {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  width: 90%;
-}
-
-.ExperimentBlock:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
 .container {
   padding: 2px 16px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 90%;
 }
 
 @media all and (max-width: 400px) {
