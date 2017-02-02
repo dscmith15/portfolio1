@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Consent Form</title>
+        <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    </head>
+    <body>
+        <div id="consent">
+          
+          <img src="img/WSU.png">
+          <h3>Purpose</h3>
+          
+          <p>
+            Since you are 18 years of age or older, you are invited to participate 
+            in a study investigating financial decision making. We hope to learn 
+            more about how people make decisions when they consider risk and delay.
+          </p>
+          
+          <h3>Participant Selection</h3>
+          
+          <p>
+          You were selected as a possible participant in this 
+          study because you fit the criteria of the population we are 
+          interested in studying, namely that you are over the age of 
+          18 and are currently attending WSU. You are one of at least 
+          100 participants in this study.
+          </p>
+          
+          <h3>Explanation of Procedures</h3>
+          
+          <p>
+          If you decide to participate, you will be asked to complete an
+          online survey that assesses the various ways you make financial 
+          decisions. You will also be asked to answer demographics questions 
+          (e.g., age, gender, income, job title), and a few questions about 
+          your history with video games. The survey will take approximately 
+          30 minutes to complete.
+          </p>
+          
+          <h3>Discomfort/Risks</h3>
+          
+          <p>
+          There are no expected risks or discomforts. However, you may 
+          take a break at any time, and you may skip any questions that make
+          you feel uncomfortable.
+          </p>
+          
+          <h3>Benefits</h3>
+          
+          <p>
+          Your participation in this study will be beneficial in helping 
+          researchers better understand the key factors that contribute 
+          to fiscal decisions.
+          
+          </p>
+          
+          <h3>Confidentiality</h3>
+          <p>Every effort will be made to keep your study-related information 
+          confidential.  However, in order to make sure the study is done 
+          properly and safely there may be circumstances where this information 
+          must be released. By completing this survey, you are giving the 
+          research team permission to share information about you with the 
+          following groups: </p>
+          
+          <ul>
+            <li>Office for Human Research Protections or other federal, state, 
+            or international regulatory agencies</li>
+            <li>The Wichita State University Institutional Review Board</li>
+          </ul>
+          
+          <p>The researchers may publish the results of the study. If they do, 
+          they will only discuss group results. Your name will not be used in 
+          any publication or presentation about the study.</p>
+          
+          <p>
+            We will work to make sure that no one sees your survey responses 
+            without approval. But, because we are using the Internet, there is 
+            a chance that someone could access your online responses without 
+            permission. In some cases, this information could be used to 
+            identify you. Your data will be protected with a code to reduce 
+            the risk that other people can view the responses.
+          </p>
+          
+          <h3>Compensation</h3>
+          
+          <p>For your participation, you will be awarded 2 Sona credits 
+          (for psychology course students).</p>
+          
+          <h3>Refusal/Withdrawal</h3>
+          
+          <p>
+          Participation in this study is entirely voluntary. Your decision
+          whether or not to participate will not affect your future relations
+          with Wichita State University. If you agree to participate in this
+          study, you are free to withdraw from the study at any time without penalty.
+          
+          </p>
+          
+          <h3>Contact</h3>
+          
+          <p>If you have any questions about this research, you may contact 
+          Dustin Smith at dcsmith@shockers.wichita.edu or you can contact Dr. Barbara 
+          Chaparro at 316-978-3683 or via e-mail at barbara.chaparro@wichita.edu. 
+          If you have questions pertaining to your rights as a research subject, 
+          or about research-related injury, you can contact the Office of 
+          Research and Technology Transfer at Wichita State University, 
+          1845 Fairmount Street, Wichita, KS 67260-0007, 
+          telephone (316) 978-3285.</p>
+            
+          <h4>Electronic Signature</h4>
+          
+          <p>You are under no obligation to participate in this study.  
+          By selecting “Yes” below, you are indicating that:</p>
+          
+          <ul>
+            <li>You have read (or someone has read to you) the information provided above,</li>
+            <li>You are aware that this is a research study,</li>
+            <li>You have voluntarily decided to participate.</li>
+          </ul>
+          
+          <p>
+            <input type="checkbox" id="consent_checkbox" st/>
+            I agree to take part in this study.
+          </p>
+          <button type="button" id="start">Start Experiment</button>
+        </div>
+    </body>  
+</html>
