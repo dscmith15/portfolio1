@@ -42,7 +42,7 @@
   };
   var consent = {
     type:'html',
-    url: "Consent.html",
+    url: "Consent_Phase1.html",
     cont_btn: "start",
     check_fn: check_consent
   };
@@ -129,6 +129,7 @@
   
   
   var timeline = [];
+  timeline.push(consent);
   timeline.push(instruct);
   timeline.push(loop_node);
   jsPsych.init({
