@@ -208,7 +208,7 @@
         } else {
           ProspectA = ProspectA + (AdjustmentA*Math.pow(.5,countseenA));
         }
-      seen.push([full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, ProspectA, countseenA]);
+      seenA.push([full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, ProspectA, countseenA]);
       jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, timesseen:countseenA});
       trialcountA++;
       countseenA = 1;
@@ -223,7 +223,7 @@
         } else {
           ProspectB = ProspectB + (AdjustmentB*Math.pow(.5,countseenB));
         }
-      seen.push([full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, ProspectB, countseenB]);
+      seenB.push([full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, ProspectB, countseenB]);
       jsPsych.data.addDataToLastTrial({deal:full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, delay:full_designB[trialcountB].Delay, odd:full_designB[trialcountB].Odd, subvalue:ProspectB, timesseen:countseenB});
       trialcountB++;
       countseenB = 1;
