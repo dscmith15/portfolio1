@@ -18,16 +18,24 @@
     //Experiment 1
   // defining groups of questions that will go together.
   var page_1_questions = ["Which deal would you take?"];
-  var trialcount = 0;
+  var trialcountA = 0;
   var Prospects = [800, 40000];
   var Delays = ["immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"];
   var Odds = ["10%", "25%", "40%", "80%", "100%"];
-  //var randProsp = Math.floor(Math.random() *(2-0))+0;
-  var randProsp = 1;
-  var ProspectA = Prospects[randProsp]/2;
-  var Adjustment = ProspectA;
-  var seen = [];
-  var countseen = 1;
+  var shuffledProspects = jsPsych.randomization.shuffle(Prospects);
+  var randProsp = shuffledProspects[0];
+  var ProspectA = Prospects[shuffledProspects[0]]/2;
+  var AdjustmentA = ProspectA;
+  var seenA = [];
+  var countseenA = 1;
+  
+  var trialcountB = 0;
+  var ProspectB = Prospects[shuffledProspects[1]]/2;
+  var AdjustmentB = ProspectB;
+  var seenB = [];
+  var countseenB = 1;
+  
+  
   var seeninstructions = false;
   var participant = jsPsych.randomization.randomID(8);
   
@@ -58,6 +66,17 @@
     ],
     show_clickable_nav: true
   };
+    
+  var instructB = {
+    type: 'instructions',
+    pages: [
+      'You have made it through the first set of hypothetical deals. Click next to read the instructions for the next set',
+      'For this task you will be asked to make a series of choices between two hypothetical amounts of money shown on the screen.',
+      'Be careful, the amounts have changed compared to the last set. Once again, some amounts will be delayed and/or risky.',
+      'Please progress through the experiment as if you were making these decisions in the real world.'
+    ],
+    show_clickable_nav: true
+  };
   
   
   var factors = {
@@ -67,34 +86,71 @@
   
   
   //used to identify the options string for comparison later
-  var temp_array = [];
+  var temp_arrayA = [];
   /*global jsPsych*/
-  var full_design = jsPsych.randomization.factorial(factors,5);
-  var multi_choice_block = {
+  var full_designA = jsPsych.randomization.factorial(factors,5);
+  var multi_choice_blockA = {
       type: 'survey-multi-choice',
       questions: page_1_questions,
       required: [true],
       options: function() {
        updateProgressBar2();
-        if (trialcount > 0){
+        if (trialcountA > 0){
           for (var i = 0;i < seen.length; i++){
-            if (seen[i][0]==full_design[trialcount].Delay +" "+ full_design[trialcount].Odd){
+            if (seen[i][0]==full_design[trialcountA].Delay +" "+ full_design[trialcountA].Odd){
               ProspectA=seen[i][1];
               countseen=seen[i][2]+1;
             }
           }
         }
-        temp_array = ["$" + ProspectA + " right now", full_design[trialcount].Odd+" chance of receiving $"+Prospects[randProsp]+" "+ full_design[trialcount].Delay];
-        return [temp_array];
+        temp_arrayA = ["$" + ProspectA + " right now", full_designA[trialcountA].Odd+" chance of receiving $"+Prospects[shuffledProspects[0]]+" "+ full_designA[trialcountA].Delay];
+        return [temp_arrayA];
       }
   };
   
+  //used to identify the options string for comparison later
+  var temp_arrayB = [];
+  /*global jsPsych*/
+  var full_designB = jsPsych.randomization.factorial(factors,5);
+  var multi_choice_blockB = {
+      type: 'survey-multi-choice',
+      questions: page_1_questions,
+      required: [true],
+      options: function() {
+       updateProgressBar2();
+        if (trialcountB > 0){
+          for (var i = 0;i < seen.length; i++){
+            if (seen[i][0]==full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd){
+              ProspectB=seen[i][1];
+              countseen=seen[i][2]+1;
+            }
+          }
+        }
+        temp_arrayB = ["$" + ProspectB + " right now", full_designB[trialcountB].Odd+" chance of receiving $"+Prospects[shuffledProspects[1]]+" "+ full_designB[trialcountB].Delay];
+        return [temp_arrayB];
+      }
+  };
+  
+  
   //adjust to make experiemnt shorter for testing
-  var iter = full_design.length; // this is max length
-  var loop_node = {
-    timeline: [multi_choice_block],
+  var iterA = full_designA.length; // this is max length
+  var loop_nodeA = {
+    timeline: [multi_choice_blockA],
     loop_function: function(){
-      if(iter >= 1){
+      if(iterA >= 1){
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  
+  //adjust to make experiemnt shorter for testing
+  var iterB = full_designB.length; // this is max length
+  var loop_nodeB = {
+    timeline: [multi_choice_blockB],
+    loop_function: function(){
+      if(iterB >= 1){
         return true;
       } else {
         return false;
@@ -115,7 +171,7 @@
     $('body').prepend($('<div id="jspsych-progressbar-container"><span>Completion Progress</span><div id="jspsych-progressbar-outer"><div id="jspsych-progressbar-inner"></div></div></div>'));
   }
   function updateProgressBar2() {
-    var progress = (trialcount/full_design.length)*100;
+    var progress = ((trialcountA+trialcountB)/(full_design.length*2))*100;
     $('#jspsych-progressbar-inner').css('width', progress + "%");
   }
   function save_data(filename, filedata){
@@ -131,7 +187,9 @@
   var timeline = [];
   timeline.push(consent);
   timeline.push(instruct);
-  timeline.push(loop_node);
+  timeline.push(loop_nodeA);
+  timeline.push(instructB);
+  timeline.push(loop_nodeB);
   jsPsych.init({
     /*global  $*/
     display_element: $('#jspsych-target'),
@@ -145,13 +203,13 @@
       var answer = JSON.parse(data);
       iter = iter -1;
       //used to adjust the subjective value
-      if (adjuster(answer['Q0'],temp_array[0])){
-        ProspectA = ProspectA - Adjustment*Math.pow(.5,countseen);
+      if (adjuster(answer['Q0'],temp_arrayA[0])){
+        ProspectA = ProspectA - AdjustmentA*Math.pow(.5,countseen);
       } else {
-        ProspectA = ProspectA + (Adjustment*Math.pow(.5,countseen));
+        ProspectA = ProspectA + (AdjustmentA*Math.pow(.5,countseen));
       }
-      seen.push([full_design[trialcount].Delay +" "+ full_design[trialcount].Odd, ProspectA, countseen]);
-      jsPsych.data.addDataToLastTrial({deal:full_design[trialcount].Delay +" "+ full_design[trialcount].Odd, delay:full_design[trialcount].Delay, odd:full_design[trialcount].Odd, subvalue:ProspectA, timesseen:countseen});
+      seen.push([full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, ProspectA, countseenA]);
+      jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, timesseen:countseenA});
       trialcount++;
       countseen = 1;
       ProspectA = Prospects[randProsp]/2;
