@@ -24,13 +24,13 @@
   var Odds = ["10%", "25%", "40%", "80%", "100%"];
   var shuffledProspects = jsPsych.randomization.shuffle(Prospects);
   var randProsp = shuffledProspects[0];
-  var ProspectA = Prospects[shuffledProspects[0]]/2;
+  var ProspectA = shuffledProspects[0]/2;
   var AdjustmentA = ProspectA;
   var seenA = [];
   var countseenA = 1;
   
   var trialcountB = 0;
-  var ProspectB = Prospects[shuffledProspects[1]]/2;
+  var ProspectB = shuffledProspects[1]/2;
   var AdjustmentB = ProspectB;
   var seenB = [];
   var countseenB = 1;
@@ -103,7 +103,7 @@
             }
           }
         }
-        temp_arrayA = ["$" + ProspectA + " right now", full_designA[trialcountA].Odd+" chance of receiving $"+Prospects[shuffledProspects[0]]+" "+ full_designA[trialcountA].Delay];
+        temp_arrayA = ["$" + ProspectA + " right now", full_designA[trialcountA].Odd+" chance of receiving $"+shuffledProspects[0]+" "+ full_designA[trialcountA].Delay];
         return [temp_arrayA];
       }
   };
@@ -126,7 +126,7 @@
             }
           }
         }
-        temp_arrayB = ["$" + ProspectB + " right now", full_designB[trialcountB].Odd+" chance of receiving $"+Prospects[shuffledProspects[1]]+" "+ full_designB[trialcountB].Delay];
+        temp_arrayB = ["$" + ProspectB + " right now", full_designB[trialcountB].Odd+" chance of receiving $"+shuffledProspects[1]+" "+ full_designB[trialcountB].Delay];
         return [temp_arrayB];
       }
   };
@@ -212,7 +212,7 @@
       jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, timesseen:countseenA});
       trialcountA++;
       countseenA = 1;
-      ProspectA = Prospects[shuffledProspects[0]]/2;
+      ProspectA = shuffledProspects[0]/2;
       } else if (jsPsych.currentTimelineNodeID()[4] == '4') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
@@ -227,7 +227,7 @@
       jsPsych.data.addDataToLastTrial({deal:full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, delay:full_designB[trialcountB].Delay, odd:full_designB[trialcountB].Odd, subvalue:ProspectB, timesseen:countseenB});
       trialcountB++;
       countseenB = 1;
-      ProspectB = Prospects[shuffledProspects[1]]/2;
+      ProspectB = shuffledProspects[1]/2;
       }
     },
     on_finish: function() {
