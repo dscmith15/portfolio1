@@ -44,6 +44,11 @@
   
   var age_trial = {
     type: 'survey-text',
+    questions: ["How old are you?"]
+  };
+    
+  var if_node = {
+    timeline: [age_trial],
     conditional_function: function(){
       var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
       if (data < 18){
@@ -52,8 +57,7 @@
         return true;
       }
     },
-    questions: ["How old are you?"]
-  };
+  }
     
   var gender_trial = {
     type: 'survey-multi-choice',
@@ -225,6 +229,7 @@
   timeline.push(consent);
   timeline.push(instruct1);
   timeline.push(age_trial);
+  timeline.push(if_node);
   timeline.push(gender_trial);
   timeline.push(job_trials);
   timeline.push(instructA);
@@ -239,7 +244,7 @@
     on_trial_finish: function() {
       if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
         seeninstructions = true;
-      }  else if (jsPsych.currentTimelineNodeID()[4] == '6') {
+      }  else if (jsPsych.currentTimelineNodeID()[4] == '7') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterA = iterA -1;
@@ -254,7 +259,7 @@
       trialcountA++;
       countseenA = 1;
       ProspectA = shuffledProspects[0]/2;
-      } else if (jsPsych.currentTimelineNodeID()[4] == '8') {
+      } else if (jsPsych.currentTimelineNodeID()[4] == '9') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterB = iterB -1;
