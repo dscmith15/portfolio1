@@ -47,8 +47,9 @@
     questions: ["How old are you?"]
   };
     
-  var if_node = {
-    timeline: [age_trial],
+    
+  var gender_trial = {
+    type: 'survey-multi-choice',
     conditional_function: function(){
       var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
       if (data < 18){
@@ -58,10 +59,6 @@
         return true;
       }
     },
-  }
-    
-  var gender_trial = {
-    type: 'survey-multi-choice',
     questions: ["What is your gender?"],
     options: [["Male","Female","Other"]]
     
@@ -229,7 +226,7 @@
   var timeline = [];
   timeline.push(consent);
   timeline.push(instruct1);
-  timeline.push(if_node);
+  timeline.push(age_trial);
   timeline.push(gender_trial);
   timeline.push(job_trials);
   timeline.push(instructA);
