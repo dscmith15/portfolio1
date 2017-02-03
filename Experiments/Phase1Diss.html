@@ -234,7 +234,7 @@
         seeninstructions = true;
       }  else if (jsPsych.currentTimelineNodeID()[4] == '2') {
         var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
-          if (data < 18 || data == NaN){
+          if (data < 18 || isNaN(data)){
             jsPsych.endExperiment('Sorry! You do not qualify for this study');
             return false;
           } else {
