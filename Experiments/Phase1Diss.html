@@ -76,11 +76,18 @@
     check_fn: check_consent
   };
   
-  
-  var instruct = {
+  var instruct1 = {
     type: 'instructions',
     pages: [
-      'Thank you for agreeing to assist the Software Usability Research Laboratory (SURL). Click next to read the instructions.',
+      'Thank you for agreeing to assist the Software Usability Research Laboratory (SURL). First, we need you to answer some initial demographic questions.'
+    ],
+    show_clickable_nav: true
+  };
+  
+    var instructA = {
+    type: 'instructions',
+    pages: [
+      'You have completed the inital demographic questions. Click next to read the instructions for your next task.',
       'For this task you will be asked to make a series of choices between two hypothetical amounts of money shown on the screen.',
       'Be careful, the differences between the two amounts are subtle. Some amounts will be delayed and/or risky.',
       'Please progress through the experiment as if you were making these decisions in the real world.'
@@ -207,10 +214,11 @@
   
   var timeline = [];
   timeline.push(consent);
+  timeline.push(instruct1);
   timeline.push(age_trial);
   timeline.push(gender_trial);
   timeline.push(job_trials);
-  timeline.push(instruct);
+  timeline.push(instructA);
   timeline.push(loop_nodeA);
   timeline.push(instructB);
   timeline.push(loop_nodeB);
