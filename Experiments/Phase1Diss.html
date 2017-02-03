@@ -52,6 +52,7 @@
     conditional_function: function(){
       var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
       if (data < 18){
+        window.alert("Aw yis");
         return false;
       } else {
         return true;
@@ -179,7 +180,6 @@
     timeline: [multi_choice_blockA],
     loop_function: function(){
       if(iterA >= 1){
-        window.alert("Aw yis");
         return true;
       } else {
         return false;
