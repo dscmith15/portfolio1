@@ -8,6 +8,7 @@
     <script src="jspsych-5.0.3/plugins/jspsych-survey-multi-choice.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-survey-text.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
     <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
@@ -38,6 +39,26 @@
   
   var seeninstructions = false;
   var participant = jsPsych.randomization.randomID(8);
+  
+  
+  
+  var age_trial = {
+    type: 'survey-text',
+    questions: ["How old are you?"],
+  };
+  var gender_trial = {
+    type: 'survey-multi-choice',
+    questions: ["What is your gender?"],
+    options: ["Male","Female","Other"]
+    
+  }
+  var job_trials = {
+    type: 'survey-text',
+    questions: ["What is your yearly income (in USD)?", "If employed, what is your job title?"],
+  };  
+    
+    
+    
   
   var check_consent = function(elem) {
   if ($('#consent_checkbox').is(':checked')) {
@@ -186,6 +207,9 @@
   
   var timeline = [];
   timeline.push(consent);
+  timeline.push(age_trial);
+  timeline.push(gender_trial);
+  timeline.push(job_trials);
   timeline.push(instruct);
   timeline.push(loop_nodeA);
   timeline.push(instructB);
