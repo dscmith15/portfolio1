@@ -52,6 +52,7 @@
     conditional_function: function(){
       var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
       if (data < 18){
+        break;
         window.alert("Aw yis");
         return false;
       } else {
