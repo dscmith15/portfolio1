@@ -230,7 +230,12 @@
     on_trial_finish: function() {
       if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
         seeninstructions = true;
-      } else if (jsPsych.currentTimelineNodeID()[4] == '5') {
+      } else if (jsPsych.currentTimelineNodeID()[4] == '2') { 
+        if (parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2)) < 18){
+          return false;
+        
+        }  
+      } else if (jsPsych.currentTimelineNodeID()[4] == '6') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterA = iterA -1;
@@ -245,7 +250,7 @@
       trialcountA++;
       countseenA = 1;
       ProspectA = shuffledProspects[0]/2;
-      } else if (jsPsych.currentTimelineNodeID()[4] == '7') {
+      } else if (jsPsych.currentTimelineNodeID()[4] == '8') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterB = iterB -1;
