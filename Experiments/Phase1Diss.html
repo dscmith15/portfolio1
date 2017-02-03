@@ -50,15 +50,6 @@
     
   var gender_trial = {
     type: 'survey-multi-choice',
-    conditional_function: function(){
-      var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
-      if (data < 18){
-        jsPsych.endExperiment('Sorry! You do not qualify for this study');
-        return false;
-      } else {
-        return true;
-      }
-    },
     questions: ["What is your gender?"],
     options: [["Male","Female","Other"]]
     
@@ -241,7 +232,15 @@
     on_trial_finish: function() {
       if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
         seeninstructions = true;
-      }  else if (jsPsych.currentTimelineNodeID()[4] == '7') {
+      }  else if (jsPsych.currentTimelineNodeID()[4] == '1') {
+        var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
+          if (data < 18){
+            jsPsych.endExperiment('Sorry! You do not qualify for this study');
+            return false;
+          } else {
+            return true;
+          }
+      }  else if (jsPsych.currentTimelineNodeID()[4] == '5') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterA = iterA -1;
@@ -256,7 +255,7 @@
       trialcountA++;
       countseenA = 1;
       ProspectA = shuffledProspects[0]/2;
-      } else if (jsPsych.currentTimelineNodeID()[4] == '9') {
+      } else if (jsPsych.currentTimelineNodeID()[4] == '7') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterB = iterB -1;
