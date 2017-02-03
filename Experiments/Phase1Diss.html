@@ -222,7 +222,7 @@
     on_trial_finish: function() {
       if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
         seeninstructions = true;
-      } else if (jsPsych.currentTimelineNodeID()[4] == '2') {
+      } else if (jsPsych.currentTimelineNodeID()[4] == '5') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterA = iterA -1;
@@ -237,7 +237,7 @@
       trialcountA++;
       countseenA = 1;
       ProspectA = shuffledProspects[0]/2;
-      } else if (jsPsych.currentTimelineNodeID()[4] == '4') {
+      } else if (jsPsych.currentTimelineNodeID()[4] == '7') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterB = iterB -1;
