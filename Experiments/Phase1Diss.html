@@ -73,7 +73,7 @@
     timeline: [risk_2a],
     conditional_function: function(){
       var data = jsPsych.data.getLastTrialData();
-      if(data.getLastTrialData().responses.slice(7,data.getLastTrialData().responses.length-2)=="25" || data.getLastTrialData().responses.slice(7,data.getLastTrialData().responses.length-2)=="25%" || data.getLastTrialData().responses.slice(7,data.getLastTrialData().responses.length-2)==".25"){
+      if(data.responses.slice(7,data.responses.length-2)=="25" || data.responses.slice(7,data.responses.length-2)=="25%" || data.responses.slice(7,data.responses.length-2)==".25"){
         return false;
       } else {
         return true;
