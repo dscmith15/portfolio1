@@ -106,7 +106,7 @@
   var if_risk_3_wrong = {
     timeline: [risk_3],
     conditional_function: function(){
-      var data = jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0");
+      var data = jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0");
       if (data.length != 0){
         if(data[0].responses.slice(7,data[0].responses.length-2)=="20"){
           return false;
@@ -142,6 +142,13 @@
     type: 'instructions',
     pages: [
       'Thank you for agreeing to assist the Software Usability Research Laboratory (SURL). First, we need you to answer some initial demographic questions.'
+    ],
+    show_clickable_nav: true
+  };
+  var instruct2 = {
+    type: 'instructions',
+    pages: [
+      'Your next task is to complete a series of probability questions. Please respond to the best of yoru ability.'
     ],
     show_clickable_nav: true
   };
@@ -276,14 +283,15 @@
 
   var timeline = [];
   timeline.push(consent);
-  timeline.push(risk_1);
-  timeline.push(if_risk_1_wrong);
-  timeline.push(if_risk_1_right);
-  timeline.push(if_risk_3_wrong);
   timeline.push(instruct1);
   timeline.push(age_trial);
   timeline.push(gender_trial);
   timeline.push(job_trials);
+  timeline.push(instruct2);
+  timeline.push(risk_1);
+  timeline.push(if_risk_1_wrong);
+  timeline.push(if_risk_1_right);
+  timeline.push(if_risk_3_wrong);
   timeline.push(instructA);
   timeline.push(loop_nodeA);
   timeline.push(instructB);
