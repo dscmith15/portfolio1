@@ -69,7 +69,7 @@
     type: 'survey-text',
     questions: ["Imagine we are throwing a five-sided die 50 times. On average, out of these 50 throws how many times would this five-sided die show an odd number (1, 3, or 5) ____ out of 50 throws."]
   }
-  var if_risk_1wrong = {
+  var if_risk_1_wrong = {
     timeline: [risk_2a],
     conditional_function: function(){
       var data = jsPsych.data.getLastTrialData();
@@ -84,7 +84,7 @@
      type: 'survey-text',
     questions: ["Imagine we are throwing a loaded die (6 sides). The probability that the die shows a 6 is twice as high as the probability of each of the other numbers. On average, out of these 70 throws how many times would the die show the number 6? ____ out of 70 throws."]
   }
-  var if_risk_1right = {
+  var if_risk_1_right = {
     timeline: [risk_2b],
     conditional_function: function(){
       var data = jsPsych.data.getLastTrialData();
@@ -256,8 +256,8 @@
 
   var timeline = [];
   timeline.push(consent);
-  timeline.push(risk_1wrong);
-  timeline.push(risk_1right);
+  timeline.push(if_risk_1_wrong);
+  timeline.push(if_risk_1_right);
   timeline.push(if_risk_1);
   timeline.push(instruct1);
   timeline.push(age_trial);
