@@ -80,10 +80,13 @@
       }
     }
   }
+
   var risk_2b = {
+    // I need to build in the logic to grade this question
      type: 'survey-text',
     questions: ["Imagine we are throwing a loaded die (6 sides). The probability that the die shows a 6 is twice as high as the probability of each of the other numbers. On average, out of these 70 throws how many times would the die show the number 6? ____ out of 70 throws."]
   }
+
   var if_risk_1_right = {
     timeline: [risk_2b],
     conditional_function: function(){
@@ -98,6 +101,21 @@
   var risk_3 = {
     type: 'survey-text',
     questions: ["In a forest 20% of mushrooms are red, 50% brown, and 30% white. A red mushroom is poisonous with a probability of 20%. A mushroom that is not red is poisonous with a probability of 5%. What is the probability that a poisonous mushroom in the forest is red____. Please indicate the probability as a percentage."]
+  }
+
+  var if_risk_3_wrong = {
+    timeline: [risk_3],
+    var data = jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0"),
+    if (data.length != 0){
+      if(data.responses.slice(7,data.responses.length-2)=="20"){
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+
   }
 
 
@@ -259,6 +277,7 @@
   timeline.push(risk_1);
   timeline.push(if_risk_1_wrong);
   timeline.push(if_risk_1_right);
+  timeline.push(if_risk_3_wrong);
   timeline.push(instruct1);
   timeline.push(age_trial);
   timeline.push(gender_trial);
