@@ -105,15 +105,17 @@
 
   var if_risk_3_wrong = {
     timeline: [risk_3],
-    var data = jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0"),
-    if (data.length != 0){
-      if(data.responses.slice(7,data.responses.length-2)=="20"){
-        return false;
+    conditional_function: function(){
+      var data = jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0");
+      if (data.length != 0){
+        if(data.responses.slice(7,data.responses.length-2)=="20"){
+          return false;
+        } else {
+          return true;
+        }
       } else {
-        return true;
+        return false;
       }
-    } else {
-      return false;
     }
 
   }
