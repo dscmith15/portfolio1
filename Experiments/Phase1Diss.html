@@ -312,7 +312,7 @@
           } else {
             return true;
           }
-      }  else if (jsPsych.currentTimelineNodeID()[4] == '11') {
+      }  else if (jsPsych.currentTimelineNodeID().slice(4,6) == '11') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterA = iterA -1;
@@ -327,7 +327,7 @@
       trialcountA++;
       countseenA = 1;
       ProspectA = shuffledProspects[0]/2;
-    } else if (jsPsych.currentTimelineNodeID()[4] == '13') {
+    } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '13') {
       var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
       var answer = JSON.parse(data);
       iterB = iterB -1;
