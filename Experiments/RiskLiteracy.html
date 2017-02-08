@@ -103,6 +103,23 @@
       /*global  $*/
       display_element: $('#jspsych-target'),
       timeline: timeline,
+      on_trial_finish: function() {
+      //   if (jsPsych.currentTimelineNodeID()=="0.0-9.0-0.0") {
+      //     if (jsPsych.data.getDataByTimelineNode("0.0-8.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-8.0-0.0")[0].responses.length-2)=="20") {
+      //       jsPsych.data.addDataToLastTrial({riskLiteracy:4});
+      //     } else if (jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)=="50"
+      //     || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)=="50%"
+      //     || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)==".5"
+      //     || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)==".50") {
+      //       jsPsych.data.addDataToLastTrial({riskLiteracy:4});
+      //     } else if (jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0").length != 0) {
+      //       jsPsych.data.addDataToLastTrial({riskLiteracy:3});
+      //     } else if (jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.length-2)=="30") {
+      //
+      //     } else {
+      //       jsPsych.data.addDataToLastTrial({riskLiteracy:1});
+      //     }
+      // },
       on_finish: function() {
         jsPsych.data.displayData();
       }

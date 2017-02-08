@@ -31,7 +31,7 @@
   var countseen = 1;
   var seeninstructions = false;
   var participant = jsPsych.randomization.randomID(8);
-  
+
   var check_consent = function(elem) {
   if ($('#consent_checkbox').is(':checked')) {
     return true;
@@ -48,8 +48,8 @@
     cont_btn: "start",
     check_fn: check_consent
   };
-  
-  
+
+
   var instruct = {
     type: 'instructions',
     pages: [
@@ -60,14 +60,14 @@
     ],
     show_clickable_nav: true
   };
-  
-  
+
+
   var factors = {
     Odd: Odds,
     Delay: Delays,
   };
-  
-  
+
+
   //used to identify the options string for comparison later
   var temp_array = [];
   /*global jsPsych*/
@@ -91,7 +91,7 @@
         return [temp_array];
       }
   };
-  
+
   //adjust to make experiemnt shorter for testing
   var iter = full_design.length; // this is max length
 
@@ -105,7 +105,7 @@
       }
     }
   };
-  
+
   //used to identify what the participant answered
   function adjuster(ans, sure) {
     if(ans==sure){
@@ -114,7 +114,7 @@
       return false;
     }
   }
-  
+
   function drawProgressBar2() {
     $('body').prepend($('<div id="jspsych-progressbar-container"><span>Completion Progress</span><div id="jspsych-progressbar-outer"><div id="jspsych-progressbar-inner"></div></div></div>'));
   }
@@ -134,8 +134,8 @@
    });
 
   }
-  
-  
+
+
   var timeline = [];
   timeline.push(consent);
   timeline.push(instruct);
@@ -176,7 +176,6 @@
 
     on_finish: function() {
       window.alert("You have completed the experiment. Feel free to close your browser tab");
-      save_data(participant+"data.JSON",jsPsych.data.dataAsJSON());
       updateProgressBar2();
 
     }
