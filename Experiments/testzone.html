@@ -6,6 +6,7 @@
     <script src="jspsych-5.0.3/jspsych.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-survey-likert.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-survey-text.js"></script>
@@ -42,8 +43,8 @@
     var condition_game_freq = {
       timeline: [game_freq],
       conditional_function: function(){
-        var data = jsPsych.data.getLastTrialData();
-        if(data.responses == "Yes"){
+        var data = jsPsych.data.getLastTrialData()[0].responses;
+        if(data.slice(7,data.length-2) == "Yes"){
             return true;
         } else {
             return false;
