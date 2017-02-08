@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Test Area</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="jspsych-5.0.3/jspsych.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-single-stim.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-survey-text.js"></script>
+    <script src="jspsych-5.0.3/plugins/jspsych-html.js"></script>
+    <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  </head>
+  <body>
+    <div id="jspsych-target"></div>
+  </body>
+
+  <script>
+    //instructions
+    var instructC = {
+      type: 'instructions',
+      pages: [
+        "Now that you have completed all hypothetical deal questions, we'd like you to answer just a few more questions."
+      ],
+      show_clickable_nav: true
+    };
+
+
+    var gamer_mobile = {
+      type: 'survey-multi-choice',
+      questions: ["Do you play any mobile/social-network video games (e.g., Farmville, Candy Crush, Pokemon Go, Clash of Clans)?"],
+      options: [["Yes","No"]]
+    };
+
+    var game_freq = {
+      type: 'survey-likert',
+      questions: ["On average, how many hours a week do you play the these kinds of games?"],
+      labels: [["Less than 1",	"1-4",	"5-9",	"10-19",	"20-29",	"30-39",	"40+"]]
+    };
+
+    var condition_game_freq = {
+      timeline: [game_freq],
+      conditional_function: function(){
+        var data = jsPsych.data.getLastTrialData();
+        if(data.responses == "Yes"){
+            return true;
+        } else {
+            return false;
+        }
+
+      }
+    };
+
+
+
+    // timeline node order
+    var timeline = [];
+
+    timeline.push(instructC);
+    timeline.push(gamer_mobile);
+    timeline.push(condition_game_freq);
+
+
+
+    /* start the experiment */
+    jsPsych.init({
+      /*global  $*/
+      display_element: $('#jspsych-target'),
+      timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+
+
+
+  </script>
+
+
+
+
+</html>
