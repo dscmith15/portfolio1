@@ -18,6 +18,8 @@
   </body>
 
   <script>
+    var gamingNodeId;
+    var paymentNodeId;
     //instructions
     var instructC = {
       type: 'instructions',
@@ -31,7 +33,10 @@
     var gamer_mobile = {
       type: 'survey-multi-choice',
       questions: ["Do you play any mobile/social-network video games (e.g., Farmville, Candy Crush, Pokemon Go, Clash of Clans)?"],
-      options: [["Yes","No"]]
+      options: [["Yes","No"]],
+      func: function(){
+        gamingNodeId = jsPsych.currentTimelineNodeID()
+      }
     };
 
     var game_freq = {
@@ -53,16 +58,39 @@
       }
     };
 
+    var list_games = {
+      type: 'survey-text',
+      columns:[100],
+      rows:[5],
+      questions: ["Please provide a list of the games where you make or have made in-game payments."]
+    }
+
+    var condition_list_games = {
+      timeline: [list_games],
+      conditional_function: function(){
+        var data = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
+        if(data.slice(7,data.length-2) == "Yes"){
+            return true;
+        } else {
+            return false;
+        }
+
+      }
+    };
+
     var gamer_payer = {
       type: 'survey-multi-choice',
       questions: ["When you play these games, do you ever spend your money on in-game payments?"],
-      options: [["Yes","No"]]
+      options: [["Yes","No"]],
+      func: function(){
+        paymentNodeId = jsPsych.currentTimelineNodeID()
+      }
     };
 
     var condition_game_payer = {
       timeline: [gamer_payer],
       conditional_function: function(){
-        var data = jsPsych.data.getDataByTimelineNode("0.0-1.0")[0].responses;
+        var data = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
         if(data.slice(7,data.length-2) == "Yes"){
             return true;
         } else {
@@ -81,8 +109,6 @@
     timeline.push(gamer_mobile);
     timeline.push(condition_game_freq);
     timeline.push(condition_game_payer);
-
-
 
     /* start the experiment */
     jsPsych.init({
