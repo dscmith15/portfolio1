@@ -98,7 +98,15 @@
     var debrief_block = {
       type: "text",
       text: function() {
-        var subject_data = jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0]["riskLiteracy"];
+        var subject_data;
+        if (jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0].length != 0){
+            subject_data = jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0]["riskLiteracy"];
+        } else if (jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0")[0].length != 0) {
+            subject_data = jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0")[0]["riskLiteracy"];
+        } else if (jsPsych.data.getDataByTimelineNode("0.0-2.0-0.0")[0].length != 0) {
+            subject_data = jsPsych.data.getDataByTimelineNode("0.0-2.0-0.0")[0]["riskLiteracy"];
+        }
+
         return "<p>You recieved a risk literacy score of "+subject_data+" out of 4";
       }
     };
