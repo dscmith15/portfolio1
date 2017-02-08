@@ -101,9 +101,6 @@
     };
 
     function RisklitGrade() {
-      var complete2a = false;
-      var complete2b = false;
-      var complete3 = false;
       if (jsPsych.data.getDataByTimelineNode("0.0-2.0-0.0").length != 0) {
         if (jsPsych.data.getDataByTimelineNode("0.0-2.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-2.0-0.0")[0].responses.length-2)=="30") {
           return 2;

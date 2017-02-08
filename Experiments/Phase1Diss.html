@@ -280,7 +280,29 @@
       url: 'datawrite.php', // this is the path to the above PHP script
       data: {filename: filename, filedata: filedata}
    });
-  }
+ };
+ function RisklitGrade() {
+   if (jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0").length != 0) {
+     if (jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.length-2)=="30") {
+       return 2;
+     } else {
+       return 1;
+     }
+   } else if (jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0").length != 0) {
+     if (jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)=="50"
+     || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)=="50%"
+     || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)==".5"
+     || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)==".50") {
+       return 4;
+     } else {
+       return 3;
+     }
+   } else {
+     return 4;
+   }
+
+ };
+
 
 
   var timeline = [];
@@ -315,22 +337,8 @@
             return true;
           }
 
-      }  else if (jsPsych.currentTimelineNodeID()=="0.0-9.0-0.0") {
-        if (jsPsych.data.getDataByTimelineNode("0.0-8.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-8.0-0.0")[0].responses.length-2)=="20") {
-          jsPsych.data.addDataToLastTrial({riskLiteracy:4});
-        } else if (jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)=="50"
-        || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)=="50%"
-        || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)==".5"
-        || jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0")[0].responses.length-2)==".50") {
-          jsPsych.data.addDataToLastTrial({riskLiteracy:4});
-        } else if (jsPsych.data.getDataByTimelineNode("0.0-9.0-0.0").length != 0) {
-          jsPsych.data.addDataToLastTrial({riskLiteracy:3});
-        } else if (jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.length-2)=="30") {
-          jsPsych.data.addDataToLastTrial({riskLiteracy:2});
-        } else {
-          jsPsych.data.addDataToLastTrial({riskLiteracy:1});
-        }
-
+      }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0-0.0") {
+        jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '11') {
         var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
         var answer = JSON.parse(data);
