@@ -337,7 +337,7 @@
             return true;
           }
 
-      }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0-0.0") {
+      }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
         jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '11') {
         var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
