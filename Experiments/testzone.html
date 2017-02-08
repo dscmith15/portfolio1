@@ -43,7 +43,7 @@
     var condition_game_freq = {
       timeline: [game_freq],
       conditional_function: function(){
-        var data = jsPsych.data.getLastTrialData()[0].responses;
+        var data = jsPsych.data.getLastTrialData().responses;
         if(data.slice(7,data.length-2) == "Yes"){
             return true;
         } else {
