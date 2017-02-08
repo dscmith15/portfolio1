@@ -53,6 +53,25 @@
       }
     };
 
+    var gamer_payer = {
+      type: 'survey-multi-choice',
+      questions: ["When you play these games, do you ever spend your money on in-game payments?"],
+      options: [["Yes","No"]]
+    };
+
+    var condition_game_payer = {
+      timeline: [gamer_payer],
+      conditional_function: function(){
+        var data = jsPsych.data.getDataByTimelineNode("0.0-1.0")[0].responses;
+        if(data.slice(7,data.length-2) == "Yes"){
+            return true;
+        } else {
+            return false;
+        }
+
+      }
+    };
+
 
 
     // timeline node order
@@ -61,6 +80,7 @@
     timeline.push(instructC);
     timeline.push(gamer_mobile);
     timeline.push(condition_game_freq);
+    timeline.push(condition_game_payer);
 
 
 
