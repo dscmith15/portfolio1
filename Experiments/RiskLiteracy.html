@@ -138,7 +138,7 @@
       /*global  $*/
       display_element: $('#jspsych-target'),
       timeline: timeline,
-      show_progress_bar: true
+      show_progress_bar: true,
       on_trial_finish: function() {
         if (jsPsych.currentTimelineNodeID()=="0.0-5.0"){
           jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
