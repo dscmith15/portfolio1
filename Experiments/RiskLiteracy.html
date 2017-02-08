@@ -127,7 +127,7 @@
       display_element: $('#jspsych-target'),
       timeline: timeline,
       on_trial_finish: function() {
-        if (blnflage) {
+        if (blnflage==true) {
           if (jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0")[0].responses.length-2)=="20") {
             jsPsych.data.addDataToLastTrial({riskLiteracy:4});
           } else if (jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0].responses.length-2)=="50"
