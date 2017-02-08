@@ -321,6 +321,80 @@
  };
 
 
+//video game questions
+ var gamingNodeId;
+ var paymentNodeId;
+ var gamer_mobile = {
+   type: 'survey-multi-choice',
+   questions: ["Do you play any mobile/social-network video games (e.g., Farmville, Candy Crush, Pokemon Go, Clash of Clans)?"],
+   options: [["Yes","No"]],
+   func: function(){
+     gamingNodeId = jsPsych.currentTimelineNodeID()
+   }
+ };
+
+ var game_freq = {
+   type: 'survey-likert',
+   questions: ["On average, how many hours a week do you play the these kinds of games?"],
+   labels: [["Less than 1",	"1-4",	"5-9",	"10-19",	"20-29",	"30-39",	"40+"]]
+ };
+
+ var condition_game_freq = {
+   timeline: [game_freq],
+   conditional_function: function(){
+     var data = jsPsych.data.getLastTrialData().responses;
+     if(data.slice(7,data.length-2) == "Yes"){
+         return true;
+     } else {
+         return false;
+     }
+
+   }
+ };
+
+
+ var gamer_payer = {
+   type: 'survey-multi-choice',
+   questions: ["When you play these games, do you ever spend your money on in-game payments?"],
+   options: [["Yes","No"]],
+   func: function(){
+     paymentNodeId = jsPsych.currentTimelineNodeID()
+   }
+ };
+
+ var condition_game_payer = {
+   timeline: [gamer_payer],
+   conditional_function: function(){
+     var data = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
+     if(data.slice(7,data.length-2) == "Yes"){
+         return true;
+     } else {
+         return false;
+     }
+
+   }
+ };
+ var list_games = {
+   type: 'survey-text',
+   columns:[100],
+   rows:[5],
+   questions: ["Please provide a list of the games where you make or have made in-game payments."]
+ }
+
+ var condition_list_games = {
+   timeline: [list_games],
+   conditional_function: function(){
+     var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
+     if(data.slice(7,data.length-2) == "Yes"){
+         return true;
+     } else {
+         return false;
+     }
+
+   }
+ };
+
+
 
   var timeline = [];
   timeline.push(consent);
@@ -338,6 +412,10 @@
   timeline.push(instructB);
   timeline.push(loop_nodeB);
   timeline.push(instructC);
+  timeline.push(gamer_mobile);
+  timeline.push(condition_game_freq);
+  timeline.push(condition_game_payer);
+  timeline.push(condition_list_games);
   jsPsych.init({
     /*global  $*/
     display_element: $('#jspsych-target'),
