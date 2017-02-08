@@ -17,6 +17,7 @@
   </body>
 
   <script>
+  var blnflag = false;
     // this is where we put the jspsych code for this example
     // instructions
     var instruct = {
@@ -47,7 +48,9 @@
         if(data.responses.slice(7,data.responses.length-2)=="25" || data.responses.slice(7,data.responses.length-2)=="25%" || data.responses.slice(7,data.responses.length-2)==".25"){
           return false;
         } else {
+          blnflag = true;
           return true;
+
         }
       }
     };
@@ -77,6 +80,7 @@
     var if_risk_3_wrong = {
       timeline: [risk_3],
       conditional_function: function(){
+        blnflag = true;
         var data = jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0");
         if (data.length != 0){
           if(data[0].responses.slice(7,data[0].responses.length-2)=="20"){
@@ -115,7 +119,7 @@
       display_element: $('#jspsych-target'),
       timeline: timeline,
       on_trial_finish: function() {
-        if (jsPsych.currentTimelineNodeID()=="0.0-4.0-0.0") {
+        if (blnflage) {
           if (jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-3.0-0.0")[0].responses.length-2)=="20") {
             jsPsych.data.addDataToLastTrial({riskLiteracy:4});
           } else if (jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-4.0-0.0")[0].responses.length-2)=="50"
@@ -130,7 +134,7 @@
           } else {
             jsPsych.data.addDataToLastTrial({riskLiteracy:1});
           }
-      }
+        }
     },
       on_finish: function() {
         jsPsych.data.displayData();
