@@ -17,6 +17,18 @@
     <div id="jspsych-target"></div>
   </body>
   <script>
+  // this is stuff for url encoding
+  var GET = {};
+  var query = window.location.search.substring(1).split("&");
+  for (var i = 0, max = query.length; i < max; i++)
+  {
+      if (query[i] === "") // check for trailing & with no param
+          continue;
+
+      var param = query[i].split("=");
+      GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+  }
+
     //Experiment 1
   // defining groups of questions that will go together.
   var page_1_questions = ["Which deal would you take?"];
@@ -493,7 +505,11 @@
     },
     on_finish: function() {
       window.alert("You have completed the experiment. Feel free to close your browser tab");
-      save_data(participant+"data.JSON",jsPsych.data.dataAsJSON());
+      if(GET["id"]==null){
+        save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON());
+      } else {
+        save_data(GET["id"]+"_data.JSON",jsPsych.data.dataAsJSON());
+      }
       updateProgressBar2();
     }
   });
