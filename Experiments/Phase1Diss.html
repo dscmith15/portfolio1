@@ -436,7 +436,7 @@
       }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
         jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '11') {
-        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB].responses;
+        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA].responses;
         var answer = JSON.parse(data);
         iterA = iterA -1;
       //used to adjust the subjective value
