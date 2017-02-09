@@ -81,6 +81,27 @@
 
       }
     };
+
+    var pay_amount = {
+      type: 'survey-text',
+      columns:[10],
+      rows:[1],
+      questions: ["On average, how much money do you spend on mobile/social-network video games per month?"]
+    }
+
+    var condition_pay_amount = {
+      timeline: [pay_amount],
+      conditional_function: function(){
+        var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
+        if(data.slice(7,data.length-2) == "Yes"){
+            return true;
+        } else {
+            return false;
+        }
+
+      }
+    };
+
     var list_games = {
       type: 'survey-text',
       columns:[100],
