@@ -303,17 +303,28 @@
     var progress = ((trialcountA+trialcountB)/(full_designA.length*2))*100;
     $('#jspsych-progressbar-inner').css('width', progress + "%");
   }
-  function save_data(filename, filedata, redirect){
+  function save_data1(filename, filedata){
     $.ajax({
       type:'post',
       cache: false,
       url: 'datawrite.php', // this is the path to the above PHP script
       data: {filename: filename, filedata: filedata},
       success: function(redirect){
-        window.location.replace(redirect);
+        window.location.replace("http://www.dcsmithresearch.com/Experiments.html");
       }
    });
  };
+ function save_data2(filename, filedata){
+   $.ajax({
+     type:'post',
+     cache: false,
+     url: 'datawrite.php', // this is the path to the above PHP script
+     data: {filename: filename, filedata: filedata},
+     success: function(redirect){
+       window.location.replace("https://wsu.sona-systems.com/webstudy_credit.aspx?experiment_id=829&credit_token=0652e553d35c4152bec0be37f5ed11ff&survey_code="+GET["id"]);
+     }
+  });
+};
  function RisklitGrade() {
    if (jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0").length != 0) {
      if (jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.slice(7,jsPsych.data.getDataByTimelineNode("0.0-7.0-0.0")[0].responses.length-2)=="30") {
@@ -518,9 +529,9 @@
     },
     on_finish: function() {
       if(GET["id"]==null){
-        save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON(),"https://google.com");
+        save_data1(participant+"_data.JSON",jsPsych.data.dataAsJSON());
       } else {
-        save_data(GET["id"]+"_data.JSON",jsPsych.data.dataAsJSON(),"https://wsu.sona-systems.com/webstudy_credit.aspx?experiment_id=829&credit_token=0652e553d35c4152bec0be37f5ed11ff&survey_code="+GET["id"]);
+        save_data2(GET["id"]+"_data.JSON",jsPsych.data.dataAsJSON());
       }
       updateProgressBar2();
     }
