@@ -507,7 +507,6 @@
       if(GET["id"]==null){
         window.alert("You have completed the experiment. Feel free to close your browser tab");
         save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON());
-        window.location.replace("https://google.com");
       } else {
         save_data(GET["id"]+"_data.JSON",jsPsych.data.dataAsJSON());
         window.location.replace("https://wsu.sona-systems.com/webstudy_credit.aspx?experiment_id=829&credit_token=0652e553d35c4152bec0be37f5ed11ff&survey_code="+GET["id"]);
