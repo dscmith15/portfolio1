@@ -18,17 +18,7 @@
   </body>
 
   <script>
-
-    var GET = {};
-    var query = window.location.search.substring(1).split("&");
-    for (var i = 0, max = query.length; i < max; i++)
-    {
-        if (query[i] === "") // check for trailing & with no param
-            continue;
-
-        var param = query[i].split("=");
-        GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-    }
+    var participant = jsPsych.randomization.randomID(8);
 
 
     //instructions
@@ -133,7 +123,17 @@
 
       }
     };
-
+    function save_data(filename, filedata, redirect){
+      $.ajax({
+        type:'post',
+        cache: false,
+        url: 'datawrite.php', // this is the path to the above PHP script
+        data: {filename: filename, filedata: filedata},
+        success: function(redirect){
+          window.location.replace(redirect);
+        }
+     });
+   };
 
     // timeline node order
     var timeline = [];
@@ -151,7 +151,7 @@
       display_element: $('#jspsych-target'),
       timeline: timeline,
       on_finish: function() {
-        jsPsych.data.displayData();
+        save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON(),"https://google.com");
       }
     });
 
