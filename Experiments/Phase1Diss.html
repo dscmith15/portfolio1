@@ -400,7 +400,7 @@
    timeline: [pay_amount],
    conditional_function: function(){
      var data1 = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
-     if (data1.slice(7,data.length-2) == "Yes"){
+     if (data1.slice(7,data1.length-2) == "Yes"){
        var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
        if(data.slice(7,data.length-2) == "Yes"){
            return true;
@@ -424,7 +424,7 @@
    timeline: [list_games],
    conditional_function: function(){
      var data1 = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
-     if (data1.slice(7,data.length-2) == "Yes"){
+     if (data1.slice(7,data1.length-2) == "Yes"){
        var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
        if(data.slice(7,data.length-2) == "Yes"){
            return true;
