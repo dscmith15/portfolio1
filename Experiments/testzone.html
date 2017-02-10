@@ -123,14 +123,14 @@
 
       }
     };
-    function save_data(filename, filedata, redirect){
+    function save_data(filename, filedata){
       $.ajax({
         type:'post',
         cache: false,
         url: 'datawrite.php', // this is the path to the above PHP script
         data: {filename: filename, filedata: filedata},
         success: function(redirect){
-          window.location.replace(redirect);
+          window.location.replace("https://google.com");
         }
      });
    };
@@ -151,7 +151,7 @@
       display_element: $('#jspsych-target'),
       timeline: timeline,
       on_finish: function() {
-        save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON(),"https://google.com");
+        save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON());
       }
     });
 
