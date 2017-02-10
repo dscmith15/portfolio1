@@ -399,11 +399,16 @@
  var condition_pay_amount = {
    timeline: [pay_amount],
    conditional_function: function(){
-     var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
-     if(data.slice(7,data.length-2) == "Yes"){
-         return true;
+     var data1 = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
+     if (data1.slice(7,data.length-2) == "Yes"){
+       var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
+       if(data.slice(7,data.length-2) == "Yes"){
+           return true;
+       } else {
+           return false;
+       }
      } else {
-         return false;
+       return false;
      }
 
    }
@@ -418,11 +423,16 @@
  var condition_list_games = {
    timeline: [list_games],
    conditional_function: function(){
-     var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
-     if(data.slice(7,data.length-2) == "Yes"){
-         return true;
+     var data1 = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
+     if (data1.slice(7,data.length-2) == "Yes"){
+       var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
+       if(data.slice(7,data.length-2) == "Yes"){
+           return true;
+       } else {
+           return false;
+       }
      } else {
-         return false;
+       return false;
      }
 
    }
