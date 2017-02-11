@@ -18,14 +18,6 @@
         <div class="ExperimentBlock">
             <div class = "container">
                 <h3><a href="/Experiments/Phase1Diss.html">Dissertation Study 1</a></h3>
-                <div class="SampleSize">
-                  <?php
-                      $dir = "/Experiments/dataP1/";
-                      $fi = new FilesystemIterator($dir, FilesystemIterator::SKIP_DOTS);
-                      $fileCount = iterator_count($fi);
-                      echo "n = $fileCount";
-                  ?>
-                </div>
                 <p>This is the first phase of my dissertaion. It implements the
                   entire Vanderveldt study with additional demographic questions.
                   Participants from the Wichita State SONA system were asked to
