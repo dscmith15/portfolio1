@@ -23,8 +23,9 @@
                       $directory = "/var/www/html/Experiments/dataP1/";
                       $filecount = 0;
                       $files = glob($directory . "*.JSON");
-                      if ($files){
-                        $filecount = count($files);
+                      if ($files !== false)
+                      {
+                        $filecount = count( $files );
                       }
                       echo "n = $filecount";
                   ?>
