@@ -20,17 +20,13 @@
                 <h3><a href="/Experiments/Phase1Diss.html">Dissertation Study 1</a></h3>
                 <div class="SampleSize">
                   <?php
-                      // integer starts at 0 before counting
-                      $i = 0;
-                      $dir = '/Experiments/dataP1';
-                      if ($handle = opendir($dir)) {
-                          while (($file = readdir($handle)) !== false){
-                              if (!in_array($file, array('.', '..')) && !is_dir($dir.$file))
-                                  $i++;
-                          }
+                      $directory = "/Experiments/dataP1/";
+                      $filecount = 0;
+                      $files = glob($directory . "*");
+                      if ($files){
+                      $filecount = count($files);
                       }
-                      // prints out how many were in the directory
-                      echo "n = $i";
+                      echo "n = $filecount";
                   ?>
                 </div>
                 <p>This is the first phase of my dissertaion. It implements the
