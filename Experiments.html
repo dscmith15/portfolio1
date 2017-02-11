@@ -19,6 +19,21 @@
 
             <div class = "container">
                 <h3><a href="/Experiments/Phase1Diss.html">Dissertation Study 1</a></h3>
+                <div class="SampleSize">
+                  <?php
+                      // integer starts at 0 before counting
+                      $i = 0;
+                      $dir = 'Experiments/dataP1/';
+                      if ($handle = opendir($dir)) {
+                          while (($file = readdir($handle)) !== false){
+                              if (!in_array($file, array('.', '..')) && !is_dir($dir.$file))
+                                  $i++;
+                          }
+                      }
+                      // prints out how many were in the directory
+                      echo "n = $i";
+                  ?>
+                </div>
                 <p>This is the firest phase of my dissertaion. It implements the
                   entire Vanderveldt study with additional demographic questions.
                   Participants from the Wichita State SONA system were asked to
@@ -28,7 +43,6 @@
         </div>
 
         <div class="ExperimentBlock">
-
             <div class = "container">
                 <h3><a href="/Experiments/RiskLiteracy.html">Berlin Numeracy Test</a></h3>
                 <p>This is a copy of Edward Cokely's Berlin Numeracy Test built
