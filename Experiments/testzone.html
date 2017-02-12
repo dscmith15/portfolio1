@@ -123,17 +123,22 @@
 
       }
     };
-    function save_data(filename, filedata){
-      $.ajax({
+    function save_data(data){
+   var data_table = "test_zone_data"; // change this for different experiments
+     $.ajax({
         type:'post',
         cache: false,
-        url: 'datawrite.php', // this is the path to the above PHP script
-        data: {filename: filename, filedata: filedata},
-        success: function(){
-          window.location.replace("http://www.dcsmithresearch.com/Experiments.html");
-        }
+        url: 'DataBaseScripts/database_connect.php', // change this to point to your php file.
+        // opt_data is to add additional values to every row, like a subject ID
+        // replace 'key' with the column name, and 'value' with the value.
+        data: {
+            table: data_table,
+            json: JSON.stringify(data),
+            opt_data: {pnum: participant}
+        },
+        success: function(output) { console.log(output); } // write the result to javascript console
      });
-   };
+    }
 
     // timeline node order
     var timeline = [];
@@ -151,7 +156,7 @@
       display_element: $('#jspsych-target'),
       timeline: timeline,
       on_finish: function() {
-        save_data(participant+"_data.JSON",jsPsych.data.dataAsJSON());
+        save_data(jsPsych.data.dataAsJSON());
       }
     });
 
