@@ -156,7 +156,7 @@
       display_element: $('#jspsych-target'),
       timeline: timeline,
       on_finish: function() {
-        save_data(jsPsych.data);
+        save_data(jsPsych.data.dataAsJSON());
       }
     });
 
