@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Results of Phase 1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="http://evanplaice.github.io/jquery-csv/src/jquery.csv.js"></script>
+    <link href="css/home.css" rel="stylesheet" type="text/css"></link>
+
+  </head>
+  <body>
+    <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="Experiments.html">Experiments</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Resume.html">Resume</a></li>
+    </ul>
+
+
+    <h3>Results of Phase 1 (WSU Students)</h3>
+    <p>Here is a simple description of what happened.</p>
+    <div id="wrap" style="width: 95%; margin: auto">
+    <div id="container" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto; margin-bottom: 10px;"></div>
+    <div id="medcontain" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto; margin-bottom: 10px;"></div>
+    </div>
+
+
+  </body>
+  <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Hyperbolic Discounting for $40,000 by Risk And Delay'
+            },
+            subtitle: {
+                text: 'Data from Phase 1 (n = 24)'
+            },
+            xAxis: {
+              title: {
+                text: 'Risk'
+              },
+              categories: ['100%', '80%', '40%', '25%', '10%']
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Subjective Value ($)'
+                },
+                max: 40000,
+                min: 0
+            },
+
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    enableMouseTracking: true
+                }
+            },
+
+            series: [{
+                name: 'Immediately',
+                data: [39375, 25702, 7589, 4554, 3048]
+            }, {
+                name: '1 month',
+                data: [38380,24477,5982,3686,1722]
+            }, {
+                name: '6 months',
+                data: [38023,22003,4452,3661,1696]
+            }, {
+                name: '2 years',
+                data: [32462,20472,3457,2895,1671]
+            }, {
+                name: '5 years',
+                data: [30089,16263,3916,2564,1620]
+            }]
+        });
+      });
+    });
+
+
+      Highcharts.chart('medcontain', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'Hyperbolic Discounting for $800 by Risk And Delay'
+          },
+          subtitle: {
+              text: 'Data from Pilot (n = 24)'
+          },
+          xAxis: {
+            title: {
+              text: 'Risk'
+            },
+            categories: ['100%', '80%', '40%', '25%', '10%']
+          },
+
+          yAxis: {
+              title: {
+                  text: 'Subjective Value ($)'
+              },
+              max: 40000,
+              min: 0
+          },
+
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  enableMouseTracking: true
+              }
+          },
+
+          series: [{
+              name: 'Immediately',
+              data: [788,559,152,142,77]
+          }, {
+              name: '1 month',
+              data: [759,533,146,107,60]
+          }, {
+              name: '6 months',
+              data: [682,434,139,82,57]
+          }, {
+              name: '2 years',
+              data: [490,339,105,85,50]
+          }, {
+              name: '5 years',
+              data: [419,261,88,61,45]
+          }]
+      });
+    });
+  });
+
+
+
+  </script>
+</html>
