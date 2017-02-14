@@ -1,0 +1,120 @@
+library(XML)
+library(jsonlite)
+library("plyr")
+library(R2HTML)
+library(RCurl)
+
+file.list <- readHTMLTable("http://www.dcsmithresearch.com/Experiments/dataP1",skip.rows=1:2)[[1]]$Name
+
+# then create the list of paths
+# as a note, this index starts at one
+pFiles <- paste("http://www.dcsmithresearch.com/Experiments/dataP1/",file.list[!is.na(file.list)], sep="")
+
+for (i in 1:length(pFiles)) {
+  ptemp <- getURL(pFiles[i])
+  ptemp <- fromJSON(ptemp)
+  ptemp$riskLiteracy=ptemp$riskLiteracy[complete.cases(ptemp$riskLiteracy)]
+  ptemp$age = as.numeric(substr(ptemp[3,"responses"],8,9))
+  ptemp$gender <- substr(ptemp[4,"responses"],8,nchar(ptemp[4,"responses"])-2)
+  ptemp$income <- as.numeric(gsub(",", "", fromJSON(ptemp[5,"responses"])[1]))
+  ptemp$job <- fromJSON(ptemp[5,"responses"])[2]
+  ptemp <- ptemp[ptemp$timesseen==5,]
+  ptemp <- ptemp[complete.cases(ptemp$timesseen),]
+  ptemp$pnum <- i
+  
+  if (mean(ptemp[1:25,"subvalue"])>625){
+    ptemp$value[1:25]<-40000
+    ptemp$value[26:50]<-800
+    
+  } else {
+    ptemp$value[1:25]<-800
+    ptemp$value[26:50]<-40000
+  } 
+  
+  if (i==1){
+    pfinal <- ptemp
+    
+  } else {
+    pfinal <- rbind(pfinal, ptemp)
+  }
+}
+
+# this should be modified depending on each phase and response quality
+pfinal <- pfinal[ ! pfinal$pnum %in% c(unique(c(pfinal$pnum[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
+pfinal$pnum[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
+),]
+
+#removes nonsense variables
+drops <- c("url","trial_type", "trial_index", "time_elapsed", "internal_node_id","view_history", "responses")
+pfinal <- pfinal[ , !(names(pfinal) %in% drops)]
+
+pfinal$income[is.na(pfinal$income)] <- 0
+
+#display pmf of risk lit
+colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50)/sum(colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50))
+
+pfinal800 <- pfinal[pfinal$value==800,]
+pfinal40000 <- pfinal[pfinal$value==40000,]
+
+# now I'll make a table of values for the 800 value
+resultTab <- aggregate(pfinal800$subvalue~pfinal800$delay*pfinal800$odd, FUN = "mean")
+
+resultTab$`pfinal800$delay` <-ordered(resultTab$`pfinal800$delay`, levels = c("immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"))
+resultTab$`pfinal800$odd` <-ordered(resultTab$`pfinal800$odd`, levels= c('100%','80%','40%','25%','10%'))
+
+immediatef <- resultTab[resultTab$`pfinal800$delay`=='immediately',]
+immediatef <- with(immediatef, immediatef[order(`pfinal800$odd`),])
+immediatef <- immediatef$`pfinal800$subvalue`
+
+onemonthf <- resultTab[resultTab$`pfinal800$delay`=='in 1 month',]
+onemonthf <- with(onemonthf, onemonthf[order(`pfinal800$odd`),])
+onemonthf <- onemonthf$`pfinal800$subvalue`
+
+sixmonthf <- resultTab[resultTab$`pfinal800$delay`=='in 6 months',]
+sixmonthf <- with(sixmonthf, sixmonthf[order(`pfinal800$odd`),])
+sixmonthf <- sixmonthf$`pfinal800$subvalue`
+
+twoyearf <- resultTab[resultTab$`pfinal800$delay`=='in 2 years',]
+twoyearf <- with(twoyearf, twoyearf[order(`pfinal800$odd`),])
+twoyearf <- twoyearf$`pfinal800$subvalue`
+
+fiveyearf <- resultTab[resultTab$`pfinal800$delay`=='in 5 years',]
+fiveyearf <- with(fiveyearf, fiveyearf[order(`pfinal800$odd`),])
+fiveyearf <- fiveyearf$`pfinal800$subvalue`
+
+results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
+
+results800 <- round(results)
+
+# now I'll make a table of values for the 40000 value
+resultTab <- aggregate(pfinal40000$subvalue~pfinal40000$delay*pfinal40000$odd, FUN = "mean")
+
+resultTab$`pfinal40000$delay` <-ordered(resultTab$`pfinal40000$delay`, levels = c("immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"))
+resultTab$`pfinal40000$odd` <-ordered(resultTab$`pfinal40000$odd`, levels= c('100%','80%','40%','25%','10%'))
+
+immediatef <- resultTab[resultTab$`pfinal40000$delay`=='immediately',]
+immediatef <- with(immediatef, immediatef[order(`pfinal40000$odd`),])
+immediatef <- immediatef$`pfinal40000$subvalue`
+
+onemonthf <- resultTab[resultTab$`pfinal40000$delay`=='in 1 month',]
+onemonthf <- with(onemonthf, onemonthf[order(`pfinal40000$odd`),])
+onemonthf <- onemonthf$`pfinal40000$subvalue`
+
+sixmonthf <- resultTab[resultTab$`pfinal40000$delay`=='in 6 months',]
+sixmonthf <- with(sixmonthf, sixmonthf[order(`pfinal40000$odd`),])
+sixmonthf <- sixmonthf$`pfinal40000$subvalue`
+
+twoyearf <- resultTab[resultTab$`pfinal40000$delay`=='in 2 years',]
+twoyearf <- with(twoyearf, twoyearf[order(`pfinal40000$odd`),])
+twoyearf <- twoyearf$`pfinal40000$subvalue`
+
+fiveyearf <- resultTab[resultTab$`pfinal40000$delay`=='in 5 years',]
+fiveyearf <- with(fiveyearf, fiveyearf[order(`pfinal40000$odd`),])
+fiveyearf <- fiveyearf$`pfinal40000$subvalue`
+
+results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
+
+results40000 <- round(results)
+
+write.table(results40000, "results40000.csv", col.names = FALSE, row.names = FALSE, sep = ",")
+write.table(results800, "results800.csv", col.names = FALSE, row.names = FALSE, sep = ",")
