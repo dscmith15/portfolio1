@@ -1,6 +1,6 @@
 <?php
 
-$dbc = mysql_connect('104.198.153.146', 'dsmith15', 'Adhojockey15');
+$dbc = mysql_connect('ip address', 'username', 'pw');
 mysql_select_db('databasename', $dbc);
 
 ?>
