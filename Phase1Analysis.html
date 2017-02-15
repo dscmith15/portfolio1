@@ -6,7 +6,6 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="http://evanplaice.github.io/jquery-csv/src/jquery.csv.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link href="css/home.css" rel="stylesheet" type="text/css"></link>
 
   </head>
@@ -24,7 +23,7 @@
     <div id="wrap" style="width: 95%; margin: auto">
     <div id="contain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto; margin-bottom: 10px;"></div>
     <div id="contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto; margin-bottom: 10px;"></div>
-    <div id="contain40ksurf" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 0 auto; margin-bottom: 10px;"></div>
+   
     </div>
 
 
@@ -139,42 +138,6 @@
           }]
       });
     
-
-  
-  var z_data=[ ]
-
-  z_data.push([39375, 25702, 7589, 4554, 3048]);
-  z_data.push([38380,24477,5982,3686,1722]);
-  z_data.push([38023,22003,4452,3661,1696]);
-  z_data.push([32462,20472,3457,2895,1671]);
-  z_data.push([30089,16263,3916,2564,1620]);
-
-
-  var data = [{
-             z: z_data,
-             type: 'surface'
-          }];
-
-  var layout = {
-    title: 'Hyperplane of $40,000',
-    autosize: true,
-    xaxis: {title: 'Risk', 
-           categoryarray:['100%', '80%', '40%', '25%', '10%']
-           },
-    yaxis: {title: 'Delay'},
-    //zaxis: {title: 'Subjective Value ($)'},
-    width: 500,
-    height: 500,
-    margin: {
-      l: 65,
-      r: 50,
-      b: 65,
-      t: 90,
-    }
-  };
-  Plotly.newPlot('contain40ksurf', data, layout);
- 
-
 
 
 
