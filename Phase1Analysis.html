@@ -158,11 +158,13 @@
   var layout = {
     title: 'Hyperplane of $40,000',
     autosize: true,
-    //xaxis: {title: 'Risk', range:['100%', '80%', '40%', '25%', '10%']},
+    xaxis: {title: 'Risk', 
+           categoryarray:['100%', '80%', '40%', '25%', '10%']
+           },
     yaxis: {title: 'Delay'},
-    zaxis: {title: 'Subjective Value ($)'},
-    width: 1000,
-    height: 1000,
+    //zaxis: {title: 'Subjective Value ($)'},
+    width: 500,
+    height: 500,
     margin: {
       l: 65,
       r: 50,
