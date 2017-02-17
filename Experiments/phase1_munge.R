@@ -21,23 +21,34 @@ for (i in 1:length(pFiles)) {
   ptemp <- ptemp[ptemp$timesseen==5,]
   ptemp <- ptemp[complete.cases(ptemp$timesseen),]
   ptemp$pnum <- i
-  
+
   if (mean(ptemp[1:25,"subvalue"])>625){
     ptemp$value[1:25]<-40000
     ptemp$value[26:50]<-800
-    
+
   } else {
     ptemp$value[1:25]<-800
     ptemp$value[26:50]<-40000
-  } 
-  
+  }
+
+
   if (i==1){
     pfinal <- ptemp
-    
+
   } else {
     pfinal <- rbind(pfinal, ptemp)
   }
 }
+pfinal$gender<-as.factor(pfinal$gender)
+pfinal$value <- as.factor(pfinal$value)
+pfinal$income <- as.numeric(pfinal$income)
+pfinal$job <- as.character(pfinal$job)
+pfinal$odd <- as.factor(pfinal$odd)
+pfinal$delay <- as.factor(pfinal$delay)
+pfinal$delay <-ordered(pfinal$delay, levels = c("immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"))
+pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
+
+
 
 # this should be modified depending on each phase and response quality
 pfinal <- pfinal[ ! pfinal$pnum %in% c(unique(c(pfinal$pnum[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
@@ -55,6 +66,18 @@ colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50)/sum(colSums(table(pfinal$pnum
 
 pfinal800 <- pfinal[pfinal$value==800,]
 pfinal40000 <- pfinal[pfinal$value==40000,]
+hyper800fit <- hyperblm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay), data = pfinal800)
+hyper40000fit <- hyperblm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay), data = pfinal40000)
+
+hyper800fit_sum<-summary(hyper800fit, hessian = FALSE, nboots = 1000)
+hyper40000fit_sum<-summary(hyper40000fit, hessian = FALSE, nboots = 1000)
+
+nls800<-nls(subvalue~800/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal800, start=c(a=2.5,b=1.5))
+nls40k<-nls(subvalue~40000/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal40000, start=c(a=2.5,b=1.5))
+
+#get some estimation of goodness of fit
+cor(pfinal40000$subvalue,predict(nls40k))
+cor(pfinal800$subvalue,predict(nls800))
 
 # now I'll make a table of values for the 800 value
 resultTab <- aggregate(pfinal800$subvalue~pfinal800$delay*pfinal800$odd, FUN = "mean")
@@ -115,6 +138,3 @@ fiveyearf <- fiveyearf$`pfinal40000$subvalue`
 results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
 
 results40000 <- round(results)
-
-write.table(results40000, "results40000.csv", col.names = FALSE, row.names = FALSE, sep = ",")
-write.table(results800, "results800.csv", col.names = FALSE, row.names = FALSE, sep = ",")
