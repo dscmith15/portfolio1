@@ -18,16 +18,6 @@
   </body>
   <script>
   // this is stuff for url encoding
-  var GET = {};
-  var query = window.location.search.substring(1).split("&");
-  for (var i = 0, max = query.length; i < max; i++)
-  {
-      if (query[i] === "") // check for trailing & with no param
-          continue;
-
-      var param = query[i].split("=");
-      GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-  }
   var turkInfo = jsPsych.turk.turkInfo();
 
     //Experiment 1
@@ -506,7 +496,7 @@
           ProspectA = ProspectA + (AdjustmentA*Math.pow(.5,countseenA));
         }
         seenA.push([full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, ProspectA, countseenA]);
-        jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, value:shuffledProspects[0], timesseen:countseenA});
+        jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, value:shuffledProspects[0], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenA});
         trialcountA++;
         countseenA = 1;
         ProspectA = shuffledProspects[0]/2;
@@ -522,7 +512,7 @@
           ProspectB = ProspectB + (AdjustmentB*Math.pow(.5,countseenB));
         }
         seenB.push([full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, ProspectB, countseenB]);
-        jsPsych.data.addDataToLastTrial({deal:full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, delay:full_designB[trialcountB].Delay, odd:full_designB[trialcountB].Odd, subvalue:ProspectB, value:shuffledProspects[1], timesseen:countseenB});
+        jsPsych.data.addDataToLastTrial({deal:full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, delay:full_designB[trialcountB].Delay, odd:full_designB[trialcountB].Odd, subvalue:ProspectB, value:shuffledProspects[1], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenB});
         trialcountB++;
         countseenB = 1;
         ProspectB = shuffledProspects[1]/2;
