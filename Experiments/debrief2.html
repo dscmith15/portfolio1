@@ -6,26 +6,27 @@
         <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     </head>
     <body>
-      <script>
-      var GET = {};
-      var query = window.location.search.substring(1).split("&");
-      for (var i = 0, max = query.length; i < max; i++)
-      {
-          if (query[i] === "") // check for trailing & with no param
-              continue;
 
-          var param = query[i].split("=");
-          GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-      }
-
-
-      document.querySelector('.results').innerHTML = GET['id'];
-
-
-      </script>
       <h3>You have completed the Experiment!</h3>
       <p>
           Thank you for completing the experiment. Your survey code is <span id='pid'>.</span>
+          <script>
+          var GET = {};
+          var query = window.location.search.substring(1).split("&");
+          for (var i = 0, max = query.length; i < max; i++)
+          {
+              if (query[i] === "") // check for trailing & with no param
+                  continue;
+
+              var param = query[i].split("=");
+              GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+          }
+
+
+          document.querySelector('.results').innerHTML = GET['id'];
+
+
+          </script>
       </p>
 
     </body>
