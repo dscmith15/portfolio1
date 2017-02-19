@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Experiment Completed</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link href="css/home.css" rel="stylesheet" type="text/css"></link>
+    </head>
+    <body>
+      <script>
+      var GET = {};
+      var query = window.location.search.substring(1).split("&");
+      for (var i = 0, max = query.length; i < max; i++)
+      {
+          if (query[i] === "") // check for trailing & with no param
+              continue;
+
+          var param = query[i].split("=");
+          GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+      }
+      </script>
+      <h3>You have completed the Experiment!</h3>
+      <p>
+
+      </p>
+
+    </body>
+</html>

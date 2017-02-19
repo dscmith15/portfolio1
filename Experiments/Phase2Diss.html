@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Phase 1</title>
+    <title>Phase 2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jspsych-5.0.3/jspsych.js"></script>
     <script src="jspsych-5.0.3/plugins/jspsych-text.js"></script>
@@ -311,7 +311,7 @@
       url: 'datawrite.php', // this is the path to the above PHP script
       data: {filename: filename, filedata: filedata},
       success: function(){
-        window.location.replace("http://www.dcsmithresearch.com/Experiments.html");
+        window.location.replace("http://www.dcsmithresearch.com/Experiments/debrief2.html?id="+participant);
       }
    });
  };
@@ -529,11 +529,9 @@
       }
     },
     on_finish: function() {
-      if(GET["id"]==null){
-        save_data1(participant+"_data.JSON",jsPsych.data.dataAsJSON());
-      } else {
-        save_data2(GET["id"]+"_data.JSON",jsPsych.data.dataAsJSON());
-      }
+
+      save_data1(participant+"_data.JSON",jsPsych.data.dataAsJSON());
+
       updateProgressBar2();
     }
   });
