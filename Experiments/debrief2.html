@@ -21,13 +21,8 @@
               var param = query[i].split("=");
               GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
           }
-          window.onload = function() {
 
-
-
-            document.querySelector('.pid').innerHTML = GET['id'];
-
-          }
+          document.getElementById('pid').innerHTML = GET['id'];
 
           </script>
       </p>
