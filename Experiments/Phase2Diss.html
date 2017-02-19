@@ -28,6 +28,7 @@
       var param = query[i].split("=");
       GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
   }
+  var turkInfo = jsPsych.turk.turkInfo();
 
     //Experiment 1
   // defining groups of questions that will go together.
@@ -147,7 +148,7 @@
 
 
   var check_consent = function(elem) {
-  if ($('#consent_checkbox').is(':checked')) {
+  if ($('#consent_checkbox').is(':checked') && turkInfo.previewMode && !turkInfo.outsideTurk) {
     return true;
   }
   else {
