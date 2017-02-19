@@ -528,11 +528,7 @@
       }
     },
     on_finish: function() {
-      if(GET["id"]==null){
-        save_data1(participant+"_data.JSON",jsPsych.data.dataAsJSON());
-      } else {
-        save_data2(GET["id"]+"_data.JSON",jsPsych.data.dataAsJSON());
-      }
+      window.alert("You have completed the experiment. Feel free to close your browser tab");
       updateProgressBar2();
     }
   });
