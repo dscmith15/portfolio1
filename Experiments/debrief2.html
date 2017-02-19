@@ -6,10 +6,11 @@
         <link href="jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     </head>
     <body>
-
+      <div style="width: 95%; margin: auto">
       <h3>You have completed the Experiment!</h3>
       <p>
-          Thank you for completing the experiment. Your survey code is <span id='pid'>.</span>
+          Thank you for completing the experiment. Your survey code is <strong>
+            <span id='pid'>.</span></strong>. Please copy this code for your HIT submission.
           <script>
           var GET = {};
           var query = window.location.search.substring(1).split("&");
@@ -26,6 +27,7 @@
 
           </script>
       </p>
+    </div>
 
     </body>
 </html>
