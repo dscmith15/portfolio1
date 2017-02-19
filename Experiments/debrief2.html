@@ -17,8 +17,11 @@
           var param = query[i].split("=");
           GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
       }
+      document.onload(function() {
+        
+        document.getElementById('pid').innerHTML = GET['id'];
+      });
 
-      document.getElementById('pid').innerHTML = GET['id'];
       </script>
       <h3>You have completed the Experiment!</h3>
       <p>
