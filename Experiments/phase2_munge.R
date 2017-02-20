@@ -4,12 +4,13 @@ library("plyr")
 library(R2HTML)
 library(RCurl)
 
-file.list <- readHTMLTable("http://www.dcsmithresearch.com/Experiments/dataP1",skip.rows=1:2)[[1]]$Name
+file.list <- readHTMLTable(getURL("https://www.dcsmithresearch.com/Experiments/dataP2/"),skip.rows=1:2)[[1]]$Name
 
 # then create the list of paths
 # as a note, this index starts at one
-pFiles <- paste("http://www.dcsmithresearch.com/Experiments/dataP1/",file.list[!is.na(file.list)], sep="")
+pFiles <- paste("https://www.dcsmithresearch.com/Experiments/dataP2/",file.list[!is.na(file.list)], sep="")
 
+pFiles<- pFiles[pFiles != "https://www.dcsmithresearch.com/Experiments/dataP2/archive/"]
 for (i in 1:length(pFiles)) {
   ptemp <- getURL(pFiles[i])
   ptemp <- fromJSON(ptemp)
@@ -21,20 +22,20 @@ for (i in 1:length(pFiles)) {
   ptemp <- ptemp[ptemp$timesseen==5,]
   ptemp <- ptemp[complete.cases(ptemp$timesseen),]
   ptemp$pnum <- i
-
+  
   if (mean(ptemp[1:25,"subvalue"])>625){
     ptemp$value[1:25]<-40000
     ptemp$value[26:50]<-800
-
+    
   } else {
     ptemp$value[1:25]<-800
     ptemp$value[26:50]<-40000
   }
-
-
+  
+  
   if (i==1){
     pfinal <- ptemp
-
+    
   } else {
     pfinal <- rbind(pfinal, ptemp)
   }
@@ -48,12 +49,20 @@ pfinal$delay <- as.factor(pfinal$delay)
 pfinal$delay <-ordered(pfinal$delay, levels = c("immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"))
 pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
+#below are participants that have emailed and clarified their response
+pfinal$subvalue[pfinal$workid == "A1W8FA5GSFY60C" & pfinal$deal == "immediately 100%" & pfinal$value == 40000] <- 39375
+pfinal$subvalue[pfinal$workid == "A3760PCQD2MPIO" & pfinal$deal == "immediately 100%" & pfinal$value == 40000] <- 39375
+pfinal$subvalue[pfinal$workid == "" & pfinal$deal == "immediately 100%" & pfinal$value == 40000] <- 39375
+pfinal$subvalue[pfinal$workid == "" & pfinal$deal == "in 1 month 100%" & pfinal$value == 40000] <- 39375
+pfinal$subvalue[pfinal$workid == "AYPRRGPMOD0AX" & pfinal$deal == "immediately 100%" & pfinal$value == 800] <- 787.5
+pfinal$subvalue[pfinal$workid == "AW6E36D5Z04G6" & pfinal$deal == "immediately 100%" & pfinal$value == 800] <- 787.5
 
 
-# this should be modified depending on each phase and response quality
-pfinal <- pfinal[ ! pfinal$pnum %in% c(unique(c(pfinal$pnum[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
-pfinal$pnum[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
-),]
+#valid checker
+unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
+         pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
+
+
 
 #removes nonsense variables
 drops <- c("url","trial_type", "trial_index", "time_elapsed", "internal_node_id","view_history", "responses")
@@ -72,8 +81,8 @@ hyper40000fit <- hyperblm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(
 hyper800fit_sum<-summary(hyper800fit, hessian = FALSE, nboots = 1000)
 hyper40000fit_sum<-summary(hyper40000fit, hessian = FALSE, nboots = 1000)
 
-nls800<-nls(subvalue~800/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal800, start=c(a=2.5,b=1.5))
-nls40k<-nls(subvalue~40000/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal40000, start=c(a=2.5,b=1.5))
+nls800<-nls(subvalue~800/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal800, start=c(a=2.5,b=1.5),trace = TRUE)
+nls40k<-nls(subvalue~40000/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal40000, start=c(a=2.5,b=1.5),trace = TRUE)
 
 #get some estimation of goodness of fit
 cor(pfinal40000$subvalue,predict(nls40k))
