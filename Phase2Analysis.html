@@ -34,6 +34,7 @@
       <div id="contain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
     <div id="result" style="float: left; width: 75%; min-width: 500px; max-width: 700px; height: 890px; margin: 4 auto; margin-bottom: 10px;">
 
@@ -262,6 +263,74 @@
           }]
 
     });
+    Highcharts.chart('boxincome', {
+
+          chart: {
+              type: 'boxplot'
+          },
+
+          title: {
+              text: 'Phase 1 & 2 Income Distributions'
+          },
+
+          legend: {
+              enabled: false
+          },
+
+          xAxis: {
+              categories: ['WSU', 'Mturk'],
+              title: {
+                  text: 'Experiment'
+              }
+          },
+
+          colors: ['#FF7A00'],
+
+          yAxis: {
+              title: {
+                  text: 'Income'
+              },
+              max: 130000,
+              min: 0,
+              tickInterval: 5000
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+
+          series: [{
+              name: 'Observations',
+              data: [
+                  [0, 0, 4538, 13000, 72000],
+                  [0, 45000, 62500, 80250, 130000]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }, {
+              
+              marker: {
+                  fillColor: 'black',
+                  lineWidth: 10,
+                  lineColor: Highcharts.getOptions().colors[0]
+              },
+              tooltip: {
+                  pointFormat: 'Observation: {point.y}'
+              }
+          }]
+
+      });
 
 
 
