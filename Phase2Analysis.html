@@ -31,9 +31,10 @@
       </div>
 
       <div id="TextBox" style="float: left; width: 75%; min-width: 500px; max-width: 900px; height: 375px; margin: 0 auto; margin-bottom: 10px;">
-        <h5>Demographics</h5>
+        <h4>Demographics</h4>
         <p>
-          Here are some details about the demographics
+          Below are demographic comparisons between the two recruitment strategies.
+          You should notice stark differences between all collected demographics.
         </p>
 
       </div>
@@ -42,15 +43,20 @@
       <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
     <p>
+      <div id="gender" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
       <div id="risk" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
+
     <div id="TextBox" style="float: left; width: 75%; min-width: 500px; max-width: 900px; height: 375px; margin: 0 auto; margin-bottom: 10px;">
-      <h5>Hypothetical Deal Results</h5>
+      <h4>Hypothetical Deal Results</h4>
       <p>
-        Below you will find results for both prospects (i.e., $40k & $800). You should notice the expected
+        Below you will find results for both prospects (i.e., $40k & $800). Note the expected
         hyperboloid trend for all prospects and collection methods, and that delay impacts the $800 prospect far more
         than $40k prospect. Therefore, delaying an outcome has a larger effect
-        on subjective value as you deal with smaller prospects.
+        on subjective value as you deal with smaller prospects. The results for
+        Mturk appear to fit the model better than SONA.
       </p>
 
     </div>
@@ -483,7 +489,7 @@
         min: 0,
         max: 1,
         title: {
-            text: 'Probability'
+            text: 'Proportion'
         },
         tickInterval: .2
     },
@@ -519,6 +525,56 @@
 
     }]
 });
+        Highcharts.chart('gender', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'PMFs of Gender'
+          },
+          xAxis: {
+              categories: [
+                  'WSU',
+                  'MTurk'
+              ],
+              crosshair: true
+          },
+          yAxis: {
+              min: 0,
+              max: 1,
+              title: {
+                  text: 'Proportion'
+              },
+              tickInterval: .2
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: 'Female',
+              data: [.79, .52]
+
+          }, {
+              name: 'Male',
+              data: [.29, .48]
+
+          }, {
+              name: 'Other',
+              data: [.02, .00]
+
+          }]
+        });
 
 
 
