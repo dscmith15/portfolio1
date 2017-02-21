@@ -31,10 +31,14 @@
       </div>
 
     <p>
-      <div id="contain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
-      <div id="contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+
+      <div id="WSUcontain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MTcontain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="WSUcontain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MTcontain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+
     </p>
     <div id="result" style="float: left; width: 75%; min-width: 500px; max-width: 700px; height: 890px; margin: 4 auto; margin-bottom: 10px;">
 
@@ -86,7 +90,7 @@
 
   </body>
   <script>
-        Highcharts.chart('contain40k', {
+        Highcharts.chart('MTcontain40k', {
             chart: {
                 type: 'line'
             },
@@ -142,7 +146,7 @@
 
 
 
-      Highcharts.chart('contain800', {
+      Highcharts.chart('MTcontain800', {
           chart: {
               type: 'line'
           },
@@ -202,7 +206,7 @@
           },
 
           title: {
-              text: 'Phase 1 & 2 Age Distributions'
+              text: 'Age Distributions'
           },
 
           legend: {
@@ -270,7 +274,7 @@
           },
 
           title: {
-              text: 'Phase 1 & 2 Income Distributions'
+              text: 'Income Distributions'
           },
 
           legend: {
@@ -331,6 +335,114 @@
           }]
 
       });
+      Highcharts.chart('WSUcontain40k', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: '$40,000 by Risk And Delay'
+          },
+          subtitle: {
+              text: 'Data from Phase 1 (n = 56)'
+          },
+          xAxis: {
+            title: {
+              text: 'Risk'
+            },
+            categories: ['100%', '80%', '40%', '25%', '10%']
+          },
+
+          yAxis: {
+              title: {
+                  text: 'Subjective Value ($)'
+              },
+              max: 40000,
+              min: 0
+
+          },
+
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  enableMouseTracking: true
+              }
+          },
+
+          series: [{
+              name: 'Immediately',
+              data: [39375,25915,7411,5000,3013]
+          }, {
+              name: '1 month',
+              data: [38304,24576,6585,3884,1830]
+          }, {
+              name: '6 months',
+              data: [37790,22723,5000,3973,1763]
+          }, {
+              name: '2 years',
+              data: [32746,20692,3996,3013,1652]
+          }, {
+              name: '5 years',
+              data: [30268,16429,4152,2656,1585]
+          }]
+      });
+
+
+
+
+    Highcharts.chart('WSUcontain800', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '$800 by Risk And Delay'
+        },
+        subtitle: {
+            text: 'Data from Phase 1 (n = 56)'
+        },
+        xAxis: {
+          title: {
+            text: 'Risk'
+          },
+          categories: ['100%', '80%', '40%', '25%', '10%']
+        },
+
+        yAxis: {
+            title: {
+                text: 'Subjective Value ($)'
+            },
+            max: 800,
+            min: 0,
+            tickInterval: 200
+        },
+
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+
+        series: [{
+            name: 'Immediately',
+            data: [788,546,167,146,78]
+        }, {
+            name: '1 month',
+            data: [751,519,148,113,58]
+        }, {
+            name: '6 months',
+            data: [676,438,139,86,54]
+        }, {
+            name: '2 years',
+            data: [479,324,103,88,50]
+        }, {
+            name: '5 years',
+            data: [412,254,88,63,43]
+        }]
+    });
 
 
 
