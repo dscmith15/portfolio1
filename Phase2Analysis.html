@@ -33,6 +33,7 @@
     <p>
       <div id="contain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
     <div id="result" style="float: left; width: 75%; min-width: 500px; max-width: 700px; height: 890px; margin: 4 auto; margin-bottom: 10px;">
 
@@ -192,6 +193,75 @@
               data: [254,109,44,44,29]
           }]
       });
+
+      Highcharts.chart('boxage', {
+
+          chart: {
+              type: 'boxplot'
+          },
+
+          title: {
+              text: 'Phase 1 & 2 Age Distributions'
+          },
+
+          legend: {
+              enabled: false
+          },
+
+          xAxis: {
+              categories: ['WSU', 'Mturk'],
+              title: {
+                  text: 'Experiment'
+              }
+          },
+
+          colors: ['#FF7A00'],
+
+          yAxis: {
+              title: {
+                  text: 'Age'
+              },
+              max: 60,
+              min: 0,
+              tickInterval: 10
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+
+          series: [{
+              name: 'Observations',
+              data: [
+                  [18.00, 19.00, 20.00, 22.00, 52.00],
+                  [30.00, 35.00, 37.50, 41.00, 45.00]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }, {
+
+              marker: {
+                  fillColor: 'black',
+                  lineWidth: 10,
+                  lineColor: Highcharts.getOptions().colors[0]
+              },
+              tooltip: {
+                  pointFormat: 'Observation: {point.y}'
+              }
+          }]
+
+    });
 
 
 
