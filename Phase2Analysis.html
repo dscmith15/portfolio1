@@ -33,7 +33,7 @@
     <p>
       <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
-
+      <div id="risk" style="float: left; width: 49%; min-width: 500px; max-width: 800px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="WSUcontain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="MTcontain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="WSUcontain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
@@ -98,7 +98,7 @@
                 text: 'MTurk $40,000 by Risk And Delay'
             },
             subtitle: {
-                text: 'Data from MTurk (n = 56)'
+                text: 'Data from MTurk (n = 52)'
             },
             xAxis: {
               title: {
@@ -443,6 +443,60 @@
             data: [412,254,88,63,43]
         }]
     });
+    Highcharts.chart('risk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'PMFs of Risk Literacy'
+    },
+    xAxis: {
+        categories: [
+            'WSU',
+            'MTurk'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Probability'
+        },
+        tickInterval: .2
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: '1',
+        data: [.21, .23]
+
+    }, {
+        name: '2',
+        data: [.54, .21]
+
+    }, {
+        name: '3',
+        data: [.17, .10]
+
+    }, {
+        name: '4',
+        data: [.17, .46]
+
+    }]
+});
 
 
 
