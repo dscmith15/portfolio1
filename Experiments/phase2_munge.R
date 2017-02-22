@@ -49,15 +49,6 @@ pfinal$delay <- as.factor(pfinal$delay)
 pfinal$delay <-ordered(pfinal$delay, levels = c("immediately", "in 1 month", "in 6 months", "in 2 years", "in 5 years"))
 pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
-#below are participants that have emailed and clarified their response
-pfinal$subvalue[pfinal$workid == "A1W8FA5GSFY60C" & pfinal$deal == "immediately 100%" & pfinal$value == 40000] <- 39375
-pfinal$subvalue[pfinal$workid == "A3760PCQD2MPIO" & pfinal$deal == "immediately 100%" & pfinal$value == 40000] <- 39375
-pfinal$subvalue[pfinal$workid == "" & pfinal$deal == "immediately 100%" & pfinal$value == 40000] <- 39375
-pfinal$subvalue[pfinal$workid == "" & pfinal$deal == "in 1 month 100%" & pfinal$value == 40000] <- 39375
-pfinal$subvalue[pfinal$workid == "AYPRRGPMOD0AX" & pfinal$deal == "immediately 100%" & pfinal$value == 800] <- 787.5
-pfinal$subvalue[pfinal$workid == "AW6E36D5Z04G6" & pfinal$deal == "immediately 100%" & pfinal$value == 800] <- 787.5
-
-
 #valid checker
 unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
          pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
