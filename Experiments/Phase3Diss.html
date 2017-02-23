@@ -224,7 +224,7 @@
             }
           }
         }
-        temp_arrayA = ["$" + ProspectA + " right now", full_designA[trialcountA].Odd+" chance of receiving $"+shuffledProspects[0]+" "+ full_designA[trialcountA].Delay];
+        temp_arrayA = ["$" + Number(Math.round(ProspectA+'e2')+'e-2') + " right now", full_designA[trialcountA].Odd+" chance of receiving $"+shuffledProspects[0]+" "+ full_designA[trialcountA].Delay];
         return [temp_arrayA];
       }
   };
@@ -247,7 +247,7 @@
             }
           }
         }
-        temp_arrayB = ["$" + ProspectB + " right now", full_designB[trialcountB].Odd+" chance of receiving $"+shuffledProspects[1]+" "+ full_designB[trialcountB].Delay];
+        temp_arrayB = ["$" + Number(Math.round(ProspectB+'e2')+'e-2') + " right now", full_designB[trialcountB].Odd+" chance of receiving $"+shuffledProspects[1]+" "+ full_designB[trialcountB].Delay];
         return [temp_arrayB];
       }
   };
