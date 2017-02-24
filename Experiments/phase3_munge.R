@@ -54,5 +54,5 @@ pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 #pfinal$subvalue[pfinal$workid == "A3760PCQD2MPIO" & pfinal$odd == "100%" & pfinal$delay == "immediately" & pfinal$value == 40000]=39375
 
 #print questionable data
-unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 20 & pfinal$subvalue < 19.6875],
+unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 20 & pfinal$subvalue < 19.68],
          pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
