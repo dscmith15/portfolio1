@@ -68,6 +68,7 @@
     </p>
     <p>
       <div id="MT2contain20" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT2containValue" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
 
 
     </p>
@@ -355,7 +356,7 @@
             text: 'MTurk Phase 3 $800 by Risk And Delay'
         },
         subtitle: {
-            text: 'Data from WSU (n = 50)'
+            text: 'Data from Phase 3 (n = 50)'
         },
         xAxis: {
           title: {
@@ -498,6 +499,49 @@
               data: [.48, .46]
 
           }]
+        });
+
+        Highcharts.chart('MT2containValue', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'MTurk Phase 3 Risk by Value'
+            },
+            subtitle: {
+                text: 'Data from Phase 3 (n = 50)'
+            },
+            xAxis: {
+              title: {
+                text: 'Risk'
+              },
+              categories: ['100%', '80%', '40%', '25%', '10%']
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Subjective Normalized Value ($)'
+                },
+                max: 1,
+                min: 0
+            },
+
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    enableMouseTracking: true
+                }
+            },
+
+            series: [{
+                name: '$20',
+                data: [0.96, 0.63, 0.33, 0.27, 0.17]
+            }, {
+                name: '$800',
+                data: [0.96, 0.51, 0.17, 0.13, 0.08]
+            }]
         });
 
 
