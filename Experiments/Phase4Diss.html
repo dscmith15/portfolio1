@@ -344,7 +344,7 @@
     $('body').prepend($('<div id="jspsych-progressbar-container"><span>Completion Progress</span><div id="jspsych-progressbar-outer"><div id="jspsych-progressbar-inner"></div></div></div>'));
   }
   function updateProgressBar2() {
-    var progress = ((trialcountA+trialcountB)/(full_designA.length*2))*100;
+    var progress = ((trialcountA+trialcountB+trialcountC)/(full_designA.length*3))*100;
     $('#jspsych-progressbar-inner').css('width', progress + "%");
   }
   function save_data1(filename, filedata){
