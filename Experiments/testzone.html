@@ -59,11 +59,13 @@
 
     var condition_instruct = {
       conditional_function: function(){
-        var data = jsPsych.data.getLastTrialData().responses;
+        timeline: [timer],
         if(shuffledProspects[0] == 40000){
-            return timeline: [exchange1_trial];
+            timer = [exchange1_trial];
+            return timer;
         } else if(shuffledProspects[0] == 800) {
-            return timeline: [exchange2_trial];
+          timer = [exchange2_trial];
+          return timer;
         } else {
             return false;
         }
