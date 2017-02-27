@@ -23,22 +23,6 @@
     var shuffledProspects = jsPsych.randomization.shuffle(Prospects);
     var hypdealcount = 0
 
-    //instructions
-    var instructC = {
-      type: 'instructions',
-      pages: [
-        "Now that you have completed all hypothetical deal questions, we'd like you to answer just a few more questions."
-      ],
-      show_clickable_nav: true
-    };
-
-
-
-    var game_freq = {
-      type: 'survey-likert',
-      questions: ["On average, how many hours a week do you play the these kinds of games?"],
-      labels: [["Less than 1",	"1-4",	"5-9",	"10-19",	"20-29",	"30-39",	"40+"]]
-    };
     var exchange1_trial = {
       type: 'survey-multi-choice',
       preamble: 'For the next set of hypothetical deals, you will be handling Orchard Dabloons. '+
@@ -101,11 +85,15 @@
 
       }
     };
-
+    var age_trial = {
+      type: 'survey-text',
+      columns:[3],
+      questions: ["How old are you?"]
+    };
 
     // timeline node order
     var timeline = [];
-
+    timeline.push(age_trial);
     timeline.push(condition_instruct1);
     timeline.push(condition_instruct2);
     timeline.push(condition_instruct3);
