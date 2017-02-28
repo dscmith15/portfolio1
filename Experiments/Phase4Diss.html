@@ -24,13 +24,14 @@
   // defining groups of questions that will go together.
   var page_1_questions = ["Which deal would you take?"];
   var trialcountA = 0;
-  var Prospects = [40000, 800, 20];
+  var Prospects = [8018000, 2500, 20];
   var Delays = ["immediately", "in 6 hours", "in 33 hours", "in 6 days", "in 2 weeks"];
   var Odds = ["10%", "25%", "40%", "80%", "100%"];
   var shuffledProspects = jsPsych.randomization.shuffle(Prospects);
-  var randProsp = shuffledProspects[0];
   var ProspectA = shuffledProspects[0]/2;
   var AdjustmentA = ProspectA;
+  var dollartext = '$';
+  var exchangetext = '';
   var seenA = [];
   var countseenA = 1;
 
@@ -100,19 +101,19 @@
   var exchange1_trial = {
     type: 'survey-multi-choice',
     preamble: 'For the next set of hypothetical deals, you will be handling Orchard Dabloons. '+
-    'The exchange rate of Orchard Dabloons to United States Dollars is 1000:1. ' +
+    'The exchange rate of Orchard Dabloons to United States Dollars is 400900:1. ' +
     'Please answer the following question to confirm that you have read these details.',
     questions: ["What is the exchange rate of Orchard Dabloons to United States Dollars?"],
-    options: [["10:1","1000:1","1:1","100:1"]]
+    options: [["10:1","400900:1","1:1","125:1"]]
 
   }
   var exchange2_trial = {
     type: 'survey-multi-choice',
     preamble: 'For the next set of hypothetical deals, you will be handling Vineyard Gems. '+
-    'The exchange rate of Vineyard Gems to United States Dollars is 100:1. ' +
+    'The exchange rate of Vineyard Jewels to United States Dollars is 125:1. ' +
     'Please answer the following question to confirm that you have read these details.',
-    questions: ["What is the exchange rate of Vineyard Gems to United States Dollars?"],
-    options: [["10:1","1000:1","1:1","100:1"]]
+    questions: ["What is the exchange rate of Vineyard Jewels to United States Dollars?"],
+    options: [["10:1","400900:1","1:1","125:1"]]
 
   }
 
@@ -121,14 +122,16 @@
     preamble: 'For the next set of hypothetical deals, you will be handling United States Dollars. '+
     'Please answer the following question to confirm that you have read these details.',
     questions: ["Which currency will you handle for this next set of Hypothetical Deals?"],
-    options: [["USD","OD","VG"]]
+    options: [["United States Dollars","Orchard Dabloons","Vineyard Jewels"]]
 
   }
 
   var condition_instruct1 = {
     timeline: [exchange1_trial],
     conditional_function: function(){
-      if(shuffledProspects[hypdealcount] == 40000){
+      if(shuffledProspects[hypdealcount] == 8018000){
+          dollartext = '';
+          exchangetext = ' Orchard Dabloons';
           return true;
       } else {
           return false;
@@ -139,7 +142,9 @@
   var condition_instruct2 = {
     timeline: [exchange2_trial],
     conditional_function: function(){
-      if(shuffledProspects[hypdealcount] == 800){
+      if(shuffledProspects[hypdealcount] == 2500){
+          dollartext = '';
+          exchangetext = ' Vineyard Jewels';
           return true;
       } else {
           return false;
@@ -152,6 +157,8 @@
     timeline: [exchange3_trial],
     conditional_function: function(){
       if(shuffledProspects[hypdealcount] == 20){
+          dollartext = '$';
+          exchangetext = '';
           return true;
       } else {
           return false;
@@ -305,7 +312,7 @@
             }
           }
         }
-        temp_arrayA = ["$" + (ProspectA).toFixed(2) + " right now", full_designA[trialcountA].Odd+" chance of receiving $"+(shuffledProspects[0]).toFixed(2)+" "+ full_designA[trialcountA].Delay];
+        temp_arrayA = [dollartext + (ProspectA).toFixed(2) + exchangetext + " right now", full_designA[trialcountA].Odd+" chance of receiving "+dollartext+(shuffledProspects[0]).toFixed(2)+exchangetext+" "+ full_designA[trialcountA].Delay];
         return [temp_arrayA];
       }
   };
@@ -328,7 +335,7 @@
             }
           }
         }
-        temp_arrayB = ["$" + (ProspectB).toFixed(2) + " right now", full_designB[trialcountB].Odd+" chance of receiving $"+(shuffledProspects[1]).toFixed(2)+" "+ full_designB[trialcountB].Delay];
+        temp_arrayB = [dollartext + (ProspectB).toFixed(2) + exchangetext + " right now", full_designB[trialcountB].Odd+" chance of receiving "+dollartext+(shuffledProspects[1]).toFixed(2)+exchangetext+" "+ full_designB[trialcountB].Delay];
         return [temp_arrayB];
       }
   };
@@ -351,7 +358,7 @@
             }
           }
         }
-        temp_arrayC = ["$" + (ProspectC).toFixed(2) + " right now", full_designC[trialcountC].Odd+" chance of receiving $"+(shuffledProspects[1]).toFixed(2)+" "+ full_designC[trialcountC].Delay];
+        temp_arrayC = [dollartext + (ProspectC).toFixed(2) + exchangetext + " right now", full_designC[trialcountC].Odd+" chance of receiving "+dollartext+(shuffledProspects[2]).toFixed(2)+exchangetext+" "+ full_designC[trialcountC].Delay];
         return [temp_arrayC];
       }
   };
