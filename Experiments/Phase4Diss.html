@@ -312,7 +312,7 @@
             }
           }
         }
-        temp_arrayA = [dollartext + (ProspectA).toFixed(2) + exchangetext + " right now", full_designA[trialcountA].Odd+" chance of receiving "+dollartext+(shuffledProspects[0]).toFixed(2)+exchangetext+" "+ full_designA[trialcountA].Delay];
+        temp_arrayA = [dollartext + numberWithCommas((ProspectA).toFixed(2)) + exchangetext + " right now", full_designA[trialcountA].Odd+" chance of receiving "+dollartext+numberWithCommas((shuffledProspects[0]).toFixed(2))+exchangetext+" "+ full_designA[trialcountA].Delay];
         return [temp_arrayA];
       }
   };
@@ -335,7 +335,7 @@
             }
           }
         }
-        temp_arrayB = [dollartext + (ProspectB).toFixed(2) + exchangetext + " right now", full_designB[trialcountB].Odd+" chance of receiving "+dollartext+(shuffledProspects[1]).toFixed(2)+exchangetext+" "+ full_designB[trialcountB].Delay];
+        temp_arrayB = [dollartext + numberWithCommas((ProspectB).toFixed(2)) + exchangetext + " right now", full_designB[trialcountB].Odd+" chance of receiving "+dollartext+numberWithCommas((shuffledProspects[1]).toFixed(2))+exchangetext+" "+ full_designB[trialcountB].Delay];
         return [temp_arrayB];
       }
   };
@@ -358,7 +358,7 @@
             }
           }
         }
-        temp_arrayC = [dollartext + (ProspectC).toFixed(2) + exchangetext + " right now", full_designC[trialcountC].Odd+" chance of receiving "+dollartext+(shuffledProspects[2]).toFixed(2)+exchangetext+" "+ full_designC[trialcountC].Delay];
+        temp_arrayC = [dollartext + numberWithCommas((ProspectC).toFixed(2)) + exchangetext + " right now", full_designC[trialcountC].Odd+" chance of receiving "+dollartext+numberWithCommas((shuffledProspects[2]).toFixed(2))+exchangetext+" "+ full_designC[trialcountC].Delay];
         return [temp_arrayC];
       }
   };
@@ -566,6 +566,11 @@
 
    }
  };
+ function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
 
   var timeline = [];
   timeline.push(consent);
