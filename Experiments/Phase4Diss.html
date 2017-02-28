@@ -612,7 +612,7 @@
       }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
         jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '14') {
-        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+1].responses;
+        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+2].responses;
         var answer = JSON.parse(data);
         iterA = iterA -1;
         if (trialcountA == 0){
@@ -631,7 +631,7 @@
         ProspectA = shuffledProspects[0]/2;
 
     } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
-        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+1].responses;
+        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+3].responses;
         var answer = JSON.parse(data);
         iterB = iterB -1;
         if (trialcountB == 0){
@@ -649,7 +649,7 @@
         countseenB = 1;
         ProspectB = shuffledProspects[1]/2;
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
-          var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+1].responses;
+          var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
           var answer = JSON.parse(data);
           iterC = iterC -1;
           //used to adjust the subjective value
