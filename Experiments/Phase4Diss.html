@@ -665,7 +665,7 @@
           } else {
             ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
           }
-          seenB.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
+          seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
           jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
           trialcountC++;
           countseenC = 1;
