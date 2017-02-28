@@ -95,6 +95,70 @@
       }
     }
   }
+  var hypdealcount = 0
+
+  var exchange1_trial = {
+    type: 'survey-multi-choice',
+    preamble: 'For the next set of hypothetical deals, you will be handling Orchard Dabloons. '+
+    'The exchange rate of Orchard Dabloons to United States Dollars is 1000:1. ' +
+    'Please answer the following question to confirm that you have read these details.',
+    questions: ["What is the exchange rate of Orchard Dabloons to United States Dollars?"],
+    options: [["10:1","1000:1","1:1","100:1"]]
+
+  }
+  var exchange2_trial = {
+    type: 'survey-multi-choice',
+    preamble: 'For the next set of hypothetical deals, you will be handling Vineyard Gems. '+
+    'The exchange rate of Vineyard Gems to United States Dollars is 100:1. ' +
+    'Please answer the following question to confirm that you have read these details.',
+    questions: ["What is the exchange rate of Vineyard Gems to United States Dollars?"],
+    options: [["10:1","1000:1","1:1","100:1"]]
+
+  }
+
+  var exchange3_trial = {
+    type: 'survey-multi-choice',
+    preamble: 'For the next set of hypothetical deals, you will be handling United States Dollars. '+
+    'Please answer the following question to confirm that you have read these details.',
+    questions: ["Which currency will you handle for this next set of Hypothetical Deals?"],
+    options: [["USD","OD","VG"]]
+
+  }
+
+  var condition_instruct1 = {
+    timeline: [exchange1_trial],
+    conditional_function: function(){
+      if(shuffledProspects[hypdealcount] == 40000){
+          return true;
+      } else {
+          return false;
+      }
+
+    }
+  };
+  var condition_instruct2 = {
+    timeline: [exchange2_trial],
+    conditional_function: function(){
+      if(shuffledProspects[hypdealcount] == 800){
+          return true;
+      } else {
+          return false;
+      }
+
+    }
+  };
+
+  var condition_instruct3 = {
+    timeline: [exchange3_trial],
+    conditional_function: function(){
+      if(shuffledProspects[hypdealcount] == 20){
+          return true;
+      } else {
+          return false;
+      }
+
+    }
+  };
 
   var risk_2b = {
     // I need to build in the logic to grade this question
@@ -508,10 +572,19 @@
   timeline.push(if_risk_1_right);
   timeline.push(if_risk_3_wrong);
   timeline.push(instructA);
+  timeline.push(condition_instruct1);
+  timeline.push(condition_instruct2);
+  timeline.push(condition_instruct3);
   timeline.push(loop_nodeA);
   timeline.push(instructB);
+  timeline.push(condition_instruct1);
+  timeline.push(condition_instruct2);
+  timeline.push(condition_instruct3);
   timeline.push(loop_nodeB);
   timeline.push(instructC);
+  timeline.push(condition_instruct1);
+  timeline.push(condition_instruct2);
+  timeline.push(condition_instruct3);
   timeline.push(loop_nodeC);
   timeline.push(instructD);
   timeline.push(gamer_mobile);
@@ -538,10 +611,13 @@
 
       }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
         jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
-      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '11') {
+      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '14') {
         var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+1].responses;
         var answer = JSON.parse(data);
         iterA = iterA -1;
+        if (trialcountA == 0){
+          hypdealcount++;
+        }
       //used to adjust the subjective value
         if (adjuster(answer['Q0'],temp_arrayA[0])){
           ProspectA = ProspectA - AdjustmentA*Math.pow(.5,countseenA);
@@ -554,10 +630,13 @@
         countseenA = 1;
         ProspectA = shuffledProspects[0]/2;
 
-    } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '13') {
+    } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
         var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+1].responses;
         var answer = JSON.parse(data);
         iterB = iterB -1;
+        if (trialcountB == 0){
+          hypdealcount++;
+        }
         //used to adjust the subjective value
         if (adjuster(answer['Q0'],temp_arrayB[0])){
           ProspectB = ProspectB - AdjustmentB*Math.pow(.5,countseenB);
@@ -569,7 +648,7 @@
         trialcountB++;
         countseenB = 1;
         ProspectB = shuffledProspects[1]/2;
-      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '15') {
+      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+1].responses;
           var answer = JSON.parse(data);
           iterC = iterC -1;
