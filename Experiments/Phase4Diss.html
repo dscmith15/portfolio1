@@ -630,7 +630,7 @@
         if (trialcountA == 0){
           hypdealcount++;
         }
-      //used to adjust the subjective value
+        //used to adjust the subjective value
         if (adjuster(answer['Q0'],temp_arrayA[0])){
           ProspectA = ProspectA - AdjustmentA*Math.pow(.5,countseenA);
         } else {
@@ -663,7 +663,7 @@
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
           var answer = JSON.parse(data);
-          iterC = iterC -1;
+          iterC = iterC-1;
           //used to adjust the subjective value
           if (adjuster(answer['Q0'],temp_arrayC[0])){
             ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
