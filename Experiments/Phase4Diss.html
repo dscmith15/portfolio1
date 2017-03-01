@@ -631,6 +631,7 @@
       }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
         jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '14') {
+        console.log("A");
         var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+2].responses;
         var answer = JSON.parse(data);
         iterA = iterA -1;
@@ -650,6 +651,7 @@
         ProspectA = shuffledProspects[0]/2;
 
     } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
+      console.log("B");
         var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+3].responses;
         var answer = JSON.parse(data);
         iterB = iterB -1;
@@ -667,25 +669,26 @@
         trialcountB++;
         countseenB = 1;
         ProspectB = shuffledProspects[1]/2;
-      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
-        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
-        var answer = JSON.parse(data);
-        iterC = iterC -1;
-        if (trialcountC == 0){
-          hypdealcount++;
-        }
-        //used to adjust the subjective value
-        if (adjuster(answer['Q0'],temp_arrayC[0])){
-          ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
-        } else {
-          ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
-        }
-        seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
-        jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
-        trialcountC++;
-        countseenC = 1;
-        ProspectC = shuffledProspects[2]/2;
-        }
+    } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
+      console.log("C");
+      var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
+      var answer = JSON.parse(data);
+      iterC = iterC -1;
+      if (trialcountC == 0){
+        hypdealcount++;
+      }
+      //used to adjust the subjective value
+      if (adjuster(answer['Q0'],temp_arrayC[0])){
+        ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
+      } else {
+        ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
+      }
+      seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
+      jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
+      trialcountC++;
+      countseenC = 1;
+      ProspectC = shuffledProspects[2]/2;
+    }
     },
     on_finish: function() {
 
