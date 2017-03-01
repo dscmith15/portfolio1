@@ -17,7 +17,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: white; 
+  background-color: white;
   color: black;
 }
 p {
@@ -89,7 +89,7 @@ input[type="text"] {
 /* Container holding jsPsych content */
 
 .jspsych-display-element {
-  width: 800px;
+  width: 900px;
   margin: 50px auto 50px auto;
 }
 
@@ -337,7 +337,7 @@ input[type="checkbox"] {
   border-radius: 25px;
   font-weight: bold;
   font-family: 'Karmina Basic';
-  
+
 }
 
 /** PLUGIN: jspsych-visual-search-circle **/
