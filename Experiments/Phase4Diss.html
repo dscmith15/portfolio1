@@ -673,7 +673,7 @@
           }
           //used to adjust the subjective value
           if (adjuster(answer['Q0'],temp_arrayC[0])){
-            ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
+            ProspectC = ProspectC - (AdjustmentC*Math.pow(.5,countseenC));
           } else {
             ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
           }
