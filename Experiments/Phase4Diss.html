@@ -617,6 +617,7 @@
     timeline: timeline,
     progress: drawProgressBar2(),
     on_trial_finish: function() {
+      console.log("Why tho");
         if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
           seeninstructions = true;
         }  else if (jsPsych.currentTimelineNodeID()[4] == '2') {
@@ -651,7 +652,7 @@
           ProspectA = shuffledProspects[0]/2;
 
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
-        console.log("B");
+          console.log("B");
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+3].responses;
           var answer = JSON.parse(data);
           iterB = iterB -1;
@@ -688,8 +689,6 @@
           trialcountC++;
           countseenC = 1;
           ProspectC = shuffledProspects[2]/2;
-      } else {
-        console.log("Why tho");
       }
     },
     on_finish: function() {
