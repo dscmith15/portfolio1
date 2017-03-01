@@ -101,10 +101,10 @@
   var exchange1_trial = {
     type: 'survey-multi-choice',
     preamble: 'For the next set of hypothetical deals, you will be handling Orchard Dabloons. '+
-    'The exchange rate of Orchard Dabloons to United States Dollars is 400900:1. ' +
+    'The exchange rate of Orchard Dabloons to United States Dollars is 400,900:1. ' +
     'Please answer the following question to confirm that you have read these details.',
     questions: ["What is the exchange rate of Orchard Dabloons to United States Dollars?"],
-    options: [["10:1","400900:1","1:1","125:1"]]
+    options: [["10:1","400,900:1","1:1","125:1"]]
 
   }
   var exchange2_trial = {
@@ -113,7 +113,7 @@
     'The exchange rate of Vineyard Jewels to United States Dollars is 125:1. ' +
     'Please answer the following question to confirm that you have read these details.',
     questions: ["What is the exchange rate of Vineyard Jewels to United States Dollars?"],
-    options: [["10:1","400900:1","1:1","125:1"]]
+    options: [["10:1","400,900:1","1:1","125:1"]]
 
   }
 
@@ -215,8 +215,7 @@
 
 
   var check_consent = function(elem) {
-  //if ($('#consent_checkbox').is(':checked') && !turkInfo.previewMode && !turkInfo.outsideTurk) {
-  if ($('#consent_checkbox').is(':checked')) {
+  if ($('#consent_checkbox').is(':checked') && !turkInfo.previewMode && !turkInfo.outsideTurk) {
     return true;
   }
   else {
