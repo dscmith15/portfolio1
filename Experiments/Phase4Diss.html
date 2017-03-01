@@ -670,7 +670,7 @@
           trialcountB++;
           countseenB = 1;
           ProspectB = shuffledProspects[1]/2;
-      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
+      } if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
           console.log("C");
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
           var answer = JSON.parse(data);
