@@ -365,7 +365,14 @@
 
 
   //adjust to make experiemnt shorter for testing
-  var iterA = full_designA.length; // this is max length
+  // var iterA = full_designA.length; // this is max length
+  // var iterB = full_designB.length; // this is max length
+  // var iterC = full_designC.length; // this is max length
+
+  var iterA = 4; // this is max length
+  var iterB = 4; // this is max length
+  var iterC = 4; // this is max length
+
   var loop_nodeA = {
     timeline: [multi_choice_blockA],
     loop_function: function(){
@@ -377,8 +384,8 @@
     }
   };
 
-  //adjust to make experiemnt shorter for testing
-  var iterB = full_designB.length; // this is max length
+
+
   var loop_nodeB = {
     timeline: [multi_choice_blockB],
     loop_function: function(){
@@ -390,7 +397,7 @@
     }
   };
 
-  var iterC = full_designC.length; // this is max length
+
   var loop_nodeC = {
     timeline: [multi_choice_blockC],
     loop_function: function(){
@@ -661,20 +668,23 @@
         countseenB = 1;
         ProspectB = shuffledProspects[1]/2;
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
-          var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
-          var answer = JSON.parse(data);
-          iterC = iterC-1;
-          //used to adjust the subjective value
-          if (adjuster(answer['Q0'],temp_arrayC[0])){
-            ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
-          } else {
-            ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
-          }
-          seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
-          jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
-          trialcountC++;
-          countseenC = 1;
-          ProspectC = shuffledProspects[2]/2;
+        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
+        var answer = JSON.parse(data);
+        iterC = iterC -1;
+        if (trialcountC == 0){
+          hypdealcount++;
+        }
+        //used to adjust the subjective value
+        if (adjuster(answer['Q0'],temp_arrayC[0])){
+          ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
+        } else {
+          ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
+        }
+        seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
+        jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
+        trialcountC++;
+        countseenC = 1;
+        ProspectC = shuffledProspects[2]/2;
         }
     },
     on_finish: function() {
