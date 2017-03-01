@@ -617,10 +617,9 @@
     timeline: timeline,
     progress: drawProgressBar2(),
     on_trial_finish: function() {
-      console.log("Why tho");
         if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
           seeninstructions = true;
-        }  else if (jsPsych.currentTimelineNodeID()[4] == '2') {
+        } else if (jsPsych.currentTimelineNodeID() == "0.0-2.0") {
           var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
             if (data < 18 || isNaN(data)){
               jsPsych.endExperiment('Sorry! You do not qualify for this study');
@@ -629,10 +628,9 @@
               return true;
             }
 
-        }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
+        } else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
           jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
         } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '14') {
-          console.log("A");
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+2].responses;
           var answer = JSON.parse(data);
           iterA = iterA -1;
@@ -652,7 +650,6 @@
           ProspectA = shuffledProspects[0]/2;
 
       } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
-          console.log("B");
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+3].responses;
           var answer = JSON.parse(data);
           iterB = iterB -1;
@@ -670,8 +667,7 @@
           trialcountB++;
           countseenB = 1;
           ProspectB = shuffledProspects[1]/2;
-      } if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
-          console.log("C");
+      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
           var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
           var answer = JSON.parse(data);
           iterC = iterC -1;
