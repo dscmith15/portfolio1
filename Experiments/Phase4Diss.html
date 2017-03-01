@@ -617,78 +617,78 @@
     timeline: timeline,
     progress: drawProgressBar2(),
     on_trial_finish: function() {
-      if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
-        seeninstructions = true;
-      }  else if (jsPsych.currentTimelineNodeID()[4] == '2') {
-        var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
-          if (data < 18 || isNaN(data)){
-            jsPsych.endExperiment('Sorry! You do not qualify for this study');
-            return false;
-          } else {
-            return true;
+        if (jsPsych.currentTimelineNodeID()=='0.0-0.0' || jsPsych.currentTimelineNodeID() =='0.0-1.0'){
+          seeninstructions = true;
+        }  else if (jsPsych.currentTimelineNodeID()[4] == '2') {
+          var data = parseInt(jsPsych.data.getTrialsOfType('survey-text')[0].responses.slice(7,jsPsych.data.getTrialsOfType('survey-text')[0].responses.length-2));
+            if (data < 18 || isNaN(data)){
+              jsPsych.endExperiment('Sorry! You do not qualify for this study');
+              return false;
+            } else {
+              return true;
+            }
+
+        }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
+          jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
+        } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '14') {
+          console.log("A");
+          var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+2].responses;
+          var answer = JSON.parse(data);
+          iterA = iterA -1;
+          if (trialcountA == 0){
+            hypdealcount++;
           }
+          //used to adjust the subjective value
+          if (adjuster(answer['Q0'],temp_arrayA[0])){
+            ProspectA = ProspectA - AdjustmentA*Math.pow(.5,countseenA);
+          } else {
+            ProspectA = ProspectA + (AdjustmentA*Math.pow(.5,countseenA));
+          }
+          seenA.push([full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, ProspectA, countseenA]);
+          jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, value:shuffledProspects[0], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenA});
+          trialcountA++;
+          countseenA = 1;
+          ProspectA = shuffledProspects[0]/2;
 
-      }  else if (jsPsych.currentTimelineNodeID()=="0.0-10.0") {
-        jsPsych.data.addDataToLastTrial({riskLiteracy:RisklitGrade()});
-      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '14') {
-        console.log("A");
-        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+2].responses;
-        var answer = JSON.parse(data);
-        iterA = iterA -1;
-        if (trialcountA == 0){
-          hypdealcount++;
-        }
-        //used to adjust the subjective value
-        if (adjuster(answer['Q0'],temp_arrayA[0])){
-          ProspectA = ProspectA - AdjustmentA*Math.pow(.5,countseenA);
-        } else {
-          ProspectA = ProspectA + (AdjustmentA*Math.pow(.5,countseenA));
-        }
-        seenA.push([full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, ProspectA, countseenA]);
-        jsPsych.data.addDataToLastTrial({deal:full_designA[trialcountA].Delay +" "+ full_designA[trialcountA].Odd, delay:full_designA[trialcountA].Delay, odd:full_designA[trialcountA].Odd, subvalue:ProspectA, value:shuffledProspects[0], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenA});
-        trialcountA++;
-        countseenA = 1;
-        ProspectA = shuffledProspects[0]/2;
-
-    } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
-      console.log("B");
-        var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+3].responses;
-        var answer = JSON.parse(data);
-        iterB = iterB -1;
-        if (trialcountB == 0){
-          hypdealcount++;
-        }
-        //used to adjust the subjective value
-        if (adjuster(answer['Q0'],temp_arrayB[0])){
-          ProspectB = ProspectB - AdjustmentB*Math.pow(.5,countseenB);
-        } else {
-          ProspectB = ProspectB + (AdjustmentB*Math.pow(.5,countseenB));
-        }
-        seenB.push([full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, ProspectB, countseenB]);
-        jsPsych.data.addDataToLastTrial({deal:full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, delay:full_designB[trialcountB].Delay, odd:full_designB[trialcountB].Odd, subvalue:ProspectB, value:shuffledProspects[1], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenB});
-        trialcountB++;
-        countseenB = 1;
-        ProspectB = shuffledProspects[1]/2;
-    } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
-      console.log("C");
-      var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
-      var answer = JSON.parse(data);
-      iterC = iterC -1;
-      if (trialcountC == 0){
-        hypdealcount++;
+      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '19') {
+        console.log("B");
+          var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+3].responses;
+          var answer = JSON.parse(data);
+          iterB = iterB -1;
+          if (trialcountB == 0){
+            hypdealcount++;
+          }
+          //used to adjust the subjective value
+          if (adjuster(answer['Q0'],temp_arrayB[0])){
+            ProspectB = ProspectB - AdjustmentB*Math.pow(.5,countseenB);
+          } else {
+            ProspectB = ProspectB + (AdjustmentB*Math.pow(.5,countseenB));
+          }
+          seenB.push([full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, ProspectB, countseenB]);
+          jsPsych.data.addDataToLastTrial({deal:full_designB[trialcountB].Delay +" "+ full_designB[trialcountB].Odd, delay:full_designB[trialcountB].Delay, odd:full_designB[trialcountB].Odd, subvalue:ProspectB, value:shuffledProspects[1], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenB});
+          trialcountB++;
+          countseenB = 1;
+          ProspectB = shuffledProspects[1]/2;
+      } else if (jsPsych.currentTimelineNodeID().slice(4,6) == '24') {
+          console.log("C");
+          var data = jsPsych.data.getTrialsOfType('survey-multi-choice')[trialcountA+trialcountB+trialcountC+4].responses;
+          var answer = JSON.parse(data);
+          iterC = iterC -1;
+          if (trialcountC == 0){
+            hypdealcount++;
+          }
+          //used to adjust the subjective value
+          if (adjuster(answer['Q0'],temp_arrayC[0])){
+            ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
+          } else {
+            ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
+          }
+          seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
+          jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
+          trialcountC++;
+          countseenC = 1;
+          ProspectC = shuffledProspects[2]/2;
       }
-      //used to adjust the subjective value
-      if (adjuster(answer['Q0'],temp_arrayC[0])){
-        ProspectC = ProspectC - AdjustmentC*Math.pow(.5,countseenC);
-      } else {
-        ProspectC = ProspectC + (AdjustmentC*Math.pow(.5,countseenC));
-      }
-      seenC.push([full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, ProspectC, countseenC]);
-      jsPsych.data.addDataToLastTrial({deal:full_designC[trialcountC].Delay +" "+ full_designC[trialcountC].Odd, delay:full_designC[trialcountC].Delay, odd:full_designC[trialcountC].Odd, subvalue:ProspectC, value:shuffledProspects[2], workid:turkInfo.workerId, hit:turkInfo.hitId, assingnment:turkInfo.assignmentId, timesseen:countseenC});
-      trialcountC++;
-      countseenC = 1;
-      ProspectC = shuffledProspects[2]/2;
-    }
     },
     on_finish: function() {
 
