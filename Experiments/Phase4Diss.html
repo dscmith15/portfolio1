@@ -100,10 +100,10 @@
 
   var exchange1_trial = {
     type: 'survey-multi-choice',
-    preamble: 'For the next set of hypothetical deals, you will be handling Orchard Dabloons. '+
-    'The exchange rate of Orchard Dabloons to United States Dollars is 400,900:1. ' +
+    preamble: 'For the next set of hypothetical deals, you will be handling Orchard Doubloons. '+
+    'The exchange rate of Orchard Doubloons to United States Dollars is 400,900:1. ' +
     'Please answer the following question to confirm that you have read these details.',
-    questions: ["What is the exchange rate of Orchard Dabloons to United States Dollars?"],
+    questions: ["What is the exchange rate of Orchard Doubloons to United States Dollars?"],
     options: [["10:1","400,900:1","1:1","125:1"]]
 
   }
@@ -122,7 +122,7 @@
     preamble: 'For this set of hypothetical deals, you will be handling United States Dollars. '+
     'Please answer the following question to confirm that you have read these details.',
     questions: ["Which currency will you handle for this next set of Hypothetical Deals?"],
-    options: [["United States Dollars","Orchard Dabloons","Vineyard Jewels"]]
+    options: [["United States Dollars","Orchard Doubloons","Vineyard Jewels"]]
 
   }
 
@@ -131,7 +131,7 @@
     conditional_function: function(){
       if(shuffledProspects[hypdealcount] == 8018000){
           dollartext = '';
-          exchangetext = ' Orchard Dabloons';
+          exchangetext = ' Orchard Doubloons';
           return true;
       } else {
           return false;
@@ -549,7 +549,7 @@
    type: 'survey-text',
    columns:[100],
    rows:[5],
-   questions: ["Please provide a list of the games where you make or have made in-game payments."]
+   questions: ["Please provide a list of the mobile/social-network video games you play."]
  }
 
  var condition_list_games = {
@@ -557,16 +557,10 @@
    conditional_function: function(){
      var data1 = jsPsych.data.getDataByTimelineNode(gamingNodeId)[0].responses;
      if (data1.slice(7,data1.length-2) == "Yes"){
-       var data = jsPsych.data.getDataByTimelineNode(paymentNodeId)[0].responses;
-       if(data.slice(7,data.length-2) == "Yes"){
-           return true;
-       } else {
-           return false;
-       }
+       return true;
      } else {
        return false;
      }
-
    }
  };
  function numberWithCommas(x) {
