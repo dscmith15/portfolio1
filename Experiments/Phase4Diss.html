@@ -215,7 +215,8 @@
 
 
   var check_consent = function(elem) {
-  if ($('#consent_checkbox').is(':checked') && !turkInfo.previewMode && !turkInfo.outsideTurk) {
+  // if ($('#consent_checkbox').is(':checked') && !turkInfo.previewMode && !turkInfo.outsideTurk) {
+  if ($('#consent_checkbox').is(':checked')) {
     return true;
   }
   else {
