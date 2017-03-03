@@ -40,6 +40,11 @@ pfinal$delay <- as.factor(pfinal$delay)
 pfinal$delay <-ordered(pfinal$delay, levels = c("immediately", "in 6 hours", "in 33 hours", "in 6 days", "in 2 weeks"))
 pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
+#removes nonsense variables
+drops <- c("url","trial_type", "trial_index", "time_elapsed", "internal_node_id","view_history", "responses")
+pfinal <- pfinal[ , !(names(pfinal) %in% drops)]
+
+pfinal$income[is.na(pfinal$income)] <- 0
 #print questionable data
 unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 20 & pfinal$subvalue < 19.68],
          pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 2500 & pfinal$subvalue < 2460.9375],
