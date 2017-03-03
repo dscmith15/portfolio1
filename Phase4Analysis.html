@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Results of Phase 3</title>
+    <title>Results of Phase 4</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -20,7 +20,7 @@
 
     <div id="wrap" style="width: 75%; margin: auto">
       <div id="TextBox" style="float: left; width: 85%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
-        <h3>Results of Phase 3 (2 Week Delay and $20)</h3><p>
+        <h3>Results of Phase 4 (Free-to-play Exchange Rates)</h3><p>
           We collected 50 participants using Amazon's Mechanical Turk to investigate
           delays and values that are more consistent with experiences in free-to-play games.
           Specifically, the maximum delay was changed to 2 weeks compared to the previous
@@ -161,7 +161,7 @@
               enabled: false
           },
           xAxis: {
-              categories: ['Phase 2', 'Phase 3'],
+              categories: ['Phase 2', 'Phase 3', 'Phase 4'],
               title: {
                   text: 'Experiment'
               }
@@ -193,7 +193,8 @@
               name: 'Observations',
               data: [
                   [30.00, 35.00, 37.50, 41.00, 45.00],
-                  [29.00, 36.00, 39.00, 44.00, 58.00]
+                  [29.00, 36.00, 39.00, 44.00, 58.00],
+                  [35.00, 37.00, 39.00, 43.00, 53.00]
               ],
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
@@ -220,7 +221,7 @@
               enabled: false
           },
           xAxis: {
-              categories: ['Phase 2', 'Phase 3'],
+              categories: ['Phase 2', 'Phase 3','Phase 4'],
               title: {
                   text: 'Experiment'
               }
@@ -252,7 +253,8 @@
               name: 'Observations',
               data: [
                   [0, 45000, 62500, 80250, 130000],
-                  [0, 50000, 65000, 78500, 128000]
+                  [0, 50000, 65000, 78500, 128000],
+                  [0, 35000, 55000, 70000, 91500]
               ],
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
@@ -375,7 +377,8 @@
     xAxis: {
         categories: [
             'Phase 2',
-            'Phase 3'
+            'Phase 3',
+            'Phase 4'
         ],
         crosshair: true
     },
@@ -403,16 +406,16 @@
     },
     series: [{
         name: '1',
-        data: [.23, .30]
+        data: [.23, .30, .18]
     }, {
         name: '2',
-        data: [.21, .24]
+        data: [.21, .24, .24]
     }, {
         name: '3',
-        data: [.10, .10]
+        data: [.10, .10, .20]
     }, {
         name: '4',
-        data: [.46, .36]
+        data: [.46, .36, .38]
     }]
 });
         Highcharts.chart('gender', {
@@ -425,7 +428,8 @@
           xAxis: {
               categories: [
                   'Phase 2',
-                  'Phase 3'
+                  'Phase 3',
+                  'Phase 4'
               ],
               crosshair: true
           },
@@ -453,10 +457,10 @@
           },
           series: [{
               name: 'Female',
-              data: [.52, .54]
+              data: [.52, .54, .54]
           }, {
               name: 'Male',
-              data: [.48, .46]
+              data: [.48, .46, .46]
           }]
         });
         Highcharts.chart('MT2containValue', {
