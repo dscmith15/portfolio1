@@ -63,14 +63,14 @@
 
     </div>
     <p>
-      <div id="MT1contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
-      <div id="MT2contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT4contain20" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT4contain2500" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
 
 
     </p>
     <p>
-      <div id="MT2contain20" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
-      <div id="MT2containValue" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT4containDoubloons" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT4containValue" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
 
 
     </p>
@@ -101,15 +101,15 @@
 
   </body>
   <script>
-      Highcharts.chart('MT1contain800', {
+      Highcharts.chart('MT4contain20', {
           chart: {
               type: 'line'
           },
           title: {
-              text: 'MTurk Phase 2 $800 by Risk And Delay'
+              text: 'MTurk Phase 4 $20 by Risk And Delay'
           },
           subtitle: {
-              text: 'Data from Phase 2 (n = 52)'
+              text: 'Data from Phase 4 (n = 50)'
           },
           xAxis: {
             title: {
@@ -121,9 +121,8 @@
               title: {
                   text: 'Subjective Value ($)'
               },
-              max: 800,
-              min: 0,
-              tickInterval: 200
+              max: 20,
+              min: 0
           },
           plotOptions: {
               line: {
@@ -135,19 +134,19 @@
           },
           series: [{
               name: 'Immediately',
-              data: [788,442,130,103,62]
+              data: [19.69, 13.89, 6.30, 5.00, 2.93]
           }, {
-              name: '1 month',
-              data: [761,375,118,81,45]
+              name: 'in 6 hours',
+              data: [19.5,	14.06,	5.96,	4.6,	2.66]
           }, {
-              name: '6 months',
-              data: [647,307,100,66,61]
+              name: 'in 33 hours',
+              data: [19.3,	13.33,	5.85,	4.06,	2.59]
           }, {
-              name: '2 years',
-              data: [387,160,61,47,34]
+              name: 'in 6 days',
+              data: [18.74,	12.86,	5.45,	3.98,	2.93]
           }, {
-              name: '5 years',
-              data: [254,109,44,44,29]
+              name: 'in 2 weeks',
+              data: [18.58,	12.4,	5.64,	3.75,	2.41]
           }]
       });
       Highcharts.chart('boxage', {
@@ -270,15 +269,15 @@
               }
           }]
       });
-      Highcharts.chart('MT2contain20', {
+      Highcharts.chart('MT4containDoubloons', {
           chart: {
               type: 'line'
           },
           title: {
-              text: 'MTurk Phase 3 $20 by Risk And Delay'
+              text: 'MTurk Phase 4 Orchard Doubloons by Risk And Delay'
           },
           subtitle: {
-              text: 'Data from Phase 3 (n = 50)'
+              text: 'Data from Phase 4 (n = 50)'
           },
           xAxis: {
             title: {
@@ -288,9 +287,9 @@
           },
           yAxis: {
               title: {
-                  text: 'Subjective Value ($)'
+                  text: 'Subjective Value (OD)'
               },
-              max: 20,
+              max: 8018000,
               min: 0
           },
           plotOptions: {
@@ -303,30 +302,30 @@
           },
           series: [{
               name: 'Immediately',
-              data: [19.69,13.45,6.79,5.41,3.7]
+              data: [7892719,	5326959,	2059624,	1398139,	686541.2]
           }, {
               name: 'in 6 hours',
-              data: [19.44,12.99,6.81,5.65,3.45]
+              data: [7767438,	5236756,	1929331,	1433218,	756698.8]
           }, {
               name: 'in 33 hours',
-              data: [19.5,13.03,6.21,5.59,3.54]
+              data: [7847618,	5336981,	1794028,	1353038,	661485]
           }, {
               name: 'in 6 days',
-              data: [18.74,11.66,6.29,5.17,3.35]
+              data: [7341481,	4926059,	1854163,	1027306,	591327.5]
           }, {
               name: 'in 2 weeks',
-              data: [18.31,11.49,7.09,5.14,3.3]
+              data: [7521886,	4720598,	1668746,	1157599,	616383.8]
           }]
       });
-    Highcharts.chart('MT2contain800', {
+    Highcharts.chart('MT4contain2500', {
         chart: {
             type: 'line'
         },
         title: {
-            text: 'MTurk Phase 3 $800 by Risk And Delay'
+            text: 'MTurk Phase 4 2500 Vineyard Jewels by Risk And Delay'
         },
         subtitle: {
-            text: 'Data from Phase 3 (n = 50)'
+            text: 'Data from Phase 4 (n = 50)'
         },
         xAxis: {
           title: {
@@ -336,11 +335,10 @@
         },
         yAxis: {
             title: {
-                text: 'Subjective Value ($)'
+                text: 'Subjective Value (VJ)'
             },
-            max: 800,
-            min: 0,
-            tickInterval: 200
+            max: 2500,
+            min: 0
         },
         plotOptions: {
             line: {
@@ -352,19 +350,19 @@
         },
         series: [{
             name: 'Immediately',
-            data: [787.5,441,143,113.5,70.5]
+            data: [2460.94,	1679.69,	662.5,	481.25,	264.06]
         }, {
             name: 'in 6 hours',
-            data: [775,413,135.5,98,68]
+            data: [2450,	1731.25,	643.75,	435.94,	279.69]
         }, {
             name: 'in 33 hours',
-            data: [786,401,125,104,63]
+            data: [2406.25,	1654.69,	653.13,	376.56,	245.31]
         }, {
             name: 'in 6 days',
-            data: [766,393,131,97.5,60.5]
+            data: [2390.63,	1664.06,	581.25,	401.56,	251.56]
         }, {
             name: 'in 2 weeks',
-            data: [751,380.5,140,94.5,68]
+            data: [2418.75,	1565.63,	593.75,	360.94,	271.88]
         }]
     });
     Highcharts.chart('risk', {
@@ -463,15 +461,15 @@
               data: [.48, .46, .46]
           }]
         });
-        Highcharts.chart('MT2containValue', {
+        Highcharts.chart('MT4containValue', {
             chart: {
                 type: 'line'
             },
             title: {
-                text: 'MTurk Phase 3 Risk by Value'
+                text: 'MTurk Phase 4 Risk by Value'
             },
             subtitle: {
-                text: 'Data from Phase 3 (n = 50)'
+                text: 'Data from Phase 4 (n = 50)'
             },
             xAxis: {
               title: {
@@ -481,7 +479,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Normalized Subjective Value ($)'
+                    text: 'Normalized Subjective Value'
                 },
                 max: 1,
                 min: 0
@@ -495,11 +493,14 @@
                 }
             },
             series: [{
-                name: '$20',
-                data: [0.96, 0.63, 0.33, 0.27, 0.17]
+                name: 'USD',
+                data: [0.96, 0.67, 0.29, 0.21, 0.14]
             }, {
-                name: '$800',
-                data: [0.96, 0.51, 0.17, 0.13, 0.08]
+                name: 'VJ',
+                data: [0.97, 0.66, 0.25, 0.16, 0.11]
+            },{
+                name: 'OD',
+                data: [0.96, 0.63, 0.23, 0.16, 0.08]
             }]
         });
   </script>
