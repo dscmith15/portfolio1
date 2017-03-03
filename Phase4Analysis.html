@@ -1,0 +1,502 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Results of Phase 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link href="css/home.css" rel="stylesheet" type="text/css"></link>
+
+  </head>
+  <body>
+    <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="Experiments.html">Experiments</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Resume.html">Resume</a></li>
+    </ul>
+
+
+    <div id="wrap" style="width: 75%; margin: auto">
+      <div id="TextBox" style="float: left; width: 85%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
+        <h3>Results of Phase 3 (2 Week Delay and $20)</h3><p>
+          We collected 50 participants using Amazon's Mechanical Turk to investigate
+          delays and values that are more consistent with experiences in free-to-play games.
+          Specifically, the maximum delay was changed to 2 weeks compared to the previous
+          phases' maximum delay of 5 years. In addition, a prospect of $20 replaced
+          the $40k used in the two previous phases.
+
+          <p><strong>Key Takeaway:</strong> Participants made significantly
+            riskier decisions with the $20 prospect.</p>
+           </p>
+
+      </div>
+
+      <div id="TextBox" style="float: left; width: 85%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
+        <h4>Demographics</h4>
+        <p>
+          Below are demographic comparisons between phase 2 and the current phase.
+          You should notice similarities between all collected demographics.
+        </p>
+
+      </div>
+    <p>
+      <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="gender" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="risk" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+
+    <div id="TextBox" style="float: left; width: 85%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
+      <h4>Hypothetical Deal Results</h4>
+      <p>
+        Below you will find results for both prospects (i.e., $800 & $20). The
+        delay factor seemed to be removed with the new maximum delay compared
+        to the previous phases. This made the effect for value the primary
+        finding of this phase.
+      </p>
+
+    </div>
+    <p>
+      <div id="MT1contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT2contain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+
+
+    </p>
+    <p>
+      <div id="MT2contain20" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MT2containValue" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+
+
+    </p>
+    <div id="result" style="float: left; width: 75%; min-width: 500px; max-width: 700px; margin: 4 auto; margin-bottom: 10px;">
+
+      <table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Hyperbolic Regression</em></td></tr>
+        <tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr>
+        <tr><td style="text-align:left"></td><td>Normalized Subjective Value</td></tr>
+        <tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Risk</td><td>-0.224<sup>***</sup></td></tr>
+        <tr><td style="text-align:left"></td><td>(0.0021)</td></tr>
+        <tr><td style="text-align:left"></td><td></td></tr>
+        <tr><td style="text-align:left">Delay</td><td>-0.002</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.002)</td></tr>
+        <tr><td style="text-align:left"></td><td></td></tr>
+        <tr><td style="text-align:left">Value</td><td>-0.023<sup>***</sup></td></tr>
+        <tr><td style="text-align:left"></td><td>(0.006)</td></tr>
+        <tr><td style="text-align:left"></td><td></td></tr>
+        <tr><td style="text-align:left">Risk * Delay</td><td>0.001</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.002)</td></tr>
+        <tr><td style="text-align:left"></td><td></td></tr>
+        <tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+      </table>
+    </div>
+
+
+    </div>
+
+
+  </body>
+  <script>
+      Highcharts.chart('MT1contain800', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'MTurk Phase 2 $800 by Risk And Delay'
+          },
+          subtitle: {
+              text: 'Data from Phase 2 (n = 52)'
+          },
+          xAxis: {
+            title: {
+              text: 'Risk'
+            },
+            categories: ['100%', '80%', '40%', '25%', '10%']
+          },
+          yAxis: {
+              title: {
+                  text: 'Subjective Value ($)'
+              },
+              max: 800,
+              min: 0,
+              tickInterval: 200
+          },
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  enableMouseTracking: true
+              }
+          },
+          series: [{
+              name: 'Immediately',
+              data: [788,442,130,103,62]
+          }, {
+              name: '1 month',
+              data: [761,375,118,81,45]
+          }, {
+              name: '6 months',
+              data: [647,307,100,66,61]
+          }, {
+              name: '2 years',
+              data: [387,160,61,47,34]
+          }, {
+              name: '5 years',
+              data: [254,109,44,44,29]
+          }]
+      });
+      Highcharts.chart('boxage', {
+          chart: {
+              type: 'boxplot'
+          },
+          title: {
+              text: 'Age Distributions'
+          },
+          legend: {
+              enabled: false
+          },
+          xAxis: {
+              categories: ['Phase 2', 'Phase 3'],
+              title: {
+                  text: 'Experiment'
+              }
+          },
+          colors: ['#FF7A00'],
+          yAxis: {
+              title: {
+                  text: 'Age'
+              },
+              max: 60,
+              min: 0,
+              tickInterval: 10
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+          series: [{
+              name: 'Observations',
+              data: [
+                  [30.00, 35.00, 37.50, 41.00, 45.00],
+                  [29.00, 36.00, 39.00, 44.00, 58.00]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }, {
+              marker: {
+                  fillColor: 'black',
+                  lineWidth: 10,
+                  lineColor: Highcharts.getOptions().colors[0]
+              },
+              tooltip: {
+                  pointFormat: 'Observation: {point.y}'
+              }
+          }]
+    });
+    Highcharts.chart('boxincome', {
+          chart: {
+              type: 'boxplot'
+          },
+          title: {
+              text: 'Income Distributions'
+          },
+          legend: {
+              enabled: false
+          },
+          xAxis: {
+              categories: ['Phase 2', 'Phase 3'],
+              title: {
+                  text: 'Experiment'
+              }
+          },
+          colors: ['#FF7A00'],
+          yAxis: {
+              title: {
+                  text: 'Income'
+              },
+              max: 130000,
+              min: 0,
+              tickInterval: 20000
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+          series: [{
+              name: 'Observations',
+              data: [
+                  [0, 45000, 62500, 80250, 130000],
+                  [0, 50000, 65000, 78500, 128000]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }, {
+              marker: {
+                  fillColor: 'black',
+                  lineWidth: 10,
+                  lineColor: Highcharts.getOptions().colors[0]
+              },
+              tooltip: {
+                  pointFormat: 'Observation: {point.y}'
+              }
+          }]
+      });
+      Highcharts.chart('MT2contain20', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'MTurk Phase 3 $20 by Risk And Delay'
+          },
+          subtitle: {
+              text: 'Data from Phase 3 (n = 50)'
+          },
+          xAxis: {
+            title: {
+              text: 'Risk'
+            },
+            categories: ['100%', '80%', '40%', '25%', '10%']
+          },
+          yAxis: {
+              title: {
+                  text: 'Subjective Value ($)'
+              },
+              max: 20,
+              min: 0
+          },
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  enableMouseTracking: true
+              }
+          },
+          series: [{
+              name: 'Immediately',
+              data: [19.69,13.45,6.79,5.41,3.7]
+          }, {
+              name: 'in 6 hours',
+              data: [19.44,12.99,6.81,5.65,3.45]
+          }, {
+              name: 'in 33 hours',
+              data: [19.5,13.03,6.21,5.59,3.54]
+          }, {
+              name: 'in 6 days',
+              data: [18.74,11.66,6.29,5.17,3.35]
+          }, {
+              name: 'in 2 weeks',
+              data: [18.31,11.49,7.09,5.14,3.3]
+          }]
+      });
+    Highcharts.chart('MT2contain800', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'MTurk Phase 3 $800 by Risk And Delay'
+        },
+        subtitle: {
+            text: 'Data from Phase 3 (n = 50)'
+        },
+        xAxis: {
+          title: {
+            text: 'Risk'
+          },
+          categories: ['100%', '80%', '40%', '25%', '10%']
+        },
+        yAxis: {
+            title: {
+                text: 'Subjective Value ($)'
+            },
+            max: 800,
+            min: 0,
+            tickInterval: 200
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: 'Immediately',
+            data: [787.5,441,143,113.5,70.5]
+        }, {
+            name: 'in 6 hours',
+            data: [775,413,135.5,98,68]
+        }, {
+            name: 'in 33 hours',
+            data: [786,401,125,104,63]
+        }, {
+            name: 'in 6 days',
+            data: [766,393,131,97.5,60.5]
+        }, {
+            name: 'in 2 weeks',
+            data: [751,380.5,140,94.5,68]
+        }]
+    });
+    Highcharts.chart('risk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'PMFs of Risk Literacy'
+    },
+    xAxis: {
+        categories: [
+            'Phase 2',
+            'Phase 3'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Proportion'
+        },
+        tickInterval: .2
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: '1',
+        data: [.23, .30]
+    }, {
+        name: '2',
+        data: [.21, .24]
+    }, {
+        name: '3',
+        data: [.10, .10]
+    }, {
+        name: '4',
+        data: [.46, .36]
+    }]
+});
+        Highcharts.chart('gender', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'PMFs of Gender'
+          },
+          xAxis: {
+              categories: [
+                  'Phase 2',
+                  'Phase 3'
+              ],
+              crosshair: true
+          },
+          yAxis: {
+              min: 0,
+              max: 1,
+              title: {
+                  text: 'Proportion'
+              },
+              tickInterval: .2
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: 'Female',
+              data: [.52, .54]
+          }, {
+              name: 'Male',
+              data: [.48, .46]
+          }]
+        });
+        Highcharts.chart('MT2containValue', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'MTurk Phase 3 Risk by Value'
+            },
+            subtitle: {
+                text: 'Data from Phase 3 (n = 50)'
+            },
+            xAxis: {
+              title: {
+                text: 'Risk'
+              },
+              categories: ['100%', '80%', '40%', '25%', '10%']
+            },
+            yAxis: {
+                title: {
+                    text: 'Normalized Subjective Value ($)'
+                },
+                max: 1,
+                min: 0
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: '$20',
+                data: [0.96, 0.63, 0.33, 0.27, 0.17]
+            }, {
+                name: '$800',
+                data: [0.96, 0.51, 0.17, 0.13, 0.08]
+            }]
+        });
+  </script>
+</html>
