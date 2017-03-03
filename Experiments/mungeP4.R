@@ -40,9 +40,7 @@ pfinal$delay <- as.factor(pfinal$delay)
 pfinal$delay <-ordered(pfinal$delay, levels = c("immediately", "in 6 hours", "in 33 hours", "in 6 days", "in 2 weeks"))
 pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
-#changing one participants value, she emailed me and told me she did it by accident
-#pfinal$subvalue[pfinal$workid == "A3760PCQD2MPIO" & pfinal$odd == "100%" & pfinal$delay == "immediately" & pfinal$value == 40000]=39375
-
 #print questionable data
 unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 20 & pfinal$subvalue < 19.68],
-         pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
+         pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 2500 & pfinal$subvalue < 2460.9375],
+        pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 8018000 & pfinal$subvalue < 7892718.75]))
