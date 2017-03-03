@@ -54,4 +54,4 @@ pfinal <- pfinal[pfinal$workid != unique(c(pfinal$workid[pfinal$delay == 'immedi
          pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 2500 & pfinal$subvalue < 2460.9375],
         pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 8018000 & pfinal$subvalue < 7892718.75])),]
 
-summary(pfinal$gender)/50
+summary(pfinal$gender)/75
