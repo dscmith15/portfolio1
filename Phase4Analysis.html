@@ -51,6 +51,9 @@
     <p>
       <div id="risk" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
+    <p>
+       <div id="gamer" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
 
     <p>
       <div id="moneyspent" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
@@ -654,6 +657,59 @@
         color: 'rgba(119, 152, 191, .5)',
         data: [[3,2],[3,8],[3,50],[3,20],[3,4],[3,10],[3,20],[3,5],[3,10],[3,5],[3,1],[3,15],[3,15],[3,5],[3,1]]
     }]
+});
+    Highcharts.chart('gamer', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Likelihood of Playing Social/Mobile Games'
+    },
+    xAxis: {
+        categories: [
+            'WSU',
+            'Phase 2',
+            'Phase 3',
+            'Phase 4'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Proportion'
+        },
+        tickInterval: .2
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0,
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: 'Plays for Free',
+        data: [.33, .52, .54, .3],
+        stack: 'games'
+    }, {
+        name: 'Plays and Pays',
+        data: [.07, .22, .12, .3],
+        stack: 'games'
+    },{
+        name: 'Does not Play',
+        data: [.6, .26, .34, .4],
+        stack: 'no game'
+    } ]
 });
   </script>
 </html>
