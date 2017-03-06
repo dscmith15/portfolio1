@@ -14,6 +14,9 @@ pFiles<- pFiles[pFiles != "https://www.dcsmithresearch.com/Experiments/dataP2/ar
 for (i in 1:length(pFiles)) {
   ptemp <- getURL(pFiles[i])
   ptemp <- fromJSON(ptemp)
+  for (j in 1:length(ptemp$responses[ptemp$trial_index[ptemp$internal_node_id == '0.0-15.0']:max(ptemp$trial_index)+1])){
+    ptemp[,ptemp$internal_node_id[ptemp$trial_index[ptemp$internal_node_id == '0.0-15.0']:max(ptemp$trial_index)+1][j]]<-fromJSON(ptemp$responses[ptemp$trial_index[ptemp$internal_node_id == '0.0-15.0']:max(ptemp$trial_index)+1][j])
+  }
   ptemp$riskLiteracy=ptemp$riskLiteracy[complete.cases(ptemp$riskLiteracy)]
   ptemp$age = as.numeric(substr(ptemp[3,"responses"],8,9))
   ptemp$gender <- substr(ptemp[4,"responses"],8,nchar(ptemp[4,"responses"])-2)
@@ -37,7 +40,7 @@ for (i in 1:length(pFiles)) {
     pfinal <- ptemp
     
   } else {
-    pfinal <- rbind(pfinal, ptemp)
+    pfinal <- rbind.fill(pfinal, ptemp)
   }
 }
 pfinal$gender<-as.factor(pfinal$gender)
@@ -69,6 +72,15 @@ drops <- c("url","trial_type", "trial_index", "time_elapsed", "internal_node_id"
 pfinal <- pfinal[ , !(names(pfinal) %in% drops)]
 
 pfinal$income[is.na(pfinal$income)] <- 0
+colnames(pfinal)[12]<-"Gamer"
+colnames(pfinal)[18]<-"DurationPlayed"
+colnames(pfinal)[19]<-"Payer"
+colnames(pfinal)[20]<-"MoneySpent"
+colnames(pfinal)[21]<-"GamesPlayed"
+pfinal$Payer[is.na(pfinal$Payer)&pfinal$Gamer=='Yes']<-'No'
+pfinal$Payer<-as.factor(pfinal$Payer)
+pfinal$Gamer<-as.factor(pfinal$Gamer)
+pfinal$MoneySpent <- as.numeric(pfinal$MoneySpent)
 
 #display pmf of risk lit
 colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50)/sum(colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50))
