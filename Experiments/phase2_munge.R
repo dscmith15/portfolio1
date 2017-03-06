@@ -55,10 +55,9 @@ pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
 
 #valid checker
-unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
+baddata<-unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
          pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
-
-
+pfinal <- pfinal[! pfinal$workid %in% baddata,]
 
 #removes nonsense variables
 drops <- c("url","trial_type", "trial_index", "time_elapsed", "internal_node_id","view_history", "responses")
