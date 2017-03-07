@@ -84,10 +84,15 @@
       <div id="MT4containValue" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
     <p>
+      <div id="MT4containValueIm" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+
+    </p>
+    <p>
       <div id="MT4containValuePay" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
       <div id="MT4containValueDontPay" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
 
     </p>
+  
 
 
     </div>
@@ -714,5 +719,47 @@
         stack: 'no game'
     } ]
 });
+    Highcharts.chart('MT4containValueIm', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Participants Who Do Not Pay Risk by Value'
+            },
+            subtitle: {
+                text: 'Data from Phase 4 (n = 45)'
+            },
+            xAxis: {
+              title: {
+                text: 'Risk'
+              },
+              categories: ['100%', '80%', '40%', '25%', '10%']
+            },
+            yAxis: {
+                title: {
+                    text: 'Normalized Subjective Value'
+                },
+                max: 1,
+                min: 0
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: 'USD',
+                data: [0.98, 0.69, 0.32, 0.25, 0.15]
+            }, {
+                name: 'VJ',
+                data: [0.98, 0.67, 0.27, 0.19, 0.11]
+            },{
+                name: 'OD',
+                data: [0.98, 0.66, 0.26, 0.17, 0.09]
+            }]
+        });
   </script>
 </html>
