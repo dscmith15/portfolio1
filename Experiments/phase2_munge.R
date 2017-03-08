@@ -166,3 +166,13 @@ results40000 <- round(results)
 # Trying to build with within
 h800fit <- lm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay)+(as.numeric(odd)*as.numeric(delay)|as.factor(pnum)), data = pfinal800)
 
+############################################
+
+bayfit <- MCMCregress(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value), data = pfinal)
+
+hlfit <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)*(1|pnum), data = pfinal)
+hlfitcomp <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(1|pnum), data = pfinal,control=lmerControl(optCtrl=list(maxfun=100000)))
+
+se_hlm<-sqrt(sum((pfinal$adjValue-predict(hlfitcomp))^2)/2500)
+se_nls800 <-sqrt(sum((pfinal800$subvalue-predict(nls800))^2)/1250)/800
+se_nls40 <-sqrt(sum((pfinal40000$subvalue-predict(nls40k))^2)/1250)/40000
