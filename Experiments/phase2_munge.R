@@ -53,11 +53,11 @@ pfinal$delay <-ordered(pfinal$delay, levels = c("immediately", "in 1 month", "in
 pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
 
-
 #valid checker
 baddata<-unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
          pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
 pfinal <- pfinal[! pfinal$workid %in% baddata,]
+
 
 #removes nonsense variables
 drops <- c("url","trial_type", "trial_index", "time_elapsed", "internal_node_id","view_history", "responses")
@@ -74,6 +74,11 @@ pfinal$Payer<-as.factor(pfinal$Payer)
 pfinal$Gamer<-as.factor(pfinal$Gamer)
 pfinal$MoneySpent <- as.numeric(pfinal$MoneySpent)
 
+hist(aggregate(pfinal$MoneySpent~pfinal$pnum,FUN="mean")[,2],
+     breaks=10,main="Distribution of Dollars Spent on Free-to-Play 
+     Games per Month",xlab="USD spent", col = "light blue")
+summary(pfinal$Gamer)/50
+
 #display pmf of risk lit
 colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50)/sum(colSums(table(pfinal$pnum,pfinal$riskLiteracy)/50))
 
@@ -85,8 +90,13 @@ hyper40000fit <- hyperblm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(
 hyper800fit_sum<-summary(hyper800fit, hessian = FALSE, nboots = 1000)
 hyper40000fit_sum<-summary(hyper40000fit, hessian = FALSE, nboots = 1000)
 
+######
+#Baye
+bay800fit <- MCMCregress(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay), data = pfinal800)
+bay40kfit <- MCMCregress(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay), data = pfinal40000)
+
 nls800<-nls(subvalue~800/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal800, start=c(a=2.5,b=1.5),trace = TRUE)
-nls40k<-nls(subvalue~40000/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal40000, start=c(a=2.5,b=1.5),trace = TRUE)
+nls40k<-nls(subvalue~40000/((1+as.numeric(odd)*a)*(1+as.numeric(delay)*b)), data = pfinal40000, start=c(a=.7,b=.7),trace = TRUE)
 
 #get some estimation of goodness of fit
 cor(pfinal40000$subvalue,predict(nls40k))
@@ -151,3 +161,8 @@ fiveyearf <- fiveyearf$`pfinal40000$subvalue`
 results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
 
 results40000 <- round(results)
+
+####################################
+# Trying to build with within
+h800fit <- lm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay)+(as.numeric(odd)*as.numeric(delay)|as.factor(pnum)), data = pfinal800)
+
