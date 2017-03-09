@@ -36,29 +36,39 @@
     </p>
     <div id="result" style="float: left; width: 75%; min-width: 500px; max-width: 700px; height: 890px; margin: 4 auto; margin-bottom: 10px;">
 
-      <table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="2"><em>Linear Regression</em></td></tr>
-        <tr><td></td><td colspan="2" style="border-bottom: 1px solid black"></td></tr>
-        <tr><td style="text-align:left"></td><td colspan="2">Prospects</td></tr>
-        <tr><td style="text-align:left"></td><td>$40k</td><td>$800</td></tr>
-        <tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Risk</td><td>-10,368.990<sup>***</sup></td><td>-219.904<sup>***</sup></td></tr>
-        <tr><td style="text-align:left"></td><td>(442.063)</td><td>(9.124)</td></tr>
-        <tr><td style="text-align:left"></td><td></td><td></td></tr>
-        <tr><td style="text-align:left">Delay</td><td>-3,023.798<sup>***</sup></td><td>-117.923<sup>***</sup></td></tr>
-        <tr><td style="text-align:left"></td><td>(442.063)</td><td>(9.124)</td></tr>
-        <tr><td style="text-align:left"></td><td></td><td></td></tr>
-        <tr><td style="text-align:left">Risk * Delay</td><td>589.663<sup>***</sup></td><td>24.423<sup>***</sup></td></tr>
-        <tr><td style="text-align:left"></td><td>(133.287)</td><td>(2.751)</td></tr>
-        <tr><td style="text-align:left"></td><td></td><td></td></tr>
-        <tr><td style="text-align:left">Constant</td><td>48,646.390<sup>***</sup></td><td>1,063.096<sup>***</sup></td></tr>
-        <tr><td style="text-align:left"></td><td>(1,466.157)</td><td>(30.260)</td></tr>
-        <tr><td style="text-align:left"></td><td></td><td></td></tr>
-        <tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>1,300</td><td>1,300</td></tr>
-        <tr><td style="text-align:left">R<sup>2</sup></td><td>0.623</td><td>0.557</td></tr>
-        <tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.623</td><td>0.556</td></tr>
-        <tr><td style="text-align:left">Residual Std. Error (df = 1296)</td><td>9,611.463</td><td>198.370</td></tr>
-        <tr><td style="text-align:left">F Statistic (df = 3; 1296)</td><td>715.153<sup>***</sup></td><td>543.748<sup>***</sup></td></tr>
-        <tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="2" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
-      </table>
+      <table style="text-align:center"><tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr>
+          <tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr>
+          <tr><td style="text-align:left"></td><td>adjValue</td></tr>
+          <tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">as.numeric(odd)</td><td>-0.289<sup>***</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.021)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">as.numeric(delay)</td><td>-0.221<sup>***</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.021)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">as.numeric(value)</td><td>-0.103<sup>**</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.044)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">as.numeric(odd):as.numeric(delay)</td><td>0.047<sup>***</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.006)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">as.numeric(odd):as.numeric(value)</td><td>0.015</td></tr>
+          <tr><td style="text-align:left"></td><td>(0.013)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">as.numeric(delay):as.numeric(value)</td><td>0.072<sup>***</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.013)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">as.numeric(odd):as.numeric(delay):as.numeric(value)</td><td>-0.016<sup>***</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.004)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td style="text-align:left">Constant</td><td>1.423<sup>***</sup></td></tr>
+          <tr><td style="text-align:left"></td><td>(0.071)</td></tr>
+          <tr><td style="text-align:left"></td><td></td></tr>
+          <tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>2,850</td></tr>
+          <tr><td style="text-align:left">Log Likelihood</td><td>257.344</td></tr>
+          <tr><td style="text-align:left">Akaike Inf. Crit.</td><td>-494.688</td></tr>
+          <tr><td style="text-align:left">Bayesian Inf. Crit.</td><td>-435.137</td></tr>
+          <tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+        </table>
     </div>
 
 
