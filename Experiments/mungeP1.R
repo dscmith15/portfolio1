@@ -152,3 +152,28 @@ fiveyearf <- fiveyearf$`pfinal40000$subvalue`
 results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
 
 results40000 <- round(results)
+
+############################################
+
+bayfit <- MCMCregress(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value), data = pfinal)
+sum_bay <- summary(bayfit)
+
+hlfit <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(1|pnum), data = pfinal)
+hlfitcomp <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(as.numeric(odd)*as.numeric(delay)*as.numeric(value)|pnum), data = pfinal,control=lmerControl(optCtrl=list(maxfun=100000)))
+#nlscomp<-nls(adjValue~(1)/((1+as.numeric(odd)*od)*(1+as.numeric(delay)*del)), data = pfinal, start=c(od=1,del=1.5),trace = TRUE)
+
+repaov<-aov(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value)+Error(pnum/(as.factor(odd)*as.factor(delay)*as.factor(value))), data = pfinal)
+
+lme_aov <- lme(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value),data = pfinal,random = ~1|pnum)
+lme_aov_sum<-anova(lme_aov)
+summary(glht(lme_aov, linfct=mcp(Material = "Tukey")), test = adjusted(type = "bonferroni"))
+
+
+se_hlm<-sqrt(sum((pfinal$adjValue-predict(hlfitcomp))^2)/2500)
+se_nls800 <-sqrt(sum((pfinal800$subvalue-predict(nls800))^2)/1250)/800
+se_nls40 <-sqrt(sum((pfinal40000$subvalue-predict(nls40k))^2)/1250)/40000
+se_nlscomp <-sqrt(sum((pfinal$adjValue-predict(nlscomp))^2)/2500)
+se_lme<-sqrt(sum((pfinal$adjValue-predict(lme_aov))^2)/2500)
+
+barplot(c(se_lme,se_hlm,se_nlscomp,se_nls800,se_nls40))
+
