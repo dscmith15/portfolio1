@@ -3,6 +3,11 @@ library(jsonlite)
 library("plyr")
 library(R2HTML)
 library(RCurl)
+library(lme4)
+library(nlme)
+library(MCMCpack)
+library(brm)
+library(multcomp)
 
 file.list <- readHTMLTable(getURL("https://www.dcsmithresearch.com/Experiments/dataP1/"),skip.rows=1:2)[[1]]$Name
 
