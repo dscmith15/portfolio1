@@ -824,5 +824,65 @@
                   }
               }]
           });
+          Highcharts.chart('boxloss2', {
+                chart: {
+                    type: 'boxplot'
+                },
+                title: {
+                    text: 'Phase 2 Model Performance Comparison'
+                },
+                subtitle: {
+                    text: 'Comparing Linear to Hyperboloid Regression'
+                },
+                legend: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: ['Linear Training', 'Hyperboloid Training', 'Linear Testing', 'Hyperboloid Testing']
+                },
+                colors: ['#FF7A00'],
+                yAxis: {
+                    title: {
+                        text: 'Standard Error of the Estimate'
+                    },
+                    max: .6,
+                    min: 0
+                },
+                plotOptions: {
+                    boxplot: {
+                        fillColor: '#FFCC9D',
+                        lineWidth: 2,
+                        medianColor: '#7F3D00',
+                        medianWidth: 3,
+                        stemColor: '#CC6100',
+                        stemDashStyle: 'dot',
+                        stemWidth: 2,
+                        whiskerColor: '#7F5126',
+                        whiskerLength: '20%',
+                        whiskerWidth: 3
+                    }
+                },
+                series: [{
+                    name: 'Observations',
+                    data: [
+                        [0.1230,  0.1335,  0.1375, 0.1406,  0.1491],
+                        [0.1821,  0.1928,  0.1961,  0.1994,  0.2081],
+                        [0.4482,  0.4544,  0.4589,  0.4625,  0.4792],
+                        [0.4242,  0.4324,  0.4350,  0.4399,  0.4532 ]
+                    ],
+                    tooltip: {
+                        headerFormat: '<em>Experiment {point.key}</em><br/>'
+                    }
+                }, {
+                    marker: {
+                        fillColor: 'black',
+                        lineWidth: 10,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observation: {point.y}'
+                    }
+                }]
+            });
   </script>
 </html>
