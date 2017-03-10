@@ -43,7 +43,7 @@
       </div>
     <p>
       <div id="boxage" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
-      
+
     </p>
     <p>
       <div id="boxincome" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
@@ -92,7 +92,10 @@
       <div id="MT4containValueDontPay" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
 
     </p>
-  
+    <p>
+      <div id="boxloss" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+
 
 
     </div>
@@ -761,5 +764,65 @@
                 data: [0.98, 0.66, 0.26, 0.17, 0.09]
             }]
         });
+        Highcharts.chart('boxloss', {
+              chart: {
+                  type: 'boxplot'
+              },
+              title: {
+                  text: 'Model Performance'
+              },
+              legend: {
+                  enabled: false
+              },
+              xAxis: {
+                  categories: ['Linear Training', 'Hyperbolic Training', 'Linear Testing', 'Hyperbolic Testing'],
+                  title: {
+                      text: 'Model Phase'
+                  }
+              },
+              colors: ['#FF7A00'],
+              yAxis: {
+                  title: {
+                      text: 'Income'
+                  },
+                  max: 1,
+                  min: 0
+              },
+              plotOptions: {
+                  boxplot: {
+                      fillColor: '#FFCC9D',
+                      lineWidth: 2,
+                      medianColor: '#7F3D00',
+                      medianWidth: 3,
+                      stemColor: '#CC6100',
+                      stemDashStyle: 'dot',
+                      stemWidth: 2,
+                      whiskerColor: '#7F5126',
+                      whiskerLength: '20%',
+                      whiskerWidth: 3
+                  }
+              },
+              series: [{
+                  name: 'Observations',
+                  data: [
+                      [0.1474,  0.1693,  0.1739,  0.1788,  0.1890 ],
+                      [0.1924,  0.2054,  0.2096,  0.2126,  0.2224],
+                      [0.4886,  0.5000,  0.5049, 0.5112,  0.5232],
+                      [0.4736,  0.4846,  0.4918, 0.4962, 0.5072]
+                  ],
+                  tooltip: {
+                      headerFormat: '<em>Experiment {point.key}</em><br/>'
+                  }
+              }, {
+                  marker: {
+                      fillColor: 'black',
+                      lineWidth: 10,
+                      lineColor: Highcharts.getOptions().colors[0]
+                  },
+                  tooltip: {
+                      pointFormat: 'Observation: {point.y}'
+                  }
+              }]
+          });
   </script>
 </html>
