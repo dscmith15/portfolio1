@@ -3,6 +3,13 @@ library(jsonlite)
 library("plyr")
 library(R2HTML)
 library(RCurl)
+library(lme4)
+library(nlme)
+library(MCMCpack)
+library(brm)
+library(multcomp)
+library(caret)
+library(MuMIn)
 
 file.list <- readHTMLTable(getURL("https://www.dcsmithresearch.com/Experiments/dataP2/"),skip.rows=1:2)[[1]]$Name
 
@@ -25,25 +32,26 @@ for (i in 1:length(pFiles)) {
   ptemp <- ptemp[ptemp$timesseen==5,]
   ptemp <- ptemp[complete.cases(ptemp$timesseen),]
   ptemp$pnum <- i
-  
+
   if (mean(ptemp[1:25,"subvalue"])>625){
     ptemp$value[1:25]<-40000
     ptemp$value[26:50]<-800
-    
+
   } else {
     ptemp$value[1:25]<-800
     ptemp$value[26:50]<-40000
   }
-  
-  
+
+
   if (i==1){
     pfinal <- ptemp
-    
+
   } else {
     pfinal <- rbind.fill(pfinal, ptemp)
   }
 }
 pfinal$gender<-as.factor(pfinal$gender)
+pfinal$adjValue <- pfinal$subvalue/pfinal$value
 pfinal$value <- as.factor(pfinal$value)
 pfinal$income <- as.numeric(pfinal$income)
 pfinal$job <- as.character(pfinal$job)
@@ -55,7 +63,7 @@ pfinal$odd <-ordered(pfinal$odd, levels= c('100%','80%','40%','25%','10%'))
 
 #valid checker
 baddata<-unique(c(pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 40000 & pfinal$subvalue < 39375.0],
-         pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
+                  pfinal$workid[pfinal$delay == 'immediately' & pfinal$odd == "100%" & pfinal$value == 800 & pfinal$subvalue < 787.5]))
 pfinal <- pfinal[! pfinal$workid %in% baddata,]
 
 
@@ -74,9 +82,6 @@ pfinal$Payer<-as.factor(pfinal$Payer)
 pfinal$Gamer<-as.factor(pfinal$Gamer)
 pfinal$MoneySpent <- as.numeric(pfinal$MoneySpent)
 
-hist(aggregate(pfinal$MoneySpent~pfinal$pnum,FUN="mean")[,2],
-     breaks=10,main="Distribution of Dollars Spent on Free-to-Play 
-     Games per Month",xlab="USD spent", col = "light blue")
 summary(pfinal$Gamer)/50
 
 #display pmf of risk lit
@@ -162,17 +167,67 @@ results <- rbind(immediatef, onemonthf, sixmonthf, twoyearf, fiveyearf)
 
 results40000 <- round(results)
 
-####################################
-# Trying to build with within
-h800fit <- lm(subvalue~as.numeric(odd)+as.numeric(delay)+as.numeric(odd):as.numeric(delay)+(as.numeric(odd)*as.numeric(delay)|as.factor(pnum)), data = pfinal800)
-
 ############################################
 
 bayfit <- MCMCregress(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value), data = pfinal)
+sum_bay <- summary(bayfit)
 
-hlfit <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)*(1|pnum), data = pfinal)
-hlfitcomp <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(1|pnum), data = pfinal,control=lmerControl(optCtrl=list(maxfun=100000)))
+hlfit <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(1|pnum), data = pfinal)
+#hlfitcomp <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(as.numeric(odd)*as.numeric(delay)*as.numeric(value)|pnum), data = pfinal,control=lmerControl(optCtrl=list(maxfun=100000)))
+#nlscomp<-nls(adjValue~(1)/((1+as.numeric(odd)*od)*(1+as.numeric(delay)*del)), data = pfinal, start=c(od=1,del=1.5),trace = TRUE)
 
-se_hlm<-sqrt(sum((pfinal$adjValue-predict(hlfitcomp))^2)/2500)
-se_nls800 <-sqrt(sum((pfinal800$subvalue-predict(nls800))^2)/1250)/800
-se_nls40 <-sqrt(sum((pfinal40000$subvalue-predict(nls40k))^2)/1250)/40000
+repaov<-aov(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value)+Error(pnum/(as.factor(odd)*as.factor(delay)*as.factor(value))), data = pfinal)
+
+lme_aov <- lme(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value),data = pfinal,random = ~1|pnum)
+lme_aov_sum<-anova(lme_aov)
+#summary(glht(lme_aov, linfct=mcp(Material = "Tukey")), test = adjusted(type = "bonferroni"))
+
+
+
+nlH_mod <- lme(adjValue~as.factor(value)/((1+as.numeric(odd))*(1+as.numeric(delay))),
+               random = ~1 | pnum,
+               data=pfinal,
+               control=lmeControl(optCtrl=list(maxIter=100000000)))
+nle_mod <- lme(adjValue~(as.factor(value)*(exp((-as.numeric(odd))*exp(as.numeric(delay))))),
+               random = ~1 | pnum,
+               data=pfinal,
+               control=lmeControl(optCtrl=list(maxIter=100000000)))
+
+
+
+#se_hlm<-sqrt(sum((pfinal$adjValue-predict(hlfitcomp))^2)/2500)
+se_nlH<-sqrt(sum((pfinal$adjValue-predict(nlH_mod))^2)/2500)
+se_lme<-sqrt(sum((pfinal$adjValue-predict(lme_aov))^2)/2500)
+se_exp<-sqrt(sum((pfinal$adjValue-predict(nle_mod))^2)/2500)
+
+barplot(c(se_lme,se_nlH,se_exp))
+
+#k folds
+
+iters=100
+for (i in 1:iters){
+  samps<-sample(unique(pfinal$pnum),25)
+  traindat<-pfinal[pfinal$pnum %in% samps,]
+  testdat<-pfinal[!(pfinal$pnum %in% samps),]
+  lme_aovk <- lme(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value),data = traindat,random = ~1|pnum)
+  nlH_modk <- lme(adjValue~as.factor(value)/((1+as.numeric(odd))*(1+as.numeric(delay))),
+                  random = ~1 | pnum,
+                  data=traindat,
+                  control=lmeControl(optCtrl=list(maxIter=100000000)))
+  if(i==1){
+    se_nlHktrain<-sqrt(sum((traindat$adjValue-predict(nlH_modk,data = traindat))^2)/nrow(traindat))
+    se_lmektrain<-sqrt(sum((traindat$adjValue-predict(lme_aovk,data = traindat))^2)/nrow(traindat))
+
+    se_nlHktest<-sqrt(sum((testdat$adjValue-predict(nlH_modk,data = testdat))^2)/nrow(testdat))
+    se_lmektest<-sqrt(sum((testdat$adjValue-predict(lme_aovk,data = testdat))^2)/nrow(testdat))
+  }else{
+    se_nlHktrain[i]<-sqrt(sum((traindat$adjValue-predict(nlH_modk,data = traindat))^2)/nrow(traindat))
+    se_lmektrain[i]<-sqrt(sum((traindat$adjValue-predict(lme_aovk,data = traindat))^2)/nrow(traindat))
+
+    se_nlHktest[i]<-sqrt(sum((testdat$adjValue-predict(nlH_modk,data = testdat))^2)/nrow(testdat))
+    se_lmektest[i]<-sqrt(sum((testdat$adjValue-predict(lme_aovk,data = testdat))^2)/nrow(testdat))
+  }
+
+}
+boxplot(se_lmektrain,se_nlHktrain,se_lmektest,se_nlHktest)
+r.squaredGLMM(lme_aov)
