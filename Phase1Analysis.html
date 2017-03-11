@@ -118,14 +118,24 @@
             },
             xAxis: {
               title: {
-                text: 'Risk'
+                text: 'Risk',
+                
+                 style: {
+                    fontSize: '15px'
+                }
+               
               },
               categories: ['100%', '80%', '40%', '25%', '10%']
             },
 
             yAxis: {
                 title: {
-                    text: 'Subjective Value ($)'
+                    text: 'Subjective Value ($)',
+                   
+                 style: {
+                    fontSize: '15px'
+                }
+               
                 },
                 max: 40000,
                 min: 0
@@ -174,18 +184,33 @@
           },
           xAxis: {
             title: {
-              text: 'Risk'
+              text: 'Risk',
+              
+                 style: {
+                    fontSize: '15px'
+                }
+               
             },
             categories: ['100%', '80%', '40%', '25%', '10%']
           },
 
           yAxis: {
               title: {
-                  text: 'Subjective Value ($)'
+                  text: 'Subjective Value ($)',
+                  
+                 style: {
+                    fontSize: '15px'
+                }
+               
               },
               max: 800,
               min: 0,
-              tickInterval: 200
+              tickInterval: 200,
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
           },
 
           plotOptions: {
@@ -365,13 +390,23 @@
         categories: [
             'Phase 1'
         ],
+        labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               },
         crosshair: true
     },
     yAxis: {
         min: 0,
         max: 1,
         title: {
-            text: 'Proportion'
+            text: 'Proportion',
+             labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
         },
         tickInterval: .2
     },
@@ -418,13 +453,23 @@
               categories: [
                   'Phase 1'
               ],
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               },
               crosshair: true
           },
           yAxis: {
               min: 0,
               max: 1,
               title: {
-                  text: 'Proportion'
+                  text: 'Proportion',
+                  
+                 style: {
+                    fontSize: '15px'
+                }
+               
               },
               tickInterval: .2
           },
