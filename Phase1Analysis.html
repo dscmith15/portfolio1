@@ -229,8 +229,7 @@
           },
 
          xAxis: {
-              categories: ['Phase 1'],
-              align: 'center'
+              categories: ['Phase 1']
               
           },
       
@@ -256,7 +255,13 @@
                   stemWidth: 2,
                   whiskerColor: '#7F5126',
                   whiskerLength: '20%',
-                  whiskerWidth: 3
+                  whiskerWidth: 3,
+                  series: {
+                    dataLabels: {
+                        align: 'center',
+                        enabled: true
+                    }
+                }
               }
           },
 
