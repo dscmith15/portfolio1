@@ -255,13 +255,8 @@
                   stemWidth: 2,
                   whiskerColor: '#7F5126',
                   whiskerLength: '20%',
-                  whiskerWidth: 3,
-                  series: {
-                    dataLabels: {
-                        align: 'center',
-                        enabled: true
-                    }
-                }
+                  whiskerWidth: 3
+                 
               }
           },
 
@@ -271,17 +266,7 @@
                   [18.00, 19.00, 20.00, 22.00, 52.00]
               ],
               tooltip: {
-                  headerFormat: '<em>Experiment {point.key}</em><br/>'
-              }
-          }, {
-
-              marker: {
-                  fillColor: 'black',
-                  lineWidth: 10,
-                  lineColor: Highcharts.getOptions().colors[0]
-              },
-              tooltip: {
-                  pointFormat: 'Observation: {point.y}'
+                  headerFormat: '<em>Phase {point.key}</em><br/>'
               }
           }]
 
