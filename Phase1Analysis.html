@@ -29,6 +29,16 @@
         on subjective value as you deal with smaller prospects.
       </p>
       </div>
+      <p>
+      <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="gender" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="risk" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
 
     <p>
       <div id="contain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
@@ -209,7 +219,7 @@
           },
 
           title: {
-              text: 'Age Distributions'
+              text: 'Phase 1 Age Distribution'
           },
 
           legend: {
@@ -217,7 +227,7 @@
           },
 
           xAxis: {
-              categories: ['Phase 1', 'Phase 2'],
+              categories: ['Phase 1'],
               title: {
                   text: 'Experiment'
               }
@@ -251,8 +261,7 @@
           series: [{
               name: 'Observations',
               data: [
-                  [18.00, 19.00, 20.00, 22.00, 52.00],
-                  [30.00, 35.00, 37.50, 41.00, 45.00]
+                  [18.00, 19.00, 20.00, 22.00, 52.00]
               ],
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
@@ -277,7 +286,7 @@
           },
 
           title: {
-              text: 'Income Distributions'
+              text: 'Phase 1 Income Distribution'
           },
 
           legend: {
@@ -319,8 +328,7 @@
           series: [{
               name: 'Observations',
               data: [
-                  [0, 0, 4538, 13000, 72000],
-                  [0, 45000, 62500, 80250, 130000]
+                  [0, 0, 4538, 13000, 72000]
               ],
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
@@ -343,12 +351,11 @@
         type: 'column'
     },
     title: {
-        text: 'PMFs of Risk Literacy'
+        text: 'Phase 1 PMF of Risk Literacy'
     },
     xAxis: {
         categories: [
-            'WSU',
-            'MTurk'
+            'Phase 1'
         ],
         crosshair: true
     },
@@ -376,19 +383,19 @@
     },
     series: [{
         name: '1',
-        data: [.21, .23]
+        data: [.21]
 
     }, {
         name: '2',
-        data: [.54, .21]
+        data: [.54]
 
     }, {
         name: '3',
-        data: [.17, .10]
+        data: [.17]
 
     }, {
         name: '4',
-        data: [.17, .46]
+        data: [.17]
 
     }]
 });
@@ -397,12 +404,11 @@
               type: 'column'
           },
           title: {
-              text: 'PMFs of Gender'
+              text: 'Phase 1 PMF of Gender'
           },
           xAxis: {
               categories: [
-                  'WSU',
-                  'MTurk'
+                  'Phase 1'
               ],
               crosshair: true
           },
@@ -430,15 +436,15 @@
           },
           series: [{
               name: 'Female',
-              data: [.79, .52]
+              data: [.79]
 
           }, {
               name: 'Male',
-              data: [.29, .48]
+              data: [.29]
 
           }, {
               name: 'Other',
-              data: [.02, .00]
+              data: [.02]
 
           }]
         });
