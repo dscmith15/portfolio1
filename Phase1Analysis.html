@@ -298,20 +298,33 @@
               enabled: false
           },
           xAxis: {
-              categories: ['Phase 1']
+              categories: ['Phase 1'],
+               labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
               
           },
-        
+      
 
           colors: ['#FF7A00'],
 
           yAxis: {
               title: {
-                  text: 'Income'
+                  text: 'Age',
+                  style: {
+                    fontSize: '15px'
+                }
               },
-              max: 130000,
+              max: 60,
               min: 0,
-              tickInterval: 20000
+              tickInterval: 10,
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
           },
           plotOptions: {
               boxplot: {
