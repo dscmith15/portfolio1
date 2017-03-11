@@ -198,7 +198,7 @@
           },
 
           xAxis: {
-              categories: ['WSU', 'Mturk'],
+              categories: ['Phase 1', 'Phase 2'],
               title: {
                   text: 'Experiment'
               }
@@ -266,7 +266,7 @@
           },
 
           xAxis: {
-              categories: ['WSU', 'Mturk'],
+              categories: ['Phase 1', 'Phase 2'],
               title: {
                   text: 'Experiment'
               }
@@ -319,6 +319,111 @@
           }]
 
       });
+      Highcharts.chart('risk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'PMFs of Risk Literacy'
+    },
+    xAxis: {
+        categories: [
+            'WSU',
+            'MTurk'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Proportion'
+        },
+        tickInterval: .2
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: '1',
+        data: [.21, .23]
+
+    }, {
+        name: '2',
+        data: [.54, .21]
+
+    }, {
+        name: '3',
+        data: [.17, .10]
+
+    }, {
+        name: '4',
+        data: [.17, .46]
+
+    }]
+});
+        Highcharts.chart('gender', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'PMFs of Gender'
+          },
+          xAxis: {
+              categories: [
+                  'WSU',
+                  'MTurk'
+              ],
+              crosshair: true
+          },
+          yAxis: {
+              min: 0,
+              max: 1,
+              title: {
+                  text: 'Proportion'
+              },
+              tickInterval: .2
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: 'Female',
+              data: [.79, .52]
+
+          }, {
+              name: 'Male',
+              data: [.29, .48]
+
+          }, {
+              name: 'Other',
+              data: [.02, .00]
+
+          }]
+        });
+
       Highcharts.chart('WSUcontain40k', {
           chart: {
               type: 'line'
@@ -427,111 +532,7 @@
             data: [412,254,88,63,43]
         }]
     });
-    Highcharts.chart('risk', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'PMFs of Risk Literacy'
-    },
-    xAxis: {
-        categories: [
-            'WSU',
-            'MTurk'
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        max: 1,
-        title: {
-            text: 'Proportion'
-        },
-        tickInterval: .2
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: '1',
-        data: [.21, .23]
-
-    }, {
-        name: '2',
-        data: [.54, .21]
-
-    }, {
-        name: '3',
-        data: [.17, .10]
-
-    }, {
-        name: '4',
-        data: [.17, .46]
-
-    }]
-});
-        Highcharts.chart('gender', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'PMFs of Gender'
-          },
-          xAxis: {
-              categories: [
-                  'WSU',
-                  'MTurk'
-              ],
-              crosshair: true
-          },
-          yAxis: {
-              min: 0,
-              max: 1,
-              title: {
-                  text: 'Proportion'
-              },
-              tickInterval: .2
-          },
-          tooltip: {
-              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-              footerFormat: '</table>',
-              shared: true,
-              useHTML: true
-          },
-          plotOptions: {
-              column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-              }
-          },
-          series: [{
-              name: 'Female',
-              data: [.79, .52]
-
-          }, {
-              name: 'Male',
-              data: [.29, .48]
-
-          }, {
-              name: 'Other',
-              data: [.02, .00]
-
-          }]
-        });
-
+    
 
 
 
