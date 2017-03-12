@@ -44,6 +44,9 @@
 <p>
       <div id="gamer" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
     </p>
+<p>
+      <div id="moneyspent" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
 
     <p>
       <div id="contain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
@@ -561,6 +564,69 @@
         data: [.6],
         stack: 'no game'
     } ]
+});
+
+        Highcharts.chart('moneyspent', {
+            chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'USD Spent on Free-to-Play Games per Month for Phase 1'
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Research Phase'
+                },
+                categories: ['Phase 1'],
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true,
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+            },
+            yAxis: {
+                title: {
+                    text: 'USD ($)',
+                  style: {
+                    fontSize: '15px'
+                }
+                }
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 8,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
+                    },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '${point.y}'
+            }
+        }
+    },
+    series: [{
+        name: 'Phase 1',
+        color: 'rgba(255, 122, 0, .5)',
+        data: [[0,5],[0,1]]
+
+    }]
 });
 
 
