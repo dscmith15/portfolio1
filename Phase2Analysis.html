@@ -199,10 +199,6 @@
 
           xAxis: {
               categories: ['Phase 1', 'Phase 2'],
-              title: {
-                  text: 'Experiment',
-                
-              },
             labels: {
                  style: {
                     fontSize: '15px'
@@ -215,11 +211,6 @@
           yAxis: {
               title: {
                   text: 'Age',
-                labels: {
-                 style: {
-                    fontSize: '15px'
-                }
-               }
               },
               max: 60,
               min: 0,
@@ -273,14 +264,11 @@
 
           xAxis: {
               categories: ['Phase 1', 'Phase 2'],
-              title: {
-                  text: 'Experiment',
-                labels: {
+              labels: {
                  style: {
                     fontSize: '15px'
                 }
                }
-              }
           },
 
           colors: ['#FF7A00'],
@@ -288,15 +276,16 @@
           yAxis: {
               title: {
                   text: 'Income',
-                labels: {
+               
+              },
+              max: 130000,
+              min: 0,
+              tickInterval: 20000,
+            labels: {
                  style: {
                     fontSize: '15px'
                 }
                }
-              },
-              max: 130000,
-              min: 0,
-              tickInterval: 20000
           },
           plotOptions: {
               boxplot: {
@@ -349,13 +338,14 @@
         max: 1,
         title: {
             text: 'Proportion',
-          labels: {
+          
+        },
+        tickInterval: .2,
+      labels: {
                  style: {
                     fontSize: '15px'
                 }
                }
-        },
-        tickInterval: .2
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -415,13 +405,14 @@
               max: 1,
               title: {
                   text: 'Proportion',
-                labels: {
+               
+              },
+              tickInterval: .2,
+            labels: {
                  style: {
                     fontSize: '15px'
                 }
                }
-              },
-              tickInterval: .2
           },
           tooltip: {
               headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
