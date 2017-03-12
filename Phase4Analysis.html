@@ -127,10 +127,16 @@
               text: 'Risk'
             },
             categories: ['100%', '80%', '40%', '25%', '10%']
+            
           },
           yAxis: {
               title: {
-                  text: 'Subjective Value ($)'
+                  text: 'Subjective Value ($)',
+                
+                 style: {
+                    fontSize: '15px'
+                }
+               
               },
               max: 20,
               min: 0
@@ -165,7 +171,7 @@
               type: 'boxplot'
           },
           title: {
-              text: 'Age Distributions'
+              text: 'Age Distributions for all Phases'
           },
           legend: {
               enabled: false
@@ -174,12 +180,22 @@
               categories: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4'],
               title: {
                   text: 'Experiment'
-              }
+              },
+            labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
           },
           colors: ['#FF7A00'],
           yAxis: {
               title: {
-                  text: 'Age'
+                  text: 'Age',
+               
+                 style: {
+                    fontSize: '15px'
+                }
+               
               },
               max: 60,
               min: 0,
@@ -210,15 +226,6 @@
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
               }
-          }, {
-              marker: {
-                  fillColor: 'black',
-                  lineWidth: 10,
-                  lineColor: Highcharts.getOptions().colors[0]
-              },
-              tooltip: {
-                  pointFormat: 'Observation: {point.y}'
-              }
           }]
     });
     Highcharts.chart('boxincome', {
@@ -226,7 +233,7 @@
               type: 'boxplot'
           },
           title: {
-              text: 'Income Distributions'
+              text: 'Income Distributions for all Phases'
           },
           legend: {
               enabled: false
@@ -235,12 +242,22 @@
               categories: ['Phase 1', 'Phase 2', 'Phase 3','Phase 4'],
               title: {
                   text: 'Experiment'
-              }
+              },
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
           },
           colors: ['#FF7A00'],
           yAxis: {
               title: {
-                  text: 'Income'
+                  text: 'Income',
+                
+                 style: {
+                    fontSize: '15px'
+                }
+               
               },
               max: 130000,
               min: 0,
@@ -270,15 +287,6 @@
               ],
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
-              }
-          }, {
-              marker: {
-                  fillColor: 'black',
-                  lineWidth: 10,
-                  lineColor: Highcharts.getOptions().colors[0]
-              },
-              tooltip: {
-                  pointFormat: 'Observation: {point.y}'
               }
           }]
       });
@@ -383,7 +391,7 @@
         type: 'column'
     },
     title: {
-        text: 'PMFs of Risk Literacy'
+        text: 'PMFs of Risk Literacy for all Phases'
     },
     xAxis: {
         categories: [
@@ -392,13 +400,23 @@
             'Phase 3',
             'Phase 4'
         ],
-        crosshair: true
+        crosshair: true,
+      labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
     },
     yAxis: {
         min: 0,
         max: 1,
         title: {
-            text: 'Proportion'
+            text: 'Proportion',
+         
+                 style: {
+                    fontSize: '15px'
+                }
+               
         },
         tickInterval: .2
     },
@@ -435,7 +453,7 @@
               type: 'column'
           },
           title: {
-              text: 'PMFs of Gender'
+              text: 'PMFs of Gender for all Phases'
           },
           xAxis: {
               categories: [
@@ -608,17 +626,18 @@
                 zoomType: 'xy'
             },
             title: {
-                text: 'USD Spent on Free-to-Play Games per Month'
+                text: 'USD Spent on Free-to-Play Games per Month for all Phases'
             },
             xAxis: {
                 title: {
                     enabled: true,
-                    text: 'Research Phase'
+                    text: 'Experiment'
                 },
                 categories: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4'],
                 startOnTick: true,
                 endOnTick: true,
                 showLastLabel: true,
+              
               labels: {
                  style: {
                     fontSize: '15px'
@@ -691,7 +710,7 @@
         type: 'column'
     },
     title: {
-        text: 'Likelihood of Playing Social/Mobile Games'
+        text: 'Likelihood of Playing Social/Mobile Games for all Phases'
     },
     xAxis: {
         categories: [
