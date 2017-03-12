@@ -190,7 +190,7 @@
           },
 
           title: {
-              text: 'Age Distributions'
+              text: 'Age Distributions for Phases 1 & 2'
           },
 
           legend: {
@@ -200,7 +200,12 @@
           xAxis: {
               categories: ['Phase 1', 'Phase 2'],
               title: {
-                  text: 'Experiment'
+                  text: 'Experiment',
+                labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
               }
           },
 
@@ -208,7 +213,12 @@
 
           yAxis: {
               title: {
-                  text: 'Age'
+                  text: 'Age',
+                labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
               },
               max: 60,
               min: 0,
@@ -238,16 +248,6 @@
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
               }
-          }, {
-
-              marker: {
-                  fillColor: 'black',
-                  lineWidth: 10,
-                  lineColor: Highcharts.getOptions().colors[0]
-              },
-              tooltip: {
-                  pointFormat: 'Observation: {point.y}'
-              }
           }]
 
     });
@@ -258,7 +258,7 @@
           },
 
           title: {
-              text: 'Income Distributions'
+              text: 'Income Distributions for Phases 1 & 2'
           },
 
           legend: {
@@ -268,7 +268,12 @@
           xAxis: {
               categories: ['Phase 1', 'Phase 2'],
               title: {
-                  text: 'Experiment'
+                  text: 'Experiment',
+                labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
               }
           },
 
@@ -276,7 +281,12 @@
 
           yAxis: {
               title: {
-                  text: 'Income'
+                  text: 'Income',
+                labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
               },
               max: 130000,
               min: 0,
@@ -306,16 +316,6 @@
               tooltip: {
                   headerFormat: '<em>Experiment {point.key}</em><br/>'
               }
-          }, {
-
-              marker: {
-                  fillColor: 'black',
-                  lineWidth: 10,
-                  lineColor: Highcharts.getOptions().colors[0]
-              },
-              tooltip: {
-                  pointFormat: 'Observation: {point.y}'
-              }
           }]
 
       });
@@ -324,20 +324,30 @@
         type: 'column'
     },
     title: {
-        text: 'PMFs of Risk Literacy'
+        text: 'PMFs of Risk Literacy for Phases 1 & 2'
     },
     xAxis: {
         categories: [
-            'WSU',
-            'MTurk'
+            'Phase 1',
+            'Phase 2'
         ],
+      labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               },
         crosshair: true
     },
     yAxis: {
         min: 0,
         max: 1,
         title: {
-            text: 'Proportion'
+            text: 'Proportion',
+          labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
         },
         tickInterval: .2
     },
@@ -378,20 +388,32 @@
               type: 'column'
           },
           title: {
-              text: 'PMFs of Gender'
+              text: 'PMFs of Gender for Phases 1 & 2'
           },
           xAxis: {
               categories: [
-                  'WSU',
-                  'MTurk'
+                  'Phase 1',
+                  'Phase 2'
               ],
-              crosshair: true
+            
+              crosshair: true,
+            labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+            
           },
           yAxis: {
               min: 0,
               max: 1,
               title: {
-                  text: 'Proportion'
+                  text: 'Proportion',
+                labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
               },
               tickInterval: .2
           },
