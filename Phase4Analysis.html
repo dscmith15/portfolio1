@@ -166,130 +166,7 @@
               data: [18.58,	12.4,	5.64,	3.75,	2.41]
           }]
       });
-      Highcharts.chart('boxage', {
-          chart: {
-              type: 'boxplot'
-          },
-          title: {
-              text: 'Age Distributions for all Phases'
-          },
-          legend: {
-              enabled: false
-          },
-          xAxis: {
-              categories: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4'],
-              title: {
-                  text: 'Experiment'
-              },
-            labels: {
-                 style: {
-                    fontSize: '15px'
-                }
-               }
-          },
-          colors: ['#FF7A00'],
-          yAxis: {
-              title: {
-                  text: 'Age',
-               
-                 style: {
-                    fontSize: '15px'
-                }
-               
-              },
-              max: 60,
-              min: 0,
-              tickInterval: 10
-          },
-          plotOptions: {
-              boxplot: {
-                  fillColor: '#FFCC9D',
-                  lineWidth: 2,
-                  medianColor: '#7F3D00',
-                  medianWidth: 3,
-                  stemColor: '#CC6100',
-                  stemDashStyle: 'dot',
-                  stemWidth: 2,
-                  whiskerColor: '#7F5126',
-                  whiskerLength: '20%',
-                  whiskerWidth: 3
-              }
-          },
-          series: [{
-              name: 'Observations',
-              data: [
-                  [18.00, 19.00, 20.00, 22.00, 52.00],
-                  [30.00, 35.00, 37.50, 41.00, 45.00],
-                  [29.00, 36.00, 39.00, 44.00, 58.00],
-                  [35.00, 37.00, 39.00, 43.00, 53.00]
-              ],
-              tooltip: {
-                  headerFormat: '<em>Experiment {point.key}</em><br/>'
-              }
-          }]
-    });
-    Highcharts.chart('boxincome', {
-          chart: {
-              type: 'boxplot'
-          },
-          title: {
-              text: 'Income Distributions for all Phases'
-          },
-          legend: {
-              enabled: false
-          },
-          xAxis: {
-              categories: ['Phase 1', 'Phase 2', 'Phase 3','Phase 4'],
-              title: {
-                  text: 'Experiment'
-              },
-              labels: {
-                 style: {
-                    fontSize: '15px'
-                }
-               }
-          },
-          colors: ['#FF7A00'],
-          yAxis: {
-              title: {
-                  text: 'Income',
-                
-                 style: {
-                    fontSize: '15px'
-                }
-               
-              },
-              max: 130000,
-              min: 0,
-              tickInterval: 20000
-          },
-          plotOptions: {
-              boxplot: {
-                  fillColor: '#FFCC9D',
-                  lineWidth: 2,
-                  medianColor: '#7F3D00',
-                  medianWidth: 3,
-                  stemColor: '#CC6100',
-                  stemDashStyle: 'dot',
-                  stemWidth: 2,
-                  whiskerColor: '#7F5126',
-                  whiskerLength: '20%',
-                  whiskerWidth: 3
-              }
-          },
-          series: [{
-              name: 'Observations',
-              data: [
-                  [0, 0, 4538, 13000, 72000],
-                  [0, 45000, 62500, 80250, 130000],
-                  [0, 50000, 65000, 78500, 128000],
-                  [0, 35000, 55000, 70000, 91500]
-              ],
-              tooltip: {
-                  headerFormat: '<em>Experiment {point.key}</em><br/>'
-              }
-          }]
-      });
+    
       Highcharts.chart('MT4containDoubloons', {
           chart: {
               type: 'line'
@@ -386,124 +263,7 @@
             data: [2418.75,	1565.63,	593.75,	360.94,	271.88]
         }]
     });
-    Highcharts.chart('risk', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'PMFs of Risk Literacy for all Phases'
-    },
-    xAxis: {
-        categories: [
-            'Phase 1',
-            'Phase 2',
-            'Phase 3',
-            'Phase 4'
-        ],
-        crosshair: true,
-      labels: {
-                 style: {
-                    fontSize: '15px'
-                }
-               }
-    },
-    yAxis: {
-        min: 0,
-        max: 1,
-        title: {
-            text: 'Proportion',
-         
-                 style: {
-                    fontSize: '15px'
-                }
-               
-        },
-        tickInterval: .2
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: '1',
-        data: [.21, .23, .30, .18]
-    }, {
-        name: '2',
-        data: [.54, .21, .24, .24]
-    }, {
-        name: '3',
-        data: [.17, .10, .10, .20]
-    }, {
-        name: '4',
-        data: [.17, .46, .36, .38]
-    }]
-});
-        Highcharts.chart('gender', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'PMFs of Gender for all Phases'
-          },
-          xAxis: {
-              categories: [
-                  'Phase 1',
-                  'Phase 2',
-                  'Phase 3',
-                  'Phase 4'
-              ],
-              crosshair: true,
-            labels: {
-                 style: {
-                    fontSize: '15px'
-                }
-               }
-          },
-          yAxis: {
-              min: 0,
-              max: 1,
-              title: {
-                  text: 'Proportion',
-               
-                 style: {
-                    fontSize: '15px'
-                
-               }
-              },
-              tickInterval: .2
-          },
-          tooltip: {
-              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-              footerFormat: '</table>',
-              shared: true,
-              useHTML: true
-          },
-          plotOptions: {
-              column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-              }
-          },
-          series: [{
-              name: 'Female',
-              data: [.79, .52, .54, .54]
-          }, {
-              name: 'Male',
-              data: [.29, .48, .46, .46]
-          }]
-        });
+
         Highcharts.chart('MT4containValue', {
             chart: {
                 type: 'line'
@@ -629,6 +389,248 @@
                 name: 'OD',
                 data: [0.93, 0.50, 0.10, 0.06, 0.04]
             }]
+        });
+          Highcharts.chart('boxage', {
+          chart: {
+              type: 'boxplot'
+          },
+          title: {
+              text: 'Age Distributions for all Phases'
+          },
+          legend: {
+              enabled: false
+          },
+          xAxis: {
+              categories: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4'],
+              title: {
+                  text: 'Experiment'
+              },
+            labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+          },
+          colors: ['#FF7A00'],
+          yAxis: {
+              title: {
+                  text: 'Age',
+               
+                 style: {
+                    fontSize: '15px'
+                }
+               
+              },
+              max: 60,
+              min: 0,
+              tickInterval: 10
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+          series: [{
+              name: 'Observations',
+              data: [
+                  [18.00, 19.00, 20.00, 22.00, 52.00],
+                  [30.00, 35.00, 37.50, 41.00, 45.00],
+                  [29.00, 36.00, 39.00, 44.00, 58.00],
+                  [35.00, 37.00, 39.00, 43.00, 53.00]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }]
+    });
+    Highcharts.chart('boxincome', {
+          chart: {
+              type: 'boxplot'
+          },
+          title: {
+              text: 'Income Distributions for all Phases'
+          },
+          legend: {
+              enabled: false
+          },
+          xAxis: {
+              categories: ['Phase 1', 'Phase 2', 'Phase 3','Phase 4'],
+              title: {
+                  text: 'Experiment'
+              },
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+          },
+          colors: ['#FF7A00'],
+          yAxis: {
+              title: {
+                  text: 'Income',
+                
+                 style: {
+                    fontSize: '15px'
+                }
+               
+              },
+              max: 130000,
+              min: 0,
+              tickInterval: 20000
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+          series: [{
+              name: 'Observations',
+              data: [
+                  [0, 0, 4538, 13000, 72000],
+                  [0, 45000, 62500, 80250, 130000],
+                  [0, 50000, 65000, 78500, 128000],
+                  [0, 35000, 55000, 70000, 91500]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }]
+      });
+    Highcharts.chart('risk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'PMFs of Risk Literacy for all Phases'
+    },
+    xAxis: {
+        categories: [
+            'Phase 1',
+            'Phase 2',
+            'Phase 3',
+            'Phase 4'
+        ],
+        crosshair: true,
+      labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Proportion',
+         
+                 style: {
+                    fontSize: '15px'
+                }
+               
+        },
+        tickInterval: .2
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: '1',
+        data: [.21, .23, .30, .18]
+    }, {
+        name: '2',
+        data: [.54, .21, .24, .24]
+    }, {
+        name: '3',
+        data: [.17, .10, .10, .20]
+    }, {
+        name: '4',
+        data: [.17, .46, .36, .38]
+    }]
+});
+        Highcharts.chart('gender', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'PMFs of Gender for all Phases'
+          },
+          xAxis: {
+              categories: [
+                  'Phase 1',
+                  'Phase 2',
+                  'Phase 3',
+                  'Phase 4'
+              ],
+              crosshair: true,
+            labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+          },
+          yAxis: {
+              min: 0,
+              max: 1,
+              title: {
+                  text: 'Proportion',
+               
+                 style: {
+                    fontSize: '15px'
+                
+               }
+              },
+              tickInterval: .2
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: 'Female',
+              data: [.79, .52, .54, .54]
+          }, {
+              name: 'Male',
+              data: [.29, .48, .46, .46]
+          }]
         });
             Highcharts.chart('moneyspent', {
             chart: {
