@@ -10,6 +10,7 @@ library(brm)
 library(multcomp)
 library(caret)
 library(MuMIn)
+library(lsmeans)
 
 file.list <- readHTMLTable(getURL("https://www.dcsmithresearch.com/Experiments/dataP2/"),skip.rows=1:2)[[1]]$Name
 
@@ -32,20 +33,20 @@ for (i in 1:length(pFiles)) {
   ptemp <- ptemp[ptemp$timesseen==5,]
   ptemp <- ptemp[complete.cases(ptemp$timesseen),]
   ptemp$pnum <- i
-
+  
   if (mean(ptemp[1:25,"subvalue"])>625){
     ptemp$value[1:25]<-40000
     ptemp$value[26:50]<-800
-
+    
   } else {
     ptemp$value[1:25]<-800
     ptemp$value[26:50]<-40000
   }
-
-
+  
+  
   if (i==1){
     pfinal <- ptemp
-
+    
   } else {
     pfinal <- rbind.fill(pfinal, ptemp)
   }
@@ -217,17 +218,78 @@ for (i in 1:iters){
   if(i==1){
     se_nlHktrain<-sqrt(sum((traindat$adjValue-predict(nlH_modk,data = traindat))^2)/nrow(traindat))
     se_lmektrain<-sqrt(sum((traindat$adjValue-predict(lme_aovk,data = traindat))^2)/nrow(traindat))
-
+    
     se_nlHktest<-sqrt(sum((testdat$adjValue-predict(nlH_modk,data = testdat))^2)/nrow(testdat))
     se_lmektest<-sqrt(sum((testdat$adjValue-predict(lme_aovk,data = testdat))^2)/nrow(testdat))
   }else{
     se_nlHktrain[i]<-sqrt(sum((traindat$adjValue-predict(nlH_modk,data = traindat))^2)/nrow(traindat))
     se_lmektrain[i]<-sqrt(sum((traindat$adjValue-predict(lme_aovk,data = traindat))^2)/nrow(traindat))
-
+    
     se_nlHktest[i]<-sqrt(sum((testdat$adjValue-predict(nlH_modk,data = testdat))^2)/nrow(testdat))
     se_lmektest[i]<-sqrt(sum((testdat$adjValue-predict(lme_aovk,data = testdat))^2)/nrow(testdat))
   }
-
+  
 }
 boxplot(se_lmektrain,se_nlHktrain,se_lmektest,se_nlHktest)
 r.squaredGLMM(lme_aov)
+
+par(mfrow=c(5,2))
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'immediately'& pfinal$value %in% 800,],ylab = "Normalized SV",xlab="Risk",main = "$800 Immediately", col = "Light blue")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'immediately'& pfinal$value %in% 40000,],ylab = "Normalized SV",xlab="Risk",main = "$40,000 Immediately", col = "orange")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 1 month'& pfinal$value %in% 800,],ylab = "Normalized SV",xlab="Risk",main = "$800 in 1 Month", col = "Light blue")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 1 month'& pfinal$value %in% 40000,],ylab = "Normalized SV",xlab="Risk",main = "$40,000 in 1 Month", col = "orange")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 6 months'& pfinal$value %in% 800,],ylab = "Normalized SV",xlab="Risk",main = "$800 in 6 Months", col = "Light blue")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 6 months'& pfinal$value %in% 40000,],ylab = "Normalized SV",xlab="Risk",main = "$40,000 in 6 Months", col = "orange")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 2 years'& pfinal$value %in% 800,],ylab = "Normalized SV",xlab="Risk",main = "$800 in 2 Years", col = "Light blue")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 2 years'& pfinal$value %in% 40000,],ylab = "Normalized SV",xlab="Risk",main = "$40,000 in 2 Years", col = "orange")
+grid(NA,NULL,lty=6)
+
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 5 years'& pfinal$value %in% 800,],ylab = "Normalized SV",xlab="Risk",main = "$800 in 5 Years", col = "Light blue")
+grid(NA,NULL,lty=6)
+
+plot(adjValue~odd,data = pfinal[pfinal$delay %in% 'in 5 years'& pfinal$value %in% 40000,],ylab = "Normalized SV",xlab="Risk",main = "$40,000 in 5 Years", col = "orange")
+grid(NA,NULL,lty=6)
+
+posthoc_comp<-lsmeans(lme_aov,pairwise~odd*delay*value)
+sum_posthoc_comp <- summary(posthoc_comp)
+meanresults <- as.data.frame(sum_posthoc_comp$lsmeans)
+postresults <- as.data.frame(sum_posthoc_comp$contrasts)
+
+write.csv(meanresults,file = "mean2output.csv")
+write.csv(postresults,file = "comp2output.csv")
+explore<-cbind(aggregate(pfinal$riskLiteracy~pfinal$pnum,FUN="mean")[2],
+               aggregate(pfinal$adjValue~pfinal$pnum,FUN="sum")[2]/50,
+               aggregate(pfinal$age~pfinal$pnum,FUN="mean")[2],
+               aggregate(as.numeric(pfinal$gender)~pfinal$pnum,FUN = "mean")[2],
+               aggregate(as.numeric(pfinal$Gamer)~pfinal$pnum,FUN = "mean")[2])
+colnames(explore)[1]="Risk"
+colnames(explore)[2]="AUC"
+colnames(explore)[3]="age"
+colnames(explore)[4]="gender"
+colnames(explore)[5]="gamer"
+factor(explore$Risk)
+factor(explore$gender)
+factor(explore$gamer)
+explore$gender[explore$gender==1]='Female'
+explore$gender[explore$gender==2]='Male'
+explore$gender[explore$gender==3]='Other'
+explore$gamer[explore$gamer==1]='No'
+explore$gamer[explore$gamer==2]='Yes'
+
+explore2<-explore
