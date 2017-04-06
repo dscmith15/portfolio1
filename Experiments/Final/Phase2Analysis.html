@@ -1,0 +1,684 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Results of Study 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link href="css/home.css" rel="stylesheet" type="text/css"></link>
+
+  </head>
+  <body>
+    <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="Experiments.html">Experiments</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Resume.html">Resume</a></li>
+    </ul>
+
+
+    <div id="wrap" style="width: 75%; margin: auto">
+      <div id="TextBox" style="float: left; width: 75%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
+        <h3>Results of Studies 1 & 2 (SONA vs. Mturk)</h3><p>
+          We collected 56 participants from the WSU SONA system and 52 participants
+          using Amazon's Mechanical Turk to replicate the Vanderveldt findings.
+          Two separate recruitment strategies were used to prepare for future
+          phases of this dissertation that will use Mechanical Turk. Vanderveldt et al.
+          used their university recruitment system so we wanted to compare our SONA system to
+          Mturk before beginning the remaining phases. </p>
+
+      </div>
+
+      <div id="TextBox" style="float: left; width: 75%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
+        <h4>Demographics</h4>
+        <p>
+          Below are demographic comparisons between the two recruitment strategies.
+          You should notice stark differences between all collected demographics.
+        </p>
+
+      </div>
+    <p>
+      <div id="boxage" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="boxincome" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="gender" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+<p>
+      <div id="gamer" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="moneyspent" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="risk" style="float: left; width: 98%; min-width: 500px; max-width: 1000px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    
+
+    <div id="TextBox" style="float: left; width: 75%; min-width: 500px; max-width: 900px; margin: 0 auto; margin-bottom: 10px;">
+      <h4>Hypothetical Deal Results</h4>
+      <p>
+        Below you will find results for both prospects (i.e., $40k & $800). Note the expected
+        hyperboloid trend for all prospects and collection methods, and that delay impacts the $800 prospect far more
+        than $40k prospect. Therefore, delaying an outcome has a larger effect
+        on subjective value as you deal with smaller prospects. The results for
+        Mturk appear to fit the model better than SONA.
+      </p>
+
+    </div>
+    <p>
+      <div id="WSUcontain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MTcontain40k" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+    <p>
+      <div id="WSUcontain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+      <div id="MTcontain800" style="float: left; width: 49%; min-width: 500px; max-width: 500px; height: 450px; margin: 4 auto; margin-bottom: 10px;"></div>
+    </p>
+
+    </div>
+
+
+  </body>
+  <script>
+        Highcharts.chart('MTcontain40k', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'MTurk $40,000 by Risk And Delay'
+            },
+            subtitle: {
+                text: 'Data from MTurk (n = 52)'
+            },
+            xAxis: {
+              title: {
+                text: 'Risk'
+              },
+              categories: ['100%', '80%', '40%', '25%', '10%']
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Subjective Value ($)'
+                },
+                max: 40000,
+                min: 0
+
+            },
+
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    enableMouseTracking: true
+                }
+            },
+
+            series: [{
+                name: 'Immediately',
+                data: [39375,16851,2668,2596,1250]
+            }, {
+                name: '1 month',
+                data: [38870,16058,2764,2284,1202]
+            }, {
+                name: '6 months',
+                data: [36755,14014,2548,2139,1130]
+            }, {
+                name: '2 years',
+                data: [29327,9207,2740,1803,1106]
+            }, {
+                name: '5 years',
+                data: [22332,6683,1995,1490,913]
+            }]
+        });
+
+
+
+
+      Highcharts.chart('MTcontain800', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'MTurk $800 by Risk And Delay'
+          },
+          subtitle: {
+              text: 'Data from MTurk (n = 52)'
+          },
+          xAxis: {
+            title: {
+              text: 'Risk'
+            },
+            categories: ['100%', '80%', '40%', '25%', '10%']
+          },
+
+          yAxis: {
+              title: {
+                  text: 'Subjective Value ($)'
+              },
+              max: 800,
+              min: 0,
+              tickInterval: 200
+          },
+
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  enableMouseTracking: true
+              }
+          },
+
+          series: [{
+              name: 'Immediately',
+              data: [788,442,130,103,62]
+          }, {
+              name: '1 month',
+              data: [761,375,118,81,45]
+          }, {
+              name: '6 months',
+              data: [647,307,100,66,61]
+          }, {
+              name: '2 years',
+              data: [387,160,61,47,34]
+          }, {
+              name: '5 years',
+              data: [254,109,44,44,29]
+          }]
+      });
+
+      Highcharts.chart('boxage', {
+
+          chart: {
+              type: 'boxplot'
+          },
+
+          title: {
+              text: 'Age Distributions for Studies 1 & 2'
+          },
+
+          legend: {
+              enabled: false
+          },
+
+          xAxis: {
+              categories: ['Study 1', 'Study 2'],
+            labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+          },
+
+          colors: ['#FF7A00'],
+
+          yAxis: {
+              title: {
+                  text: 'Age',
+                style: {
+                    fontSize: '15px'
+                }
+              },
+              max: 60,
+              min: 0,
+              tickInterval: 10
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+
+          series: [{
+              name: 'Observations',
+              data: [
+                  [18.00, 19.00, 20.00, 22.00, 52.00],
+                  [30.00, 35.00, 37.50, 41.00, 45.00]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }]
+
+    });
+    Highcharts.chart('boxincome', {
+
+          chart: {
+              type: 'boxplot'
+          },
+
+          title: {
+              text: 'Income Distributions for Studies 1 & 2'
+          },
+
+          legend: {
+              enabled: false
+          },
+
+          xAxis: {
+              categories: ['Study 1', 'Study 2'],
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+          },
+
+          colors: ['#FF7A00'],
+
+          yAxis: {
+              title: {
+                  text: 'Income',
+                style: {
+                    fontSize: '15px'
+                }
+               
+              },
+              max: 130000,
+              min: 0,
+              tickInterval: 20000
+          },
+          plotOptions: {
+              boxplot: {
+                  fillColor: '#FFCC9D',
+                  lineWidth: 2,
+                  medianColor: '#7F3D00',
+                  medianWidth: 3,
+                  stemColor: '#CC6100',
+                  stemDashStyle: 'dot',
+                  stemWidth: 2,
+                  whiskerColor: '#7F5126',
+                  whiskerLength: '20%',
+                  whiskerWidth: 3
+              }
+          },
+
+          series: [{
+              name: 'Observations',
+              data: [
+                  [0, 0, 4538, 13000, 72000],
+                  [0, 45000, 62500, 80250, 130000]
+              ],
+              tooltip: {
+                  headerFormat: '<em>Experiment {point.key}</em><br/>'
+              }
+          }]
+
+      });
+      Highcharts.chart('risk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Distributions of Risk Literacy for Studies 1 & 2'
+    },
+    xAxis: {
+        categories: [
+            'Study 1',
+            'Study 2'
+        ],
+      labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               },
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Proportion',
+          style: {
+                    fontSize: '15px'
+                }
+          
+        },
+        tickInterval: .2
+     
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: '1',
+        data: [.21, .23]
+
+    }, {
+        name: '2',
+        data: [.54, .21]
+
+    }, {
+        name: '3',
+        data: [.17, .10]
+
+    }, {
+        name: '4',
+        data: [.17, .46]
+
+    }]
+});
+        Highcharts.chart('gender', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Distributions of Gender for Studies 1 & 2'
+          },
+          xAxis: {
+              categories: [
+                  'Study 1',
+                  'Study 2'
+              ],
+            
+              crosshair: true,
+            labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+            
+          },
+          yAxis: {
+              min: 0,
+              max: 1,
+              title: {
+                  text: 'Proportion',
+                style: {
+                    fontSize: '15px'
+                }
+               
+              },
+              tickInterval: .2
+            
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: 'Female',
+              data: [.79, .52]
+
+          }, {
+              name: 'Male',
+              data: [.29, .48]
+
+          }, {
+              name: 'Other',
+              data: [.02, .00]
+
+          }]
+        });
+
+      Highcharts.chart('WSUcontain40k', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'WSU SONA $40,000 by Risk And Delay'
+          },
+          subtitle: {
+              text: 'Data from WSU (n = 56)'
+          },
+          xAxis: {
+            title: {
+              text: 'Risk'
+            },
+            categories: ['100%', '80%', '40%', '25%', '10%']
+          },
+
+          yAxis: {
+              title: {
+                  text: 'Subjective Value ($)'
+              },
+              max: 40000,
+              min: 0
+
+          },
+
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  enableMouseTracking: true
+              }
+          },
+
+          series: [{
+              name: 'Immediately',
+              data: [39375,25915,7411,5000,3013]
+          }, {
+              name: '1 month',
+              data: [38304,24576,6585,3884,1830]
+          }, {
+              name: '6 months',
+              data: [37790,22723,5000,3973,1763]
+          }, {
+              name: '2 years',
+              data: [32746,20692,3996,3013,1652]
+          }, {
+              name: '5 years',
+              data: [30268,16429,4152,2656,1585]
+          }]
+      });
+
+
+
+
+    Highcharts.chart('WSUcontain800', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'WSU SONA $800 by Risk And Delay'
+        },
+        subtitle: {
+            text: 'Data from WSU (n = 56)'
+        },
+        xAxis: {
+          title: {
+            text: 'Risk'
+          },
+          categories: ['100%', '80%', '40%', '25%', '10%']
+        },
+
+        yAxis: {
+            title: {
+                text: 'Subjective Value ($)'
+            },
+            max: 800,
+            min: 0,
+            tickInterval: 200
+        },
+
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+
+        series: [{
+            name: 'Immediately',
+            data: [788,546,167,146,78]
+        }, {
+            name: '1 month',
+            data: [751,519,148,113,58]
+        }, {
+            name: '6 months',
+            data: [676,438,139,86,54]
+        }, {
+            name: '2 years',
+            data: [479,324,103,88,50]
+        }, {
+            name: '5 years',
+            data: [412,254,88,63,43]
+        }]
+    });
+       Highcharts.chart('gamer', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Likelihood of Playing Social/Mobile Games for Studies 1 & 2'
+    },
+    xAxis: {
+        categories: [
+            'Study 1',
+            'Study 2'
+        ],
+        crosshair: true,
+      labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+    },
+    yAxis: {
+        min: 0,
+        max: 1,
+        title: {
+            text: 'Proportion', style: {
+                    fontSize: '15px'
+                }
+        },
+        tickInterval: .2
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0,
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: 'Plays for Free',
+        data: [.33, .52],
+        stack: 'games'
+    }, {
+        name: 'Plays and Pays',
+        data: [.07, .22],
+        stack: 'games'
+    },{
+        name: 'Does not Play',
+        data: [.6, .26],
+        stack: 'no game'
+    } ]
+});
+                Highcharts.chart('moneyspent', {
+            chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'USD Spent on Free-to-Play Games for Studies 1 & 2'
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Research Study'
+                },
+                categories: ['Study 1', 'Study 2'],
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true,
+              labels: {
+                 style: {
+                    fontSize: '15px'
+                }
+               }
+            },
+            yAxis: {
+                title: {
+                    text: 'USD ($)',
+                  style: {
+                    fontSize: '15px'
+                }
+                }
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 8,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
+                    },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '${point.y}'
+            }
+        }
+    },
+    series: [{
+        name: 'Study 1',
+        color: 'rgba(255, 122, 0, .5)',
+        data: [[0,5],[0,1]]
+
+    }, {
+        name: 'Study 2',
+        color: 'rgba(255, 67, 0, .5)',
+        data: [[1,3],[1,40],[1,10],[1,5],[1,5],[1,10],[1,5],[1,25],[1,15],[1,20],[1,3]]
+    }]
+});
+
+
+
+
+  </script>
+</html>
