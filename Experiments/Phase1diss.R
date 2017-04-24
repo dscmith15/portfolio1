@@ -173,8 +173,14 @@ hlfit <- lmer(adjValue~as.numeric(odd)*as.numeric(delay)*as.numeric(value)+(1|pn
 
 repaov<-aov(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value)+Error(pnum/(as.factor(odd)*as.factor(delay)*as.factor(value))), data = pfinal)
 
+
 lme_aov <- lme(adjValue~as.factor(odd)*as.factor(delay)*as.factor(value),data = pfinal,random = ~1|pnum)
+rl_lme_aov <- lme(adjValue~as.factor(riskLiteracy)*as.factor(odd)*as.factor(delay)*as.factor(value),data = pfinal,random = ~1|pnum)
+gen_lme_aov <- lme(adjValue~as.factor(gender)*as.factor(odd)*as.factor(delay)*as.factor(value),data = pfinal,random = ~1|pnum)
+
 lme_aov_sum<-anova(lme_aov)
+gen_lme_aov_sum<-anova(gen_lme_aov)
+rl_lme_aov_sum<-anova(rl_lme_aov)
 #summary(glht(lme_aov, linfct=mcp(Material = "Tukey")), test = adjusted(type = "bonferroni"))
 
 
